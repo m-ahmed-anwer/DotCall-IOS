@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A3317C18BD1DA347AFCFA47 /* Pods_DotCall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B878B1DE3AAB8D7AFE0BDA49 /* Pods_DotCall.framework */; };
+		E22126EE2BD7E5C200AAA7D2 /* SignupConfirmationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22126ED2BD7E5C200AAA7D2 /* SignupConfirmationController.swift */; };
 		E22B6BFD2BD6261700D9E9CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6BFC2BD6261700D9E9CE /* AppDelegate.swift */; };
 		E22B6BFF2BD6261700D9E9CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6BFE2BD6261700D9E9CE /* SceneDelegate.swift */; };
 		E22B6C012BD6261700D9E9CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6C002BD6261700D9E9CE /* ViewController.swift */; };
@@ -16,6 +18,18 @@
 		E22B6C142BD6261800D9E9CE /* DotCallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6C132BD6261800D9E9CE /* DotCallTests.swift */; };
 		E22B6C1E2BD6261800D9E9CE /* DotCallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6C1D2BD6261800D9E9CE /* DotCallUITests.swift */; };
 		E22B6C202BD6261800D9E9CE /* DotCallUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6C1F2BD6261800D9E9CE /* DotCallUITestsLaunchTests.swift */; };
+		E23C798E2BD7AEB40027ECFC /* LoginOTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C798D2BD7AEB40027ECFC /* LoginOTPController.swift */; };
+		E23C79902BD7C0760027ECFC /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C798F2BD7C0760027ECFC /* ForgotPasswordController.swift */; };
+		E23C79922BD7CC5B0027ECFC /* SignupInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C79912BD7CC5B0027ECFC /* SignupInformationController.swift */; };
+		E27E2E012BD64F0600D89CD8 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E27E2E002BD64F0600D89CD8 /* Inter.ttf */; };
+		E27E2E032BD6638400D89CD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E2E022BD6638400D89CD8 /* Constants.swift */; };
+		E27E2E052BD684C400D89CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E2E042BD684C400D89CD8 /* LoginViewController.swift */; };
+		E27E2E072BD687AD00D89CD8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E2E062BD687AC00D89CD8 /* SignupViewController.swift */; };
+		E2A398242BDFB638002239E1 /* ForgetOTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A398232BDFB638002239E1 /* ForgetOTPController.swift */; };
+		E2A398262BDFB64E002239E1 /* SignUpOTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A398252BDFB64E002239E1 /* SignUpOTPController.swift */; };
+		E2A398292BDFBCE5002239E1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */; };
+		E2E1403F2BDE15D500F3A48C /* ResetPasswordConrttoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1403E2BDE15D500F3A48C /* ResetPasswordConrttoller.swift */; };
+		E2E140422BDEA32D00F3A48C /* CountrySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E140412BDEA32D00F3A48C /* CountrySelector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D726AC61A7F398581195D3C /* Pods-DotCall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotCall.release.xcconfig"; path = "Target Support Files/Pods-DotCall/Pods-DotCall.release.xcconfig"; sourceTree = "<group>"; };
+		9477A594A9FB70D6B02162B9 /* Pods-DotCall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotCall.debug.xcconfig"; path = "Target Support Files/Pods-DotCall/Pods-DotCall.debug.xcconfig"; sourceTree = "<group>"; };
+		B878B1DE3AAB8D7AFE0BDA49 /* Pods_DotCall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DotCall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E22126ED2BD7E5C200AAA7D2 /* SignupConfirmationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConfirmationController.swift; sourceTree = "<group>"; };
 		E22B6BF92BD6261700D9E9CE /* DotCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E22B6BFC2BD6261700D9E9CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E22B6BFE2BD6261700D9E9CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +67,17 @@
 		E22B6C192BD6261800D9E9CE /* DotCallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotCallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E22B6C1D2BD6261800D9E9CE /* DotCallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotCallUITests.swift; sourceTree = "<group>"; };
 		E22B6C1F2BD6261800D9E9CE /* DotCallUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotCallUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E23C798D2BD7AEB40027ECFC /* LoginOTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOTPController.swift; sourceTree = "<group>"; };
+		E23C798F2BD7C0760027ECFC /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		E23C79912BD7CC5B0027ECFC /* SignupInformationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInformationController.swift; sourceTree = "<group>"; };
+		E27E2E002BD64F0600D89CD8 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
+		E27E2E022BD6638400D89CD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E27E2E042BD684C400D89CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E27E2E062BD687AC00D89CD8 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		E2A398232BDFB638002239E1 /* ForgetOTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetOTPController.swift; sourceTree = "<group>"; };
+		E2A398252BDFB64E002239E1 /* SignUpOTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpOTPController.swift; sourceTree = "<group>"; };
+		E2E1403E2BDE15D500F3A48C /* ResetPasswordConrttoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordConrttoller.swift; sourceTree = "<group>"; };
+		E2E140412BDEA32D00F3A48C /* CountrySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2A398292BDFBCE5002239E1 /* IQKeyboardManagerSwift in Frameworks */,
+				5A3317C18BD1DA347AFCFA47 /* Pods_DotCall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +107,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F80E002A94F0ABB0944A493 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9477A594A9FB70D6B02162B9 /* Pods-DotCall.debug.xcconfig */,
+				2D726AC61A7F398581195D3C /* Pods-DotCall.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A50B2CAC6077A15B4148E63B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B878B1DE3AAB8D7AFE0BDA49 /* Pods_DotCall.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E22B6BF02BD6261600D9E9CE = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +131,8 @@
 				E22B6C122BD6261800D9E9CE /* DotCallTests */,
 				E22B6C1C2BD6261800D9E9CE /* DotCallUITests */,
 				E22B6BFA2BD6261700D9E9CE /* Products */,
+				8F80E002A94F0ABB0944A493 /* Pods */,
+				A50B2CAC6077A15B4148E63B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +149,17 @@
 		E22B6BFB2BD6261700D9E9CE /* DotCall */ = {
 			isa = PBXGroup;
 			children = (
+				E2E140402BDEA30C00F3A48C /* Functions */,
+				E27E2DFF2BD64EEC00D89CD8 /* Fonts */,
+				E27E2DFE2BD64DBA00D89CD8 /* Views */,
+				E27E2DFD2BD64DAA00D89CD8 /* Controllers */,
+				E27E2DFC2BD64D9E00D89CD8 /* Models */,
 				E22B6BFC2BD6261700D9E9CE /* AppDelegate.swift */,
 				E22B6BFE2BD6261700D9E9CE /* SceneDelegate.swift */,
-				E22B6C002BD6261700D9E9CE /* ViewController.swift */,
-				E22B6C022BD6261700D9E9CE /* Main.storyboard */,
 				E22B6C052BD6261800D9E9CE /* Assets.xcassets */,
 				E22B6C072BD6261800D9E9CE /* LaunchScreen.storyboard */,
 				E22B6C0A2BD6261800D9E9CE /* Info.plist */,
+				E27E2E022BD6638400D89CD8 /* Constants.swift */,
 			);
 			path = DotCall;
 			sourceTree = "<group>";
@@ -127,6 +181,54 @@
 			path = DotCallUITests;
 			sourceTree = "<group>";
 		};
+		E27E2DFC2BD64D9E00D89CD8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E27E2DFD2BD64DAA00D89CD8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E22B6C002BD6261700D9E9CE /* ViewController.swift */,
+				E27E2E042BD684C400D89CD8 /* LoginViewController.swift */,
+				E27E2E062BD687AC00D89CD8 /* SignupViewController.swift */,
+				E23C798D2BD7AEB40027ECFC /* LoginOTPController.swift */,
+				E23C798F2BD7C0760027ECFC /* ForgotPasswordController.swift */,
+				E23C79912BD7CC5B0027ECFC /* SignupInformationController.swift */,
+				E22126ED2BD7E5C200AAA7D2 /* SignupConfirmationController.swift */,
+				E2E1403E2BDE15D500F3A48C /* ResetPasswordConrttoller.swift */,
+				E2A398232BDFB638002239E1 /* ForgetOTPController.swift */,
+				E2A398252BDFB64E002239E1 /* SignUpOTPController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E27E2DFE2BD64DBA00D89CD8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E22B6C022BD6261700D9E9CE /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E27E2DFF2BD64EEC00D89CD8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E27E2E002BD64F0600D89CD8 /* Inter.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E2E140402BDEA30C00F3A48C /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				E2E140412BDEA32D00F3A48C /* CountrySelector.swift */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,15 +236,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E22B6C232BD6261800D9E9CE /* Build configuration list for PBXNativeTarget "DotCall" */;
 			buildPhases = (
+				CABC70B509A6CC6C24081F99 /* [CP] Check Pods Manifest.lock */,
 				E22B6BF52BD6261700D9E9CE /* Sources */,
 				E22B6BF62BD6261700D9E9CE /* Frameworks */,
 				E22B6BF72BD6261700D9E9CE /* Resources */,
+				E23E2C462BDFF547004D85B7 /* ShellScript */,
+				85F23D95D87E8C2CE9464298 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DotCall;
+			packageProductDependencies = (
+				E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */,
+			);
 			productName = DotCall;
 			productReference = E22B6BF92BD6261700D9E9CE /* DotCall.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +323,9 @@
 				Base,
 			);
 			mainGroup = E22B6BF02BD6261600D9E9CE;
+			packageReferences = (
+				E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = E22B6BFA2BD6261700D9E9CE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27E2E012BD64F0600D89CD8 /* Inter.ttf in Resources */,
 				E22B6C092BD6261800D9E9CE /* LaunchScreen.storyboard in Resources */,
 				E22B6C062BD6261800D9E9CE /* Assets.xcassets in Resources */,
 				E22B6C042BD6261700D9E9CE /* Main.storyboard in Resources */,
@@ -253,14 +365,84 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		85F23D95D87E8C2CE9464298 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DotCall/Pods-DotCall-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DotCall/Pods-DotCall-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DotCall/Pods-DotCall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CABC70B509A6CC6C24081F99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DotCall-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E23E2C462BDFF547004D85B7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E22B6BF52BD6261700D9E9CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27E2E072BD687AD00D89CD8 /* SignupViewController.swift in Sources */,
+				E2E140422BDEA32D00F3A48C /* CountrySelector.swift in Sources */,
+				E23C79902BD7C0760027ECFC /* ForgotPasswordController.swift in Sources */,
+				E2A398262BDFB64E002239E1 /* SignUpOTPController.swift in Sources */,
 				E22B6C012BD6261700D9E9CE /* ViewController.swift in Sources */,
+				E23C798E2BD7AEB40027ECFC /* LoginOTPController.swift in Sources */,
 				E22B6BFD2BD6261700D9E9CE /* AppDelegate.swift in Sources */,
+				E23C79922BD7CC5B0027ECFC /* SignupInformationController.swift in Sources */,
+				E22126EE2BD7E5C200AAA7D2 /* SignupConfirmationController.swift in Sources */,
 				E22B6BFF2BD6261700D9E9CE /* SceneDelegate.swift in Sources */,
+				E27E2E052BD684C400D89CD8 /* LoginViewController.swift in Sources */,
+				E2E1403F2BDE15D500F3A48C /* ResetPasswordConrttoller.swift in Sources */,
+				E27E2E032BD6638400D89CD8 /* Constants.swift in Sources */,
+				E2A398242BDFB638002239E1 /* ForgetOTPController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,19 +619,24 @@
 		};
 		E22B6C242BD6261800D9E9CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9477A594A9FB70D6B02162B9 /* Pods-DotCall.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9RUVU3VWHV;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DotCall/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DotCall;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,19 +652,24 @@
 		};
 		E22B6C252BD6261800D9E9CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D726AC61A7F398581195D3C /* Pods-DotCall.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9RUVU3VWHV;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DotCall/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DotCall;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -607,6 +799,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E22B6BF12BD6261600D9E9CE /* Project object */;
 }

@@ -20,9 +20,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+       
+
+        
         
         createButton.layer.cornerRadius = CGFloat(K.borderRadius)
         loginButton.layer.cornerRadius = CGFloat(K.borderRadius)
+        
+        
+        
+        
         
         let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
         let underlineAttributedString = NSAttributedString(string: "Clear Conversation", attributes: underlineAttribute)
