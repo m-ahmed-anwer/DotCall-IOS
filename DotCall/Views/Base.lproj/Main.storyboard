@@ -205,6 +205,7 @@
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
                                         </buttonConfiguration>
                                         <connections>
+                                            <action selector="LoginButtonPressed:" destination="mXG-h5-jzV" eventType="touchUpInside" id="whp-Fp-miJ"/>
                                             <segue destination="uMo-mA-o5t" kind="show" identifier="OTPtoCheck" id="ust-eV-DCb"/>
                                         </connections>
                                     </button>
