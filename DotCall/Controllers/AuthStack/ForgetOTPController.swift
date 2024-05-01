@@ -1,23 +1,34 @@
 //
-//  OTPVerification.swift
+//  ForgetOTPController.swift
 //  DotCall
 //
-//  Created by Ahmed Anwer on 2024-04-23.
+//  Created by Ahmed Anwer on 2024-04-29.
 //
 
 
-import UIKit
 import AEOTPTextField
 
-class LoginOTPController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var resendText: UILabel!
-    @IBOutlet weak var phoneNumber: UILabel!
-    @IBOutlet weak var OTPButton: UIButton!
+import UIKit
 
-  
+class ForgetOTPController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var resendText: UILabel!
+    
+    @IBOutlet weak var phoneNumber: UILabel!
+    
+    @IBOutlet weak var OTPButton: UIButton!
+    
     @IBOutlet weak var otpTextField: AEOTPTextField!
     
+    var smsCode:String = ""
+    var phoneNumberText: String = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        phoneNumber.text = phoneNumberText
+    }
+
+
     override func viewDidLoad() {
        super.viewDidLoad()
        navigationController?.navigationBar.barStyle = .black
@@ -42,14 +53,40 @@ class LoginOTPController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func OTPButtonPressed(_ sender: UIButton) {
-       
+        guard smsCode != "" else {
+            return
+        }
+        verify(code: smsCode)
     }
+    
 
+    
 }
 
-extension LoginOTPController: AEOTPTextFieldDelegate {
+
+extension ForgetOTPController: AEOTPTextFieldDelegate {
     func didUserFinishEnter(the code: String) {
-        print(code)
+        smsCode = code
+        verify(code: code)
+    }
+}
+
+
+extension ForgetOTPController{
+    func verify(code: String){
+        LoadingManager.shared.showLoadingScreen()
+        AuthManager.shared.verifyCode(smsCode: code) { success, error in
+            LoadingManager.shared.hideLoadingScreen()
+            if success {
+                self.performSegue(withIdentifier: "ResetPasswordToCheck", sender: nil)
+            } else {
+                let alert = UIAlertController(title: "Authentication Error", message: error != nil ? error?.localizedDescription:"Failed to start authentication process.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+
+            }
+        }
+
     }
 }
 

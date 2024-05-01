@@ -15,9 +15,17 @@ class SignUpOTPController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var OTPButton: UIButton!
+    var smsCode:String = "" 
+    var phoneNumberText: String = ""
 
     
     @IBOutlet weak var otpTextField: AEOTPTextField!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        phoneNumber.text = phoneNumberText
+    }
+
     
     override func viewDidLoad() {
        super.viewDidLoad()
@@ -44,7 +52,11 @@ class SignUpOTPController: UIViewController, UITextFieldDelegate {
 
     
     @IBAction func OTPButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "CreatetoCheck", sender: nil)
+        guard smsCode != "" else {
+            return
+        }
+        verify(code: smsCode)
+        
     }
     
 }
@@ -52,7 +64,30 @@ class SignUpOTPController: UIViewController, UITextFieldDelegate {
 
 extension SignUpOTPController: AEOTPTextFieldDelegate {
     func didUserFinishEnter(the code: String) {
-        print(code)
+        smsCode = code
+        verify(code: code)
     }
 }
+
+extension SignUpOTPController{
+    func verify(code: String){
+        LoadingManager.shared.showLoadingScreen()
+        AuthManager.shared.verifyCode(smsCode: code) { success, error in
+            LoadingManager.shared.hideLoadingScreen()
+            if success {
+                self.performSegue(withIdentifier: "CreatetoCheck", sender: nil)
+            } else {
+                let alert = UIAlertController(title: "Authentication Error", message: error != nil ? error?.localizedDescription:"Failed to start authentication process.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+
+            }
+        }
+
+    }
+}
+
+
+
+
 

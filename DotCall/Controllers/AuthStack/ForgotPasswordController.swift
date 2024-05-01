@@ -42,14 +42,38 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        var  finalPhoneNumber: String
         if countryCode == "" {
-            print("Phone Number: +94\(phoneNumber)")
+            finalPhoneNumber = "+94\(phoneNumber)"
         } else {
-            print("Phone Number: \(countryCode)\(phoneNumber)")
+            finalPhoneNumber = "\(countryCode)\(phoneNumber)"
         }
         
-        // Perform the segue to the next view controller
-        performSegue(withIdentifier: "OTPToCheck", sender: nil)
+        
+        LoadingManager.shared.showLoadingScreen()
+        AuthManager.shared.startAuth(phoneNumber: finalPhoneNumber) { [weak self] success, error in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                LoadingManager.shared.hideLoadingScreen()
+                if success {
+                    self.performSegue(withIdentifier: "OTPToCheck",  sender: finalPhoneNumber)
+                } else {
+                    let alert = UIAlertController(title: "Authentication Error", message: error != nil ? error?.localizedDescription:"Failed to start authentication process.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "OTPtoCheck" {
+            if let destinationVC = segue.destination as? LoginOTPController {
+                if let phoneNumber = sender as? String {
+                    destinationVC.phoneNumberText = phoneNumber
+                }
+            }
+        }
     }
 
     

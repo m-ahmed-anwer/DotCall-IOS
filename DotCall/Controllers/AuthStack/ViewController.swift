@@ -21,14 +21,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-       
-
-        
-        
         createButton.layer.cornerRadius = CGFloat(K.borderRadius)
         loginButton.layer.cornerRadius = CGFloat(K.borderRadius)
         
-        
+       
+
         
         
         

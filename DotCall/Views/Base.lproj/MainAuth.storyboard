@@ -89,7 +89,7 @@
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Login" cornerStyle="large">
-                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                                    <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="20"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <segue destination="mXG-h5-jzV" kind="show" id="cXh-wE-Xoh"/>
@@ -649,7 +649,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="uzY-ZF-ajp">
-                                                <rect key="frame" x="30" y="123" width="333" height="432"/>
+                                                <rect key="frame" x="30" y="123" width="333" height="447"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="t03-EX-3ZI">
                                                         <rect key="frame" x="0.0" y="0.0" width="333" height="67"/>
@@ -668,8 +668,8 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="UAL-8v-7AD">
-                                                        <rect key="frame" x="0.0" y="112" width="333" height="225"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="UAL-8v-7AD">
+                                                        <rect key="frame" x="0.0" y="112" width="333" height="240"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your email" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="6EP-PY-Zqt">
                                                                 <rect key="frame" x="0.0" y="0.0" width="333" height="45"/>
@@ -680,7 +680,7 @@
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your full name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kPF-MG-hEa">
-                                                                <rect key="frame" x="0.0" y="60" width="333" height="45"/>
+                                                                <rect key="frame" x="0.0" y="65" width="333" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="c4S-uW-UH4"/>
                                                                 </constraints>
@@ -688,7 +688,7 @@
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="1UL-S9-vej">
-                                                                <rect key="frame" x="0.0" y="120" width="333" height="45"/>
+                                                                <rect key="frame" x="0.0" y="130" width="333" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="CBt-qt-oVP"/>
                                                                 </constraints>
@@ -696,7 +696,7 @@
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GtB-P9-rd1">
-                                                                <rect key="frame" x="0.0" y="180" width="333" height="45"/>
+                                                                <rect key="frame" x="0.0" y="195" width="333" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="96X-fo-4iw"/>
                                                                 </constraints>
@@ -706,7 +706,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jU0-Ka-2Me">
-                                                        <rect key="frame" x="0.0" y="382" width="333" height="50"/>
+                                                        <rect key="frame" x="0.0" y="397" width="333" height="50"/>
                                                         <color key="backgroundColor" name="ThemeIconColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="2rG-tK-M3Y"/>
