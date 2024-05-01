@@ -19,6 +19,7 @@ class LoginOTPController: UIViewController, UITextFieldDelegate {
     var smsCode:String = ""
     var phoneNumberText: String = ""
     
+    
     @IBOutlet weak var otpTextField: AEOTPTextField!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +68,7 @@ class LoginOTPController: UIViewController, UITextFieldDelegate {
 extension LoginOTPController: AEOTPTextFieldDelegate {
     func didUserFinishEnter(the code: String) {
         smsCode = code
-        verify(code: code)
+        verify(code: smsCode)
         
     }
 }
@@ -91,4 +92,10 @@ extension LoginOTPController{
 }
 
 
-
+extension LoginOTPController{
+    func alert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+}

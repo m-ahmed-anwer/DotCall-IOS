@@ -15,7 +15,8 @@ class SignUpOTPController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var OTPButton: UIButton!
-    var smsCode:String = "" 
+    
+    var smsCode:String = ""
     var phoneNumberText: String = ""
 
     
@@ -75,7 +76,8 @@ extension SignUpOTPController{
         AuthManager.shared.verifyCode(smsCode: code) { success, error in
             LoadingManager.shared.hideLoadingScreen()
             if success {
-                self.performSegue(withIdentifier: "CreatetoCheck", sender: nil)
+                self.signupUser(name: userName, email: userEmail, password: userPassword, phoneNumber: userPhoneNumber)
+                //self.performSegue(withIdentifier: "CreatetoCheck", sender: nil)
             } else {
                 let alert = UIAlertController(title: "Authentication Error", message: error != nil ? error?.localizedDescription:"Failed to start authentication process.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -87,6 +89,62 @@ extension SignUpOTPController{
     }
 }
 
+extension SignUpOTPController {
+    func signupUser(name: String, email: String, password: String, phoneNumber: String) {
+        // Prepare the request URL
+        let url = URL(string: "http://localhost:3000/users/signup")!
+        
+        // Prepare the request body
+        let json: [String: Any] = [
+            "name" : name,
+            "email" : email,
+            "password" : password,
+            "phoneNumber" : phoneNumber
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+            
+            // Create the request
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            // Perform the request
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    return
+                }
+                
+                // Check if the response contains data
+                guard let data = data else {
+                    print("No data in response")
+                    return
+                }
+                
+                // Parse the JSON response
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                        print("Response: \(json)")
+                        
+                        // Handle the response data as needed
+                        // For example, you can store the user details in your database
+                    }
+                } catch {
+                    print("Error parsing JSON: \(error.localizedDescription)")
+                }
+
+            }
+            
+            // Execute the task
+            task.resume()
+        } catch {
+            print("Error creating JSON data: \(error.localizedDescription)")
+        }
+    }
+}
 
 
 

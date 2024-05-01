@@ -25,6 +25,66 @@ class SignupInformationController: UIViewController {
         
         [emailFeild, nameFeild, passwordFeild, confirmPasswordFeild].forEach { $0?.addBottomBorder(withColor: UIColor.inputBelow, thickness: 1.0) }
         
+    }
+    
+    @IBAction func AllSetButtonPressed(_ sender: UIButton) {
+            
+        guard let passwordText = passwordFeild.text, !passwordText.isEmpty,
+            let confirmPasswordText = confirmPasswordFeild.text, !confirmPasswordText.isEmpty,
+            let email = emailFeild.text, !email.isEmpty,
+            let name = nameFeild.text, !name.isEmpty else {
+                alert(title: "Missing Information", message: "Please enter your email, name, and passwords.")
+                return
+        }
+
+        guard isValidEmail(email) else {
+            alert(title: "Invalid Email", message: "Please enter a valid email address.")
+            return
+        }
         
+        guard passwordText.count >= 6 else {
+            alert(title: "Password Validation", message: "Password must be at least 6 characters long.")
+            return
+        }
+
+        guard passwordText == confirmPasswordText else {
+            alert(title: "Password Mismatch", message: "Password and confirm password do not match.")
+            return
+        }
+        
+        userEmail = email
+        userName = name
+        userPassword = passwordText
+        
+        performSegue(withIdentifier: "CreatetoCheck",  sender: name)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CreatetoCheck" {
+            if let destinationVC = segue.destination as? SignupViewController {
+                if let name = sender as? String {
+                    destinationVC.name = name
+                }
+            }
+        }
+    }
+
+    
+}
+
+extension SignupInformationController{
+    func alert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        // Regular expression for basic email validation
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
     }
 }

@@ -77,7 +77,7 @@
                                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="mNp-0r-9yx" kind="show" id="xM0-PY-Yjx"/>
+                                                    <segue destination="WT3-do-Owc" kind="show" id="cne-d2-JXS"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fu8-Pa-8b3">
@@ -289,8 +289,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="tsN-h2-o2p">
                                                 <rect key="frame" x="0.0" y="0.0" width="333" height="67"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi there!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXJ-bl-cvP">
-                                                        <rect key="frame" x="0.0" y="0.0" width="117" height="34"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Ahmed!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXJ-bl-cvP">
+                                                        <rect key="frame" x="0.0" y="0.0" width="184.33333333333334" height="34"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_Bold" family="Inter" pointSize="28"/>
                                                         <color key="textColor" name="ThemeTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -379,9 +379,10 @@
                         <viewLayoutGuide key="safeArea" id="LRg-Te-YLt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Signup" id="h4Y-LV-xQ3"/>
+                    <navigationItem key="navigationItem" id="h4Y-LV-xQ3"/>
                     <connections>
                         <outlet property="countryButton" destination="fmY-K3-QcI" id="vRm-X9-T30"/>
+                        <outlet property="greetingText" destination="kXJ-bl-cvP" id="j5O-ho-ugm"/>
                         <outlet property="otpButton" destination="eFH-WU-aND" id="7HF-BP-T7b"/>
                         <outlet property="phoneNumberField" destination="RCZ-gX-EaM" id="Zei-AD-qBu"/>
                         <segue destination="UHh-P1-GXf" kind="show" identifier="SignUpToCheck" id="k1K-Jl-Rst"/>
@@ -389,7 +390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="978-h7-F6h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1004" y="806"/>
+            <point key="canvasLocation" x="-77" y="806"/>
         </scene>
         <!--LoginOTP-->
         <scene sceneID="HYr-Sn-bLt">
@@ -420,7 +421,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TFi-bM-aOS">
-                                                                <rect key="frame" x="0.0" y="49" width="270.66666666666669" height="18"/>
+                                                                <rect key="frame" x="0.0" y="49" width="166.33333333333334" height="18"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the code sent to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8G-Sf-V78">
                                                                         <rect key="frame" x="0.0" y="0.0" width="152" height="18"/>
@@ -428,8 +429,8 @@
                                                                         <color key="textColor" name="ThemeTextColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+94 768242884" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTE-Fu-uDI">
-                                                                        <rect key="frame" x="157" y="0.0" width="113.66666666666669" height="18"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTE-Fu-uDI">
+                                                                        <rect key="frame" x="157" y="0.0" width="9.3333333333333428" height="18"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -649,7 +650,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="uzY-ZF-ajp">
-                                                <rect key="frame" x="30" y="123" width="333" height="447"/>
+                                                <rect key="frame" x="30" y="123" width="333" height="523.33333333333337"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="t03-EX-3ZI">
                                                         <rect key="frame" x="0.0" y="0.0" width="333" height="67"/>
@@ -713,13 +714,19 @@
                                                         </constraints>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="All Set" cornerStyle="large">
+                                                        <buttonConfiguration key="configuration" style="plain" title="Create User" cornerStyle="large">
                                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <segue destination="9s7-6v-Yul" kind="show" id="3Zh-f7-iwu"/>
+                                                            <action selector="AllSetButtonPressed:" destination="WT3-do-Owc" eventType="touchUpInside" id="egQ-Yn-gFc"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By continuing, you agree to our Terms &amp; Conditions and that you have read our Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLg-p7-wD2">
+                                                        <rect key="frame" x="0.0" y="492" width="322" height="31.333333333333371"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                        <color key="textColor" name="LightGrayText"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="UAL-8v-7AD" secondAttribute="trailing" id="0hv-Jr-7Ct"/>
@@ -747,18 +754,19 @@
                         <viewLayoutGuide key="safeArea" id="KUA-2U-ajF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="GFx-SO-MBf"/>
+                    <navigationItem key="navigationItem" title="Signup" largeTitleDisplayMode="always" id="GFx-SO-MBf"/>
                     <connections>
                         <outlet property="confirmButton" destination="jU0-Ka-2Me" id="NQa-Ey-Vgv"/>
                         <outlet property="confirmPasswordFeild" destination="GtB-P9-rd1" id="Y1f-bK-Q5c"/>
                         <outlet property="emailFeild" destination="6EP-PY-Zqt" id="4Er-yJ-6WW"/>
                         <outlet property="nameFeild" destination="kPF-MG-hEa" id="kNg-07-vGv"/>
                         <outlet property="passwordFeild" destination="1UL-S9-vej" id="aqc-wa-5vQ"/>
+                        <segue destination="mNp-0r-9yx" kind="show" identifier="CreatetoCheck" id="34e-v2-KCK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIB-dv-hch" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="984" y="806"/>
+            <point key="canvasLocation" x="-1327" y="806"/>
         </scene>
         <!--Confirmation-->
         <scene sceneID="Wcr-Kf-voK">
@@ -773,7 +781,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xYx-MU-ZWy">
-                                        <rect key="frame" x="30" y="103" width="333" height="665"/>
+                                        <rect key="frame" x="30" y="59" width="333" height="709"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DotCall" translatesAutoresizingMaskIntoConstraints="NO" id="r1X-sf-83Q">
                                                 <rect key="frame" x="0.0" y="0.0" width="333" height="100"/>
@@ -797,13 +805,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="That's it, just check your inbox for a confirmation" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTC-XE-eez">
-                                                <rect key="frame" x="0.0" y="410" width="333" height="177"/>
+                                                <rect key="frame" x="0.0" y="410" width="333" height="221"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" name="ThemeTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouW-RF-dkp">
-                                                <rect key="frame" x="0.0" y="607" width="333" height="58"/>
+                                                <rect key="frame" x="0.0" y="651" width="333" height="58"/>
                                                 <color key="backgroundColor" name="ThemeIconColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="58" id="85D-1a-1t4"/>
@@ -972,7 +980,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5Hn-hu-X54">
-                                                        <rect key="frame" x="0.0" y="49" width="270.66666666666669" height="18"/>
+                                                        <rect key="frame" x="0.0" y="49" width="166.33333333333334" height="18"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the code sent to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pz-ru-h2b">
                                                                 <rect key="frame" x="0.0" y="0.0" width="152" height="18"/>
@@ -980,8 +988,8 @@
                                                                 <color key="textColor" name="ThemeTextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+94 768242884" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vtv-Ow-SV3">
-                                                                <rect key="frame" x="157" y="0.0" width="113.66666666666669" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vtv-Ow-SV3">
+                                                                <rect key="frame" x="157" y="0.0" width="9.3333333333333428" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -1086,7 +1094,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Fwm-Po-1Iu">
-                                                        <rect key="frame" x="0.0" y="49" width="270.66666666666669" height="18"/>
+                                                        <rect key="frame" x="0.0" y="49" width="166.33333333333334" height="18"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the code sent to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyw-Jt-KaP">
                                                                 <rect key="frame" x="0.0" y="0.0" width="152" height="18"/>
@@ -1094,8 +1102,8 @@
                                                                 <color key="textColor" name="ThemeTextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+94 768242884" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnU-AT-S7W">
-                                                                <rect key="frame" x="157" y="0.0" width="113.66666666666669" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnU-AT-S7W">
+                                                                <rect key="frame" x="157" y="0.0" width="9.3333333333333428" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -1168,12 +1176,11 @@
                         <outlet property="otpTextField" destination="Qeq-KE-Q7s" id="LPQ-nZ-Tbo"/>
                         <outlet property="phoneNumber" destination="hnU-AT-S7W" id="cFV-cP-822"/>
                         <outlet property="resendText" destination="fNt-jD-ewn" id="IKm-M0-n9C"/>
-                        <segue destination="WT3-do-Owc" kind="show" identifier="CreatetoCheck" id="a28-2A-cL9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1p9-Wj-9hs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57" y="806"/>
+            <point key="canvasLocation" x="984" y="806"/>
         </scene>
     </scenes>
     <resources>

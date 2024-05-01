@@ -12,7 +12,7 @@
 		E22B6BFD2BD6261700D9E9CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6BFC2BD6261700D9E9CE /* AppDelegate.swift */; };
 		E22B6BFF2BD6261700D9E9CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6BFE2BD6261700D9E9CE /* SceneDelegate.swift */; };
 		E22B6C012BD6261700D9E9CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6C002BD6261700D9E9CE /* ViewController.swift */; };
-		E22B6C042BD6261700D9E9CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E22B6C022BD6261700D9E9CE /* Main.storyboard */; };
+		E22B6C042BD6261700D9E9CE /* MainAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E22B6C022BD6261700D9E9CE /* MainAuth.storyboard */; };
 		E22B6C062BD6261800D9E9CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E22B6C052BD6261800D9E9CE /* Assets.xcassets */; };
 		E22B6C092BD6261800D9E9CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E22B6C072BD6261800D9E9CE /* LaunchScreen.storyboard */; };
 		E22B6C142BD6261800D9E9CE /* DotCallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6C132BD6261800D9E9CE /* DotCallTests.swift */; };
@@ -21,6 +21,16 @@
 		E23C798E2BD7AEB40027ECFC /* LoginOTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C798D2BD7AEB40027ECFC /* LoginOTPController.swift */; };
 		E23C79902BD7C0760027ECFC /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C798F2BD7C0760027ECFC /* ForgotPasswordController.swift */; };
 		E23C79922BD7CC5B0027ECFC /* SignupInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C79912BD7CC5B0027ECFC /* SignupInformationController.swift */; };
+		E23E2C482BE13448004D85B7 /* AppStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23E2C472BE13448004D85B7 /* AppStoryboard.storyboard */; };
+		E23E2C4B2BE139DD004D85B7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E23E2C4A2BE139DD004D85B7 /* FirebaseAuth */; };
+		E23E2C4D2BE139DD004D85B7 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E23E2C4C2BE139DD004D85B7 /* FirebaseAuthCombine-Community */; };
+		E23E2C4F2BE139DD004D85B7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E23E2C4E2BE139DD004D85B7 /* FirebaseFirestore */; };
+		E23E2C512BE139DD004D85B7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E23E2C502BE139DD004D85B7 /* FirebaseStorage */; };
+		E23E2C552BE1441D004D85B7 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E2C542BE1441D004D85B7 /* AuthManager.swift */; };
+		E23E2C5D2BE20A00004D85B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E23E2C5C2BE20A00004D85B7 /* GoogleService-Info.plist */; };
+		E23E2C602BE2167A004D85B7 /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E2C5F2BE2167A004D85B7 /* LoadingManager.swift */; };
+		E23E2C642BE232B3004D85B7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E2C632BE232B3004D85B7 /* HomeViewController.swift */; };
+		E23E2C662BE272CB004D85B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E2C652BE272CA004D85B7 /* User.swift */; };
 		E27E2E012BD64F0600D89CD8 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E27E2E002BD64F0600D89CD8 /* Inter.ttf */; };
 		E27E2E032BD6638400D89CD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E2E022BD6638400D89CD8 /* Constants.swift */; };
 		E27E2E052BD684C400D89CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E2E042BD684C400D89CD8 /* LoginViewController.swift */; };
@@ -58,7 +68,7 @@
 		E22B6BFC2BD6261700D9E9CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E22B6BFE2BD6261700D9E9CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E22B6C002BD6261700D9E9CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E22B6C032BD6261700D9E9CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E22B6C032BD6261700D9E9CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainAuth.storyboard; sourceTree = "<group>"; };
 		E22B6C052BD6261800D9E9CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E22B6C082BD6261800D9E9CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E22B6C0A2BD6261800D9E9CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,6 +80,12 @@
 		E23C798D2BD7AEB40027ECFC /* LoginOTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOTPController.swift; sourceTree = "<group>"; };
 		E23C798F2BD7C0760027ECFC /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		E23C79912BD7CC5B0027ECFC /* SignupInformationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInformationController.swift; sourceTree = "<group>"; };
+		E23E2C472BE13448004D85B7 /* AppStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppStoryboard.storyboard; sourceTree = "<group>"; };
+		E23E2C542BE1441D004D85B7 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		E23E2C5C2BE20A00004D85B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E23E2C5F2BE2167A004D85B7 /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
+		E23E2C632BE232B3004D85B7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E23E2C652BE272CA004D85B7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E27E2E002BD64F0600D89CD8 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		E27E2E022BD6638400D89CD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E27E2E042BD684C400D89CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +102,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2A398292BDFBCE5002239E1 /* IQKeyboardManagerSwift in Frameworks */,
+				E23E2C4B2BE139DD004D85B7 /* FirebaseAuth in Frameworks */,
 				5A3317C18BD1DA347AFCFA47 /* Pods_DotCall.framework in Frameworks */,
+				E23E2C4F2BE139DD004D85B7 /* FirebaseFirestore in Frameworks */,
+				E23E2C4D2BE139DD004D85B7 /* FirebaseAuthCombine-Community in Frameworks */,
+				E23E2C512BE139DD004D85B7 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +169,7 @@
 		E22B6BFB2BD6261700D9E9CE /* DotCall */ = {
 			isa = PBXGroup;
 			children = (
+				E23E2C5E2BE21660004D85B7 /* Utilities */,
 				E2E140402BDEA30C00F3A48C /* Functions */,
 				E27E2DFF2BD64EEC00D89CD8 /* Fonts */,
 				E27E2DFE2BD64DBA00D89CD8 /* Views */,
@@ -158,8 +179,10 @@
 				E22B6BFE2BD6261700D9E9CE /* SceneDelegate.swift */,
 				E22B6C052BD6261800D9E9CE /* Assets.xcassets */,
 				E22B6C072BD6261800D9E9CE /* LaunchScreen.storyboard */,
+				E23E2C5C2BE20A00004D85B7 /* GoogleService-Info.plist */,
 				E22B6C0A2BD6261800D9E9CE /* Info.plist */,
 				E27E2E022BD6638400D89CD8 /* Constants.swift */,
+				E23E2C542BE1441D004D85B7 /* AuthManager.swift */,
 			);
 			path = DotCall;
 			sourceTree = "<group>";
@@ -181,14 +204,15 @@
 			path = DotCallUITests;
 			sourceTree = "<group>";
 		};
-		E27E2DFC2BD64D9E00D89CD8 /* Models */ = {
+		E23E2C5E2BE21660004D85B7 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E23E2C5F2BE2167A004D85B7 /* LoadingManager.swift */,
 			);
-			path = Models;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
-		E27E2DFD2BD64DAA00D89CD8 /* Controllers */ = {
+		E23E2C612BE23279004D85B7 /* AuthStack */ = {
 			isa = PBXGroup;
 			children = (
 				E22B6C002BD6261700D9E9CE /* ViewController.swift */,
@@ -202,13 +226,39 @@
 				E2A398232BDFB638002239E1 /* ForgetOTPController.swift */,
 				E2A398252BDFB64E002239E1 /* SignUpOTPController.swift */,
 			);
+			path = AuthStack;
+			sourceTree = "<group>";
+		};
+		E23E2C622BE23283004D85B7 /* AppStack */ = {
+			isa = PBXGroup;
+			children = (
+				E23E2C632BE232B3004D85B7 /* HomeViewController.swift */,
+			);
+			path = AppStack;
+			sourceTree = "<group>";
+		};
+		E27E2DFC2BD64D9E00D89CD8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E23E2C652BE272CA004D85B7 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E27E2DFD2BD64DAA00D89CD8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E23E2C622BE23283004D85B7 /* AppStack */,
+				E23E2C612BE23279004D85B7 /* AuthStack */,
+			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E27E2DFE2BD64DBA00D89CD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E22B6C022BD6261700D9E9CE /* Main.storyboard */,
+				E22B6C022BD6261700D9E9CE /* MainAuth.storyboard */,
+				E23E2C472BE13448004D85B7 /* AppStoryboard.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,6 +300,10 @@
 			name = DotCall;
 			packageProductDependencies = (
 				E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */,
+				E23E2C4A2BE139DD004D85B7 /* FirebaseAuth */,
+				E23E2C4C2BE139DD004D85B7 /* FirebaseAuthCombine-Community */,
+				E23E2C4E2BE139DD004D85B7 /* FirebaseFirestore */,
+				E23E2C502BE139DD004D85B7 /* FirebaseStorage */,
 			);
 			productName = DotCall;
 			productReference = E22B6BF92BD6261700D9E9CE /* DotCall.app */;
@@ -325,6 +379,7 @@
 			mainGroup = E22B6BF02BD6261600D9E9CE;
 			packageReferences = (
 				E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = E22B6BFA2BD6261700D9E9CE /* Products */;
 			projectDirPath = "";
@@ -342,10 +397,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E23E2C482BE13448004D85B7 /* AppStoryboard.storyboard in Resources */,
 				E27E2E012BD64F0600D89CD8 /* Inter.ttf in Resources */,
 				E22B6C092BD6261800D9E9CE /* LaunchScreen.storyboard in Resources */,
 				E22B6C062BD6261800D9E9CE /* Assets.xcassets in Resources */,
-				E22B6C042BD6261700D9E9CE /* Main.storyboard in Resources */,
+				E22B6C042BD6261700D9E9CE /* MainAuth.storyboard in Resources */,
+				E23E2C5D2BE20A00004D85B7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,14 +489,18 @@
 				E27E2E072BD687AD00D89CD8 /* SignupViewController.swift in Sources */,
 				E2E140422BDEA32D00F3A48C /* CountrySelector.swift in Sources */,
 				E23C79902BD7C0760027ECFC /* ForgotPasswordController.swift in Sources */,
+				E23E2C642BE232B3004D85B7 /* HomeViewController.swift in Sources */,
 				E2A398262BDFB64E002239E1 /* SignUpOTPController.swift in Sources */,
+				E23E2C552BE1441D004D85B7 /* AuthManager.swift in Sources */,
 				E22B6C012BD6261700D9E9CE /* ViewController.swift in Sources */,
 				E23C798E2BD7AEB40027ECFC /* LoginOTPController.swift in Sources */,
 				E22B6BFD2BD6261700D9E9CE /* AppDelegate.swift in Sources */,
+				E23E2C602BE2167A004D85B7 /* LoadingManager.swift in Sources */,
 				E23C79922BD7CC5B0027ECFC /* SignupInformationController.swift in Sources */,
 				E22126EE2BD7E5C200AAA7D2 /* SignupConfirmationController.swift in Sources */,
 				E22B6BFF2BD6261700D9E9CE /* SceneDelegate.swift in Sources */,
 				E27E2E052BD684C400D89CD8 /* LoginViewController.swift in Sources */,
+				E23E2C662BE272CB004D85B7 /* User.swift in Sources */,
 				E2E1403F2BDE15D500F3A48C /* ResetPasswordConrttoller.swift in Sources */,
 				E27E2E032BD6638400D89CD8 /* Constants.swift in Sources */,
 				E2A398242BDFB638002239E1 /* ForgetOTPController.swift in Sources */,
@@ -479,12 +540,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E22B6C022BD6261700D9E9CE /* Main.storyboard */ = {
+		E22B6C022BD6261700D9E9CE /* MainAuth.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E22B6C032BD6261700D9E9CE /* Base */,
 			);
-			name = Main.storyboard;
+			name = MainAuth.storyboard;
 			sourceTree = "<group>";
 		};
 		E22B6C072BD6261800D9E9CE /* LaunchScreen.storyboard */ = {
@@ -631,9 +692,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DotCall/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DotCall;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -664,9 +725,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DotCall/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DotCall;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -801,6 +862,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.24.0;
+			};
+		};
 		E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -812,6 +881,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E23E2C4A2BE139DD004D85B7 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E23E2C4C2BE139DD004D85B7 /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
+		E23E2C4E2BE139DD004D85B7 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E23E2C502BE139DD004D85B7 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;

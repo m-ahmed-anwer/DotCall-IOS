@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+
+    
+var userEmail: String = ""
+var userName: String = ""
+var userPhoneNumber: String = ""
+var userCreatedAt: String = ""
+var userPassword: String = ""
+
+
+

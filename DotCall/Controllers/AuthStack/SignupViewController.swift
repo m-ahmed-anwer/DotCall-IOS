@@ -16,7 +16,18 @@ class SignupViewController: UIViewController {
     
     @IBOutlet weak var phoneNumberField: UITextField!
     
+    @IBOutlet weak var greetingText: UILabel!
+    
     var countryCode = ""
+    
+    var name: String = ""
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        greetingText.text = "Hello \(name)!"
+    }
+
     
     
     override func viewDidLoad() {
@@ -41,9 +52,7 @@ class SignupViewController: UIViewController {
     @IBAction func SignUpButtonPressed(_ sender: UIButton) {
         
         guard let phoneNumber = phoneNumberField.text, !phoneNumber.isEmpty, let _ = Int(phoneNumber)  else {
-                let alert = UIAlertController(title: "Missing Information", message: "Please enter your phone number .", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
+                alert(title: "Missing Information", message: "Please enter your phone number.")
                 return
             }
         var finalPhoneNumber: String
@@ -62,11 +71,12 @@ class SignupViewController: UIViewController {
             DispatchQueue.main.async {
                 LoadingManager.shared.hideLoadingScreen()
                 if success {
+                    userPhoneNumber = finalPhoneNumber
                     self.performSegue(withIdentifier: "SignUpToCheck",  sender: finalPhoneNumber)
                 } else {
-                    let alert = UIAlertController(title: "Authentication Error", message: error != nil ? error?.localizedDescription:"Failed to start authentication process.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+                    self.alert(title: "Authentication Error", message: error != nil ? error!.localizedDescription:"Failed to start authentication process.")
+                    
+                   
                 }
             }
         }
@@ -112,5 +122,13 @@ extension SignupViewController: UITextFieldDelegate {
         let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
         let stringCharacterSet = CharacterSet(charactersIn: string)
         return allowedCharacterSet.isSuperset(of: stringCharacterSet)
+    }
+}
+
+extension SignupViewController{
+    func alert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }

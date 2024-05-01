@@ -28,23 +28,19 @@ class ResetPasswordConrttoller: UIViewController {
     @IBAction func ResetButtonPressed(_ sender: UIButton) {
         guard let newPasswordText = newPassword.text, !newPasswordText.isEmpty,
           let confirmPasswordText = confirmPassword.text, !confirmPasswordText.isEmpty else {
-            let alert = UIAlertController(title: "Missing Information", message: "Please enter both your new and confirm passwords.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            
+            alert(title: "Missing Information", message: "Please enter both your new and confirm passwords.")
+          
             return
         }
 
         guard newPasswordText.count >= 6 else {
-            let alert = UIAlertController(title: "Password Validation", message: "Password must be at least 6 characters long.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            alert(title: "Password Validation", message: "Password must be at least 6 characters long.")
             return
         }
 
         guard newPasswordText == confirmPasswordText else {
-            let alert = UIAlertController(title: "Password Mismatch", message: "New password and confirm password do not match.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            alert(title: "Password Mismatch", message: "New password and confirm password do not match.")
             return
         }
 
@@ -53,4 +49,13 @@ class ResetPasswordConrttoller: UIViewController {
     }
     
     
+}
+
+
+extension ResetPasswordConrttoller{
+    func alert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
