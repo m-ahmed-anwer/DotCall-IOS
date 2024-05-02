@@ -631,7 +631,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="546-cU-2Ak" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2934" y="806"/>
+            <point key="canvasLocation" x="1967" y="806"/>
         </scene>
         <!--SignupInformation-->
         <scene sceneID="Ekd-6r-mvt">
@@ -851,7 +851,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1z-6Q-cxG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.7022900763359" y="805.63380281690149"/>
+            <point key="canvasLocation" x="1879" y="2949"/>
         </scene>
         <!--ChangePassword-->
         <scene sceneID="MYM-oe-TaA">
@@ -953,7 +953,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56f-RV-hYz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5137" y="806"/>
+            <point key="canvasLocation" x="4170" y="806"/>
         </scene>
         <!--ForgetPasswordOTP-->
         <scene sceneID="DWY-oo-VdC">
@@ -1067,7 +1067,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkS-LY-N3e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4028" y="806"/>
+            <point key="canvasLocation" x="3060" y="806"/>
         </scene>
         <!--SignUpOTP-->
         <scene sceneID="pQp-rf-XI5">

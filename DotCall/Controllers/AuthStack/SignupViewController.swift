@@ -55,33 +55,43 @@ class SignupViewController: UIViewController {
                 alert(title: "Missing Information", message: "Please enter your phone number.")
                 return
             }
+        
         var finalPhoneNumber: String
         
         if countryCode == "" {
             finalPhoneNumber = "+94\(phoneNumber)"
-            print("Phone Number: +94\(phoneNumber)")
         } else {
             finalPhoneNumber = "\(countryCode)\(phoneNumber)"
-            print("Phone Number: \(countryCode)\(phoneNumber)")
         }
         
-        LoadingManager.shared.showLoadingScreen()
-        AuthManager.shared.startAuth(phoneNumber: finalPhoneNumber) { [weak self] success, error in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                LoadingManager.shared.hideLoadingScreen()
-                if success {
-                    userPhoneNumber = finalPhoneNumber
-                    self.performSegue(withIdentifier: "SignUpToCheck",  sender: finalPhoneNumber)
-                } else {
-                    self.alert(title: "Authentication Error", message: error != nil ? error!.localizedDescription:"Failed to start authentication process.")
-                    
-                   
+        
+        checkUserByPhoneNumber(phoneNumber: finalPhoneNumber) { success, message in
+            if success {
+                DispatchQueue.main.async {
+                    LoadingManager.shared.showLoadingScreen()
+                }
+                AuthManager.shared.startAuth(phoneNumber: finalPhoneNumber) { [weak self] success, error in
+                    guard let self = self else { return }
+                    DispatchQueue.main.async {
+                        LoadingManager.shared.hideLoadingScreen()
+                        if success {
+                            userPhoneNumber = finalPhoneNumber
+                            self.performSegue(withIdentifier: "SignUpToCheck",  sender: finalPhoneNumber)
+                        } else {
+                            self.alert(title: "Authentication Error", message: error != nil ? error!.localizedDescription:"Failed to start authentication process.")
+                        }
+                    }
+                }
+            } else {
+                // Login failed, display the error message
+                DispatchQueue.main.async {
+                    self.alert(title: "Login Failed", message: message ?? "Unknown error")
                 }
             }
         }
-
     }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignUpToCheck" {
             if let destinationVC = segue.destination as? SignUpOTPController {
@@ -131,4 +141,70 @@ extension SignupViewController{
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
+    func checkUserByPhoneNumber(phoneNumber: String, completion: @escaping (Bool, String?) -> Void) {
+        // Prepare the request URL
+        let url = URL(string: "http://localhost:3000/users/phoneNumber")!
+        
+        // Prepare the request body
+        let json: [String: Any] = [
+            "phoneNumber": phoneNumber
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+            
+            // Create the request
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            // Perform the request
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    completion(false, "Network error")
+                    return
+                }
+                
+                // Check if the response contains data
+                guard let data = data else {
+                    print("No data in response")
+                    completion(false, "No data in response")
+                    return
+                }
+                
+                // Parse the JSON response
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                        print("Response: \(json)")
+                        
+                        // Check the success status in the response
+                        if let success = json["success"] as? Int, success == 1 {
+                            // Login successful
+                            completion(true, nil)
+                        } else {
+                            // Login failed, get the error message
+                            if let message = json["message"] as? String {
+                                completion(false, message)
+                            } else {
+                                completion(false, "Unknown error")
+                            }
+                        }
+                    }
+                } catch {
+                    print("Error parsing JSON: \(error.localizedDescription)")
+                    completion(false, "Error parsing JSON")
+                }
+            }
+            
+            // Execute the task
+            task.resume()
+        } catch {
+            print("Error creating JSON data: \(error.localizedDescription)")
+            completion(false, "Error creating JSON data")
+        }
+    }
 }
+
