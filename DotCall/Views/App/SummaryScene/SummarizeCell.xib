@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="182" id="KGk-i7-Jjw" customClass="SummarizeCell" customModule="DotCall" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="523" height="182"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="523" height="182"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ern-9E-8DH">
+                        <rect key="frame" x="0.0" y="0.0" width="523" height="182"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6KB-QS-Ila">
+                                <rect key="frame" x="15" y="15" width="493" height="152"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DotCall" translatesAutoresizingMaskIntoConstraints="NO" id="DYv-ea-Se8">
+                                        <rect key="frame" x="0.0" y="51" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="I8m-Ol-cOU"/>
+                                            <constraint firstAttribute="width" constant="50" id="XMj-Ve-HSN"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q4U-cZ-41l">
+                                        <rect key="frame" x="70" y="52" width="342.33333333333331" height="48.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39F-jI-vip">
+                                                <rect key="frame" x="0.0" y="0.0" width="57" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summarize title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmF-bR-rUJ">
+                                                <rect key="frame" x="0.0" y="30.333333333333329" width="109.66666666666667" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.38 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZf-Zb-DcH">
+                                        <rect key="frame" x="432.33333333333331" y="66.333333333333329" width="60.666666666666686" height="19.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="6KB-QS-Ila" secondAttribute="bottom" constant="15" id="4yq-lW-8TJ"/>
+                            <constraint firstAttribute="trailing" secondItem="6KB-QS-Ila" secondAttribute="trailing" constant="15" id="CaP-v1-ltG"/>
+                            <constraint firstItem="6KB-QS-Ila" firstAttribute="top" secondItem="Ern-9E-8DH" secondAttribute="top" constant="15" id="Vx8-57-YXo"/>
+                            <constraint firstItem="6KB-QS-Ila" firstAttribute="leading" secondItem="Ern-9E-8DH" secondAttribute="leading" constant="15" id="hKE-U2-ech"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ern-9E-8DH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="G9C-15-T2Z"/>
+                    <constraint firstAttribute="bottom" secondItem="Ern-9E-8DH" secondAttribute="bottom" id="L8F-fo-YXZ"/>
+                    <constraint firstItem="Ern-9E-8DH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="M1v-UM-CLx"/>
+                    <constraint firstAttribute="trailing" secondItem="Ern-9E-8DH" secondAttribute="trailing" id="eZ6-Bk-Lzg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="callRecieverText" destination="39F-jI-vip" id="ich-Ll-Kx7"/>
+                <outlet property="callTimeText" destination="ZZf-Zb-DcH" id="64P-WL-5XL"/>
+                <outlet property="summarizeBubble" destination="Ern-9E-8DH" id="PPl-cM-HQJ"/>
+                <outlet property="summarizeTitleText" destination="ZmF-bR-rUJ" id="CUZ-Rd-3dC"/>
+                <outlet property="userImage" destination="DYv-ea-Se8" id="3ib-jV-mWh"/>
+            </connections>
+            <point key="canvasLocation" x="217.55725190839695" y="68.309859154929583"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="DotCall" width="500" height="500"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

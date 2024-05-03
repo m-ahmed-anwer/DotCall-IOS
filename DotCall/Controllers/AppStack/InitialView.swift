@@ -8,7 +8,7 @@
 import FirebaseAuth
 import UIKit
 
-class HomeViewController: UIViewController {
+class InitialView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
