@@ -65,11 +65,10 @@ class SignupViewController: UIViewController {
         }
         
         
+        
+        LoadingManager.shared.showLoadingScreen()
         checkUserByPhoneNumber(phoneNumber: finalPhoneNumber) { success, message in
             if success {
-                DispatchQueue.main.async {
-                    LoadingManager.shared.showLoadingScreen()
-                }
                 AuthManager.shared.startAuth(phoneNumber: finalPhoneNumber) { [weak self] success, error in
                     guard let self = self else { return }
                     DispatchQueue.main.async {
@@ -85,6 +84,7 @@ class SignupViewController: UIViewController {
             } else {
                 // Login failed, display the error message
                 DispatchQueue.main.async {
+                    LoadingManager.shared.hideLoadingScreen()
                     self.alert(title: "Login Failed", message: message ?? "Unknown error")
                 }
             }

@@ -7,23 +7,80 @@
 
 import UIKit
 
-class SummaryViewController: UIViewController {
+class SummaryViewController: UIViewController{
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var summaries: [Summary] = [
+        Summary(callMaker: "+94768242884", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "+94768242884", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "+94768242884", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion")
+        
+    ]
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        
+        tableView.register(UINib(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
+        tableView.register(UINib(nibName: "SummarizeCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        
+        tabBarController?.delegate = self
     }
     
+    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+
+
+extension SummaryViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return summaries.count
     }
-    */
+    
+   
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
+        let cell = tableView.dequeueReusableCell(withIdentifier:  "ReusableCell", for: indexPath) as! SummarizeCell
+        cell.summarizeTitleText?.text  = summaries[indexPath.row].title
+        cell.callTimeText?.text  = summaries[indexPath.row].time
+        cell.callRecieverText?.text  = summaries[indexPath.row].callReciver
+        
+        cell.selectionStyle = .gray
+        return cell
+    }
+}
 
+extension SummaryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let selectedSummary = summaries[indexPath.row]
+
+        performSegue(withIdentifier: "DetailtoSummaryCheck", sender: nil)
+    }
+    
+    
+}
+extension SummaryViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        // Give haptic feedback
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+    }
+    
 }

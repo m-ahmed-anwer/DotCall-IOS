@@ -17,21 +17,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        guard let windowScene = (scene as? UIWindowScene) else { return }
        let window = UIWindow(windowScene: windowScene)
        self.window = window
+        
+        
+
+        let storyboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
+        let initialViewController = storyboard.instantiateInitialViewController()
+        self.window?.rootViewController = initialViewController
+            
 
        // Listen for authentication state changes
-       Auth.auth().addStateDidChangeListener { (_, user) in
-           if user == nil {
-               // User is signed out, update to AuthStoryboard
-               let storyboard = UIStoryboard(name: "MainAuth", bundle: nil)
-               let initialViewController = storyboard.instantiateInitialViewController()
-               self.window?.rootViewController = initialViewController
-           } else {
-               // User is signed in, update to AppStoryboard
-               let storyboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
-               let initialViewController = storyboard.instantiateInitialViewController()
-               self.window?.rootViewController = initialViewController
-           }
-       }
+        
+//       Auth.auth().addStateDidChangeListener { (_, user) in
+//           if user == nil {
+//               // User is signed out, update to AuthStoryboard
+//               let storyboard = UIStoryboard(name: "MainAuth", bundle: nil)
+//               let initialViewController = storyboard.instantiateInitialViewController()
+//               self.window?.rootViewController = initialViewController
+//           } else {
+//               // User is signed in, update to AppStoryboard
+//               let storyboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
+//               let initialViewController = storyboard.instantiateInitialViewController()
+//               self.window?.rootViewController = initialViewController
+//           }
+//       }
 
        window.makeKeyAndVisible()
     }

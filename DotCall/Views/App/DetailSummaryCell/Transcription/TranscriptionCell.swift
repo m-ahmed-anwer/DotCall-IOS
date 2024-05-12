@@ -14,6 +14,8 @@ class TranscriptionCell: UITableViewCell {
         // Initialization code
     }
 
+    @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var speakerName: UILabel!
     @IBOutlet weak var transcriptionText: UILabel!
     
     override func setSelected(_ selected: Bool, animated: Bool) {

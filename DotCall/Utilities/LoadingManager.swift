@@ -17,7 +17,7 @@ class LoadingManager {
     func showLoadingScreen() {
         if loadingView == nil {
             loadingView = UIView(frame: UIScreen.main.bounds)
-            loadingView?.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+            loadingView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
             let spinner = UIActivityIndicatorView(style: .large)
             spinner.center = loadingView!.center
             loadingView?.addSubview(spinner)

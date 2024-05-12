@@ -4,7 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,30 +22,46 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUC-jJ-4WY">
                         <rect key="frame" x="0.0" y="0.0" width="423" height="140"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IpW-l7-kKG">
-                                <rect key="frame" x="20" y="8" width="388" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IpW-l7-kKG">
+                                <rect key="frame" x="20" y="15" width="388" height="115"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugP-ta-bep">
-                                        <rect key="frame" x="0.0" y="-3.5527136788005009e-15" width="50" height="50.333333333333329"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="7e4-A4-Yhz"/>
-                                            <constraint firstAttribute="height" constant="50" id="wit-oC-jWD"/>
-                                        </constraints>
-                                        <imageReference key="image" image="line.diagonal" catalog="system" symbolScale="large"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIy-cs-Htr">
-                                        <rect key="frame" x="65" y="14.999999999999998" width="323" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6j0-QM-xR8">
+                                        <rect key="frame" x="0.0" y="35.666666666666664" width="388" height="43.999999999999993"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fx7-IX-yfN">
+                                                <rect key="frame" x="0.0" y="0.0" width="388" height="15.666666666666666"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00.12" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIy-cs-Htr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="190" height="15.666666666666666"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed Anwer" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEu-1i-74N">
+                                                        <rect key="frame" x="198" y="0.0" width="190" height="15.666666666666666"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPF-TM-zKc">
+                                                <rect key="frame" x="0.0" y="23.666666666666664" width="388" height="20.333333333333336"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="IpW-l7-kKG" secondAttribute="trailing" constant="15" id="f1v-PO-1Ly"/>
                             <constraint firstItem="IpW-l7-kKG" firstAttribute="leading" secondItem="OUC-jJ-4WY" secondAttribute="leading" constant="20" id="pT7-w3-Ip3"/>
+                            <constraint firstItem="IpW-l7-kKG" firstAttribute="top" secondItem="OUC-jJ-4WY" secondAttribute="top" constant="15" id="wA8-7U-TgG"/>
+                            <constraint firstAttribute="bottom" secondItem="IpW-l7-kKG" secondAttribute="bottom" constant="10" id="ySC-nT-Knu"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -58,15 +74,19 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="transcriptionText" destination="tIy-cs-Htr" id="t92-Hv-aCE"/>
+                <outlet property="speakerName" destination="cEu-1i-74N" id="sWo-98-sRP"/>
+                <outlet property="time" destination="tIy-cs-Htr" id="xhL-GM-Pdr"/>
+                <outlet property="transcriptionText" destination="uPF-TM-zKc" id="Hq2-3D-WjP"/>
             </connections>
             <point key="canvasLocation" x="196.18320610687022" y="32.394366197183103"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="line.diagonal" catalog="system" width="128" height="113"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <namedColor name="BackgroundColor">
+            <color red="0.96862745098039216" green="0.96078431372549022" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

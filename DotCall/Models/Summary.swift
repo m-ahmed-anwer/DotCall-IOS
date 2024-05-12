@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+
+struct Summary{
+    
+    let callMaker: String
+    let callReciver: String
+    let time: String
+    let title: String
+    let summary: String
+    
+}

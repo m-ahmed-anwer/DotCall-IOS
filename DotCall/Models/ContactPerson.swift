@@ -9,7 +9,7 @@ import Foundation
 import Contacts
 import ContactsUI
 
-struct Contact{
+struct ContactPerson{
     
     let name: String
     let id: String

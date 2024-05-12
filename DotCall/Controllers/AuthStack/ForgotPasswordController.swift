@@ -49,11 +49,10 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
             finalPhoneNumber = "\(countryCode)\(phoneNumber)"
         }
         
+        
+        LoadingManager.shared.showLoadingScreen()
         checkUserByPhoneNumberToChangePassword(phoneNumber: finalPhoneNumber) { success, message in
             if success {
-                DispatchQueue.main.async {
-                    LoadingManager.shared.showLoadingScreen()
-                }
                 AuthManager.shared.startAuth(phoneNumber: finalPhoneNumber) { [weak self] success, error in
                     guard let self = self else { return }
                     DispatchQueue.main.async {
@@ -66,8 +65,8 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
                     }
                 }
             } else {
-                // Login failed, display the error message
                 DispatchQueue.main.async {
+                    LoadingManager.shared.hideLoadingScreen()
                     self.alert(title: "Login Failed", message: message ?? "Unknown error")
                 }
             }
