@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ContactProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
