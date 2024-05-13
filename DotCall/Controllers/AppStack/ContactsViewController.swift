@@ -182,8 +182,35 @@ extension ContactsViewController: UITableViewDataSource {
 extension ContactsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath.row)
-        performSegue(withIdentifier: "ContactProfiletoCheck", sender: nil)
+
+        let contact: CNContact
+        if searchController.isActive {
+            contact = filteredContacts[indexPath.row]
+        } else {
+            let key = sectionTitle[indexPath.section]
+            if let contactsInSection = contactDict[key] {
+                contact = contactsInSection[indexPath.row]
+            } else {
+                return
+            }
+        }
+
+        performSegue(withIdentifier: "ContactProfiletoCheck", sender: contact)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ContactProfiletoCheck",
+           let destinationVC = segue.destination as? ContactProfileViewController,
+           let contact = sender as? CNContact {
+            destinationVC.contactPhone = (contact.phoneNumbers.first?.value.stringValue.digits)!
+            destinationVC.contactName = "\(contact.givenName) \(contact.familyName)"
+        }
     }
 }
 
+extension String {
+    var digits: String {
+        return components(separatedBy: CharacterSet.decimalDigits.inverted)
+            .joined()
+    }
+}

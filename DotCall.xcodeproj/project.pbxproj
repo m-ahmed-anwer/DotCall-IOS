@@ -36,6 +36,13 @@
 		E23E2C6C2BE35976004D85B7 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E2C6B2BE35976004D85B7 /* ContactsViewController.swift */; };
 		E23E2C6E2BE35984004D85B7 /* RecentCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E2C6D2BE35984004D85B7 /* RecentCallViewController.swift */; };
 		E23FDE2F2BF0C2B300B031CC /* PublicProfileSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23FDE2E2BF0C2B300B031CC /* PublicProfileSection.swift */; };
+		E23FDE332BF117D500B031CC /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23FDE322BF117D500B031CC /* CallViewController.swift */; };
+		E23FDE352BF1190800B031CC /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23FDE342BF1190800B031CC /* CallManager.swift */; };
+		E23FDE372BF129AA00B031CC /* IncommingCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23FDE362BF129AA00B031CC /* IncommingCallViewController.swift */; };
+		E23FDE392BF129C100B031CC /* OutgoingCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23FDE382BF129C100B031CC /* OutgoingCallViewController.swift */; };
+		E23FDE3D2BF1E36E00B031CC /* StreamVideo in Frameworks */ = {isa = PBXBuildFile; productRef = E23FDE3C2BF1E36E00B031CC /* StreamVideo */; };
+		E23FDE3F2BF1E36E00B031CC /* StreamVideoSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E23FDE3E2BF1E36E00B031CC /* StreamVideoSwiftUI */; };
+		E23FDE412BF1E36E00B031CC /* StreamVideoUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E23FDE402BF1E36E00B031CC /* StreamVideoUIKit */; };
 		E26B308B2BEA1C6000138A8A /* DetailSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26B308A2BEA1C6000138A8A /* DetailSummaryViewController.swift */; };
 		E26B308F2BEA3C7A00138A8A /* TranscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26B308D2BEA3C7900138A8A /* TranscriptionCell.swift */; };
 		E26B30902BEA3C7A00138A8A /* TranscriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E26B308E2BEA3C7A00138A8A /* TranscriptionCell.xib */; };
@@ -117,6 +124,10 @@
 		E23E2C6B2BE35976004D85B7 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		E23E2C6D2BE35984004D85B7 /* RecentCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCallViewController.swift; sourceTree = "<group>"; };
 		E23FDE2E2BF0C2B300B031CC /* PublicProfileSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfileSection.swift; sourceTree = "<group>"; };
+		E23FDE322BF117D500B031CC /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
+		E23FDE342BF1190800B031CC /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
+		E23FDE362BF129AA00B031CC /* IncommingCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncommingCallViewController.swift; sourceTree = "<group>"; };
+		E23FDE382BF129C100B031CC /* OutgoingCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingCallViewController.swift; sourceTree = "<group>"; };
 		E26B308A2BEA1C6000138A8A /* DetailSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSummaryViewController.swift; sourceTree = "<group>"; };
 		E26B308D2BEA3C7900138A8A /* TranscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionCell.swift; sourceTree = "<group>"; };
 		E26B308E2BEA3C7A00138A8A /* TranscriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TranscriptionCell.xib; sourceTree = "<group>"; };
@@ -153,11 +164,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E23FDE3F2BF1E36E00B031CC /* StreamVideoSwiftUI in Frameworks */,
 				E2A398292BDFBCE5002239E1 /* IQKeyboardManagerSwift in Frameworks */,
 				E23E2C4B2BE139DD004D85B7 /* FirebaseAuth in Frameworks */,
 				5A3317C18BD1DA347AFCFA47 /* Pods_DotCall.framework in Frameworks */,
 				E23E2C4F2BE139DD004D85B7 /* FirebaseFirestore in Frameworks */,
 				E23E2C4D2BE139DD004D85B7 /* FirebaseAuthCombine-Community in Frameworks */,
+				E23FDE3D2BF1E36E00B031CC /* StreamVideo in Frameworks */,
+				E23FDE412BF1E36E00B031CC /* StreamVideoUIKit in Frameworks */,
 				E23E2C512BE139DD004D85B7 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,7 +249,6 @@
 				E23E2C5C2BE20A00004D85B7 /* GoogleService-Info.plist */,
 				E22B6C0A2BD6261800D9E9CE /* Info.plist */,
 				E27E2E022BD6638400D89CD8 /* Constants.swift */,
-				E23E2C542BE1441D004D85B7 /* AuthManager.swift */,
 			);
 			path = DotCall;
 			sourceTree = "<group>";
@@ -260,7 +273,8 @@
 		E23E2C5E2BE21660004D85B7 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				E23E2C5F2BE2167A004D85B7 /* LoadingManager.swift */,
+				E23FDE3A2BF1D77000B031CC /* Managers */,
+				E23FDE302BF117A900B031CC /* Call */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -296,6 +310,25 @@
 				E26B30B52BEFBF2700138A8A /* EditProfileViewController.swift */,
 			);
 			path = AppStack;
+			sourceTree = "<group>";
+		};
+		E23FDE302BF117A900B031CC /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				E23FDE362BF129AA00B031CC /* IncommingCallViewController.swift */,
+				E23FDE382BF129C100B031CC /* OutgoingCallViewController.swift */,
+			);
+			path = Call;
+			sourceTree = "<group>";
+		};
+		E23FDE3A2BF1D77000B031CC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E23E2C542BE1441D004D85B7 /* AuthManager.swift */,
+				E23E2C5F2BE2167A004D85B7 /* LoadingManager.swift */,
+				E23FDE342BF1190800B031CC /* CallManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		E26B308C2BEA3C4200138A8A /* Transcription */ = {
@@ -379,6 +412,7 @@
 		E27E2DFD2BD64DAA00D89CD8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E23FDE322BF117D500B031CC /* CallViewController.swift */,
 				E23E2C622BE23283004D85B7 /* AppStack */,
 				E23E2C612BE23279004D85B7 /* AuthStack */,
 			);
@@ -454,6 +488,9 @@
 				E23E2C4C2BE139DD004D85B7 /* FirebaseAuthCombine-Community */,
 				E23E2C4E2BE139DD004D85B7 /* FirebaseFirestore */,
 				E23E2C502BE139DD004D85B7 /* FirebaseStorage */,
+				E23FDE3C2BF1E36E00B031CC /* StreamVideo */,
+				E23FDE3E2BF1E36E00B031CC /* StreamVideoSwiftUI */,
+				E23FDE402BF1E36E00B031CC /* StreamVideoUIKit */,
 			);
 			productName = DotCall;
 			productReference = E22B6BF92BD6261700D9E9CE /* DotCall.app */;
@@ -530,6 +567,7 @@
 			packageReferences = (
 				E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E23FDE3B2BF1E36D00B031CC /* XCRemoteSwiftPackageReference "stream-video-swift" */,
 			);
 			productRefGroup = E22B6BFA2BD6261700D9E9CE /* Products */;
 			projectDirPath = "";
@@ -652,6 +690,7 @@
 				E23E2C6A2BE35964004D85B7 /* SettingsViewController.swift in Sources */,
 				E23C79902BD7C0760027ECFC /* ForgotPasswordController.swift in Sources */,
 				E23E2C642BE232B3004D85B7 /* InitialView.swift in Sources */,
+				E23FDE372BF129AA00B031CC /* IncommingCallViewController.swift in Sources */,
 				E2A398262BDFB64E002239E1 /* SignUpOTPController.swift in Sources */,
 				E23E2C552BE1441D004D85B7 /* AuthManager.swift in Sources */,
 				E29C887C2BE4E8BB00B335F7 /* ContactCell.swift in Sources */,
@@ -661,6 +700,7 @@
 				E22B6C012BD6261700D9E9CE /* ViewController.swift in Sources */,
 				E26B308B2BEA1C6000138A8A /* DetailSummaryViewController.swift in Sources */,
 				E26C0D322BF050E80035A081 /* NameViewCell.swift in Sources */,
+				E23FDE352BF1190800B031CC /* CallManager.swift in Sources */,
 				E23C798E2BD7AEB40027ECFC /* LoginOTPController.swift in Sources */,
 				E27A00C72BE3A14F002A598B /* SummarizeCell.swift in Sources */,
 				E26C0D372BF07D650035A081 /* ProfileImageViewCell.swift in Sources */,
@@ -676,8 +716,10 @@
 				E27A00C42BE3996C002A598B /* Summary.swift in Sources */,
 				E2E1403F2BDE15D500F3A48C /* ResetPasswordConrttoller.swift in Sources */,
 				E26B30AE2BECD3E800138A8A /* SettingsViewCell.swift in Sources */,
+				E23FDE392BF129C100B031CC /* OutgoingCallViewController.swift in Sources */,
 				E27E2E032BD6638400D89CD8 /* Constants.swift in Sources */,
 				E29C88812BE4EC8800B335F7 /* RecentCallCell.swift in Sources */,
+				E23FDE332BF117D500B031CC /* CallViewController.swift in Sources */,
 				E2A398242BDFB638002239E1 /* ForgetOTPController.swift in Sources */,
 				E23E2C6E2BE35984004D85B7 /* RecentCallViewController.swift in Sources */,
 			);
@@ -1052,6 +1094,14 @@
 				minimumVersion = 10.24.0;
 			};
 		};
+		E23FDE3B2BF1E36D00B031CC /* XCRemoteSwiftPackageReference "stream-video-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GetStream/stream-video-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -1082,6 +1132,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		E23FDE3C2BF1E36E00B031CC /* StreamVideo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E23FDE3B2BF1E36D00B031CC /* XCRemoteSwiftPackageReference "stream-video-swift" */;
+			productName = StreamVideo;
+		};
+		E23FDE3E2BF1E36E00B031CC /* StreamVideoSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E23FDE3B2BF1E36D00B031CC /* XCRemoteSwiftPackageReference "stream-video-swift" */;
+			productName = StreamVideoSwiftUI;
+		};
+		E23FDE402BF1E36E00B031CC /* StreamVideoUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E23FDE3B2BF1E36D00B031CC /* XCRemoteSwiftPackageReference "stream-video-swift" */;
+			productName = StreamVideoUIKit;
 		};
 		E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

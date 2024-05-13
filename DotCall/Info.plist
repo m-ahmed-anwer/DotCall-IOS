@@ -38,7 +38,10 @@
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>pp provides Voice over IP services</string>
+		<string>processing</string>
+		<string>push-to-talk</string>
 		<string>voip</string>
 	</array>
 </dict>

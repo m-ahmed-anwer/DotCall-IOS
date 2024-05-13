@@ -33,16 +33,16 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sfL-cO-CRA">
-                                        <rect key="frame" x="65" y="40" width="111.66666666666669" height="42.333333333333343"/>
+                                        <rect key="frame" x="65" y="40" width="251" height="42.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed Anwer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bJ-0K-le0">
-                                                <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="20.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="251" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 min ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQb-S1-ltn">
-                                                <rect key="frame" x="0.0" y="25.333333333333329" width="111.66666666666667" height="17"/>
+                                                <rect key="frame" x="0.0" y="25.333333333333329" width="251" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
@@ -50,7 +50,11 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mL-TR-NsR">
-                                        <rect key="frame" x="191.66666666666663" y="44" width="174.33333333333337" height="34.333333333333343"/>
+                                        <rect key="frame" x="331" y="43.666666666666664" width="35" height="34.999999999999993"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="QVn-jA-fKE"/>
+                                            <constraint firstAttribute="height" constant="35" id="rYL-va-g4y"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" imagePlacement="leading">
                                             <imageReference key="image" image="arrow.down.left" catalog="system" symbolScale="medium"/>

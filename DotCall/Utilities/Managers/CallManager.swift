@@ -6,52 +6,36 @@
 //
 import CallKit
 import Foundation
+import StreamVideo
+import StreamVideoUIKit
+import StreamVideoSwiftUI
 
 
-final class CallManager: NSObject, CXProviderDelegate{
-    func providerDidReset(_ provider: CXProvider) {
-        
-    }
-    
-    
-    let provider = CXProvider(configuration: CXProviderConfiguration())
-    let callController = CXCallController()
-    
-    override init() {
-        super.init()
-        provider.setDelegate(self, queue: nil)
-        
-    }
-    
-    public func reportIncommingCall(id:UUID, handle:String){
-        let update = CXCallUpdate()
-        update.remoteHandle = CXHandle(type: .generic, value: handle)
-        
-        provider.reportNewIncomingCall(with: id, update: update) { error in
-            if let error = error{
-                print(String(describing: error))
-            }else{
-                print("CAll reported")
-            }
-        }
-    }
-    
-    public func startCall(id:UUID, handle:String){
-        let handle = CXHandle(type: .generic, value: handle)
-        let action = CXStartCallAction(call: id, handle: handle)
-        let transaction = CXTransaction(action: action)
-        
-        callController.request((transaction)) { error in
-            if let error = error{
-                print(String(describing: error))
-            }else{
-                print("CAll Started")
-            }        }
-        
-    }
-    
-    
+class CallManager{
 
     
+    static let shared = CallManager()
     
+    struct Constants{
+        static let userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiUGxvX0tvb24iLCJpc3MiOiJodHRwczovL3Byb250by5nZXRzdHJlYW0uaW8iLCJzdWIiOiJ1c2VyL1Bsb19Lb29uIiwiaWF0IjoxNzE1NTgwNTAwLCJleHAiOjE3MTYxODUzMDV9.8R7Doq2gvAnGdrmmIoeweVNirsXrgklq-ESUByQaiHc"
+    }
+    
+    struct UserCredentials{
+        let user: User
+        let token: UserToken
+    }
+    
+    func setUp(email:String){
+        setUpCallViewModel()
+        let userCredentials = UserCredentials(user: .guest(email), token: UserToken(rawValue: Constants.userToken))
+        
+        
+    }
+    
+    
+    private func setUpCallViewModel(){
+        
+    }
+    
+   
 }

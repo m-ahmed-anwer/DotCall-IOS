@@ -8,6 +8,9 @@
 import UIKit
 
 class ContactProfileViewController: UIViewController {
+    var contactName: String = ""
+    var contactEmail: String = ""
+    var contactPhone: String = ""
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,7 +27,7 @@ class ContactProfileViewController: UIViewController {
         tableView.register(UINib(nibName: "ProfileImageViewCell", bundle: nil), forCellReuseIdentifier: "ProfileImageCell")
         navigationController?.navigationBar.tintColor = .backButton
         
-       navigationItem.title = "Ahmed Anwer"
+       navigationItem.title = "\(contactName)"
       
 
         // Do any additional setup after loading the view.
@@ -137,11 +140,11 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
             // Set the detail text based on the option
             switch profile {
             case .name:
-                cell.detailTextLabel?.text = "Ahmed Anwer"
+                cell.detailTextLabel?.text = "\(contactName)"
             case .email:
                 cell.detailTextLabel?.text = "ahmedanwer0094@gmail.com"
             case .phoneNumber:
-                cell.detailTextLabel?.text = "+94 76 8242884"
+                cell.detailTextLabel?.text = "\(contactPhone)"
             default:
                 cell.detailTextLabel?.text = ""
             }

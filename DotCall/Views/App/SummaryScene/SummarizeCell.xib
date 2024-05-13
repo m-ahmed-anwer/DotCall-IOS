@@ -25,14 +25,14 @@
                                 <rect key="frame" x="15" y="15" width="493" height="152"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="DYv-ea-Se8">
-                                        <rect key="frame" x="0.0" y="43.666666666666657" width="65" height="65"/>
+                                        <rect key="frame" x="0.0" y="51" width="50" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="65" id="I8m-Ol-cOU"/>
-                                            <constraint firstAttribute="width" constant="65" id="XMj-Ve-HSN"/>
+                                            <constraint firstAttribute="height" constant="50" id="I8m-Ol-cOU"/>
+                                            <constraint firstAttribute="width" constant="50" id="XMj-Ve-HSN"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Q4U-cZ-41l">
-                                        <rect key="frame" x="80" y="54.333333333333329" width="344" height="43.666666666666671"/>
+                                        <rect key="frame" x="65" y="54.333333333333329" width="359" height="43.666666666666671"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39F-jI-vip">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="21.666666666666668"/>

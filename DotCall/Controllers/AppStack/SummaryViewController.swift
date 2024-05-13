@@ -12,12 +12,12 @@ class SummaryViewController: UIViewController{
     @IBOutlet weak var tableView: UITableView!
     
     var summaries: [Summary] = [
-        Summary(callMaker: "+94768242884", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
-        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
-        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
-        Summary(callMaker: "+94768242884", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
-        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
-        Summary(callMaker: "Ahmed", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "+94768242884", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aim  ada asd asd asd asd a s dasd asdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aima  daa sd asd asd asd as d asd a sdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as da sd asd sad asd asdasd", summary: "tion"),
+        Summary(callMaker: "+94768242884", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aim ad a asd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you ai m ad aasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
+        Summary(callMaker: "Ahmed", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you a imada asd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
         Summary(callMaker: "+94768242884", callReciver: "+94768242884", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
         Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
         Summary(callMaker: "Ahmed", callReciver: "Anwer", time: "12.30.p.m", title: "Ahmed Anwer How are you aimadaasd asd asd asd as dasdasdsad asd asdasd", summary: "tion"),
