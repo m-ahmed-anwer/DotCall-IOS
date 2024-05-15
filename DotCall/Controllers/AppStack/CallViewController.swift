@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import AVFoundation
+import PushKit
 import CallKit
+import TwilioVoice
 
+let accessToken = "PASTE_YOUR_ACCESS_TOKEN_HERE"
+let twimlParamTo = "to"
+
+let kCachedDeviceToken = "CachedDeviceToken"
 class CallViewController: UIViewController {
 
     
@@ -21,7 +28,7 @@ class CallViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
             let callManager = CallManager()
             let id = UUID()
-            callManager.reportIncommingCall(id: id, handle: "Ahmed Anwer")
+            
             
         })
     }
