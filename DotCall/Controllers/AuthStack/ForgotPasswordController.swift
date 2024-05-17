@@ -33,6 +33,10 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func ForgotButtonPressed(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+        
         guard let phoneNumber = fPasswordFeild.text,
               let _ = Int(phoneNumber) else {
             // Show an alert if the phone number contains non-numeric characters
@@ -129,7 +133,7 @@ extension ForgotPasswordController {
     
     func checkUserByPhoneNumberToChangePassword(phoneNumber: String, completion: @escaping (Bool, String?) -> Void) {
         // Prepare the request URL
-        let url = URL(string: "http://localhost:3000/users/passwordChange")!
+        let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/passwordChange")!
         
         // Prepare the request body
         let json: [String: Any] = [

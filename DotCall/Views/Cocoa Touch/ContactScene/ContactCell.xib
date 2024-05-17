@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="GTo-Rm-CHp">
-                                <rect key="frame" x="20" y="8" width="340" height="90"/>
+                                <rect key="frame" x="20" y="8" width="330" height="90"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="1dc-NF-wfQ">
                                         <rect key="frame" x="0.0" y="20" width="50" height="50"/>
@@ -33,24 +32,21 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-p2-wBW">
-                                        <rect key="frame" x="65" y="35" width="225" height="20.333333333333329"/>
+                                        <rect key="frame" x="65" y="35" width="220" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBu-dZ-srY">
-                                        <rect key="frame" x="305" y="27.666666666666664" width="35" height="34.999999999999993"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqZ-mI-87U">
+                                        <rect key="frame" x="300" y="30" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="73D-HP-u36"/>
-                                            <constraint firstAttribute="height" constant="35" id="tU8-dP-dVc"/>
+                                            <constraint firstAttribute="width" constant="30" id="K5h-Lh-DxP"/>
+                                            <constraint firstAttribute="height" constant="30" id="THu-Cp-wMB"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="leading">
-                                            <imageReference key="image" image="phone" catalog="system" symbolScale="medium"/>
-                                            <color key="baseForegroundColor" name="ThemeTextColor"/>
-                                        </buttonConfiguration>
+                                        <buttonConfiguration key="configuration" style="plain" image="phoneCircle" title=" "/>
                                         <connections>
-                                            <action selector="CallButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="l0A-RJ-GnK"/>
+                                            <action selector="CallButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Nhv-MW-NLa"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -59,7 +55,7 @@
                         <constraints>
                             <constraint firstItem="GTo-Rm-CHp" firstAttribute="top" secondItem="t8V-ci-e9b" secondAttribute="top" constant="8" id="6Uh-6J-gkP"/>
                             <constraint firstItem="GTo-Rm-CHp" firstAttribute="leading" secondItem="t8V-ci-e9b" secondAttribute="leading" constant="20" id="DgH-WW-Gas"/>
-                            <constraint firstAttribute="trailing" secondItem="GTo-Rm-CHp" secondAttribute="trailing" constant="15" id="PxF-PU-hfe"/>
+                            <constraint firstAttribute="trailing" secondItem="GTo-Rm-CHp" secondAttribute="trailing" constant="25" id="PxF-PU-hfe"/>
                             <constraint firstAttribute="bottom" secondItem="GTo-Rm-CHp" secondAttribute="bottom" constant="8" id="ekS-B2-tsm"/>
                         </constraints>
                     </view>
@@ -74,7 +70,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" name="IOSBoxBG"/>
             <connections>
-                <outlet property="callButton" destination="iBu-dZ-srY" id="ecD-eX-eWf"/>
+                <outlet property="callButton" destination="cqZ-mI-87U" id="6kU-tA-NIi"/>
                 <outlet property="contactImage" destination="1dc-NF-wfQ" id="ykJ-Un-RB4"/>
                 <outlet property="contactName" destination="qdO-p2-wBW" id="GZO-q2-DBz"/>
                 <outlet property="view" destination="t8V-ci-e9b" id="VJu-7t-bLX"/>
@@ -84,12 +80,9 @@
     </objects>
     <resources>
         <image name="Profile" width="240" height="240"/>
-        <image name="phone" catalog="system" width="128" height="115"/>
+        <image name="phoneCircle" width="37.238700866699219" height="36.901798248291016"/>
         <namedColor name="IOSBoxBG">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ThemeTextColor">
-            <color red="0.066666666666666666" green="0.17647058823529413" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

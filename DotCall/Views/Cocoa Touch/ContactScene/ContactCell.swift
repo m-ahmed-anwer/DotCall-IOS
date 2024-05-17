@@ -28,8 +28,28 @@ class ContactCell: UITableViewCell {
     }
 
     @IBAction func CallButtonPressed(_ sender: UIButton) {
-        
+        var responder: UIResponder? = self
+        while let nextResponder = responder?.next {
+            if let viewController = nextResponder as? UIViewController {
+                if let navigationController = viewController.navigationController {
+                    let callStoryboard = UIStoryboard(name: "CallStoryboard", bundle: nil)
+                    if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "CallViewControllerIdentifier") as? CallViewController {
+                        
+                        // Set the contact name and image
+                        callViewController.contactName = contactName.text
+                        callViewController.contactImage = contactImage.image
+                        
+                        // Push the callViewController
+                        navigationController.pushViewController(callViewController, animated: true)
+                    }
+                    break
+                }
+            }
+            responder = nextResponder
+        }
     }
+
+
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

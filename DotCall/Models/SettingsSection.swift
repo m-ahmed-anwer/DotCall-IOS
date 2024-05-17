@@ -9,6 +9,7 @@
 protocol SectionType: CustomStringConvertible{
     var containSwitch: Bool {get}
     var imageName: String { get }
+    var id: Int { get }
 }
 
 
@@ -37,7 +38,12 @@ enum ProfileOptions : Int, CaseIterable, SectionType{
     case email
     case phoneNumber
 
+    var id: Int{
+        return 0
+    }
     
+   
+
     var containSwitch: Bool{
         return false
     }
@@ -65,14 +71,21 @@ enum ProfileOptions : Int, CaseIterable, SectionType{
 enum GeneralnOptions : Int, CaseIterable, SectionType{
     case notification
     case faceId
-    case theme
     case haptic
     
+    var id: Int{
+        switch self{
+            case .notification: return 0
+            case .faceId: return 1
+            case .haptic: return 2
+        }
+    }
+    
+
     var containSwitch: Bool{
         switch self{
             case .notification: return true
             case .faceId: return true
-            case .theme: return true
             case .haptic: return true
         }
     }
@@ -81,7 +94,6 @@ enum GeneralnOptions : Int, CaseIterable, SectionType{
         switch self{
             case .notification: return "Notification"
             case .faceId: return "Face ID"
-            case .theme: return "Theme"
             case .haptic: return "Haptic Feedback"
         }
     }
@@ -90,7 +102,6 @@ enum GeneralnOptions : Int, CaseIterable, SectionType{
         switch self {
             case .notification: return "bell.badge"
             case .faceId: return "faceid"
-            case .theme: return "sun.min"
             case .haptic: return "iphone.radiowaves.left.and.right"
         }
     }
@@ -101,6 +112,11 @@ enum LogOutOptions : Int, CaseIterable, SectionType{
 
     case logout
     
+    
+    
+    var id: Int{
+        return 0
+    }
     
     var imageName: String{
         return ""

@@ -23,10 +23,7 @@ class ViewController: UIViewController {
        
         createButton.layer.cornerRadius = CGFloat(K.borderRadius)
         loginButton.layer.cornerRadius = CGFloat(K.borderRadius)
-        
-       
 
-        
         
         
         let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
@@ -34,6 +31,19 @@ class ViewController: UIViewController {
         underlineText.attributedText = underlineAttributedString
         
     }
+    @IBAction func CreateButtonPressed(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+    }
+    
+    @IBAction func LoginButtonPressed(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+    }
+    
+    
 
 
 }

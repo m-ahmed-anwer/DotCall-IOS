@@ -182,31 +182,50 @@ extension ContactsViewController: UITableViewDataSource {
 extension ContactsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        let contact: CNContact
+        
         if searchController.isActive {
-            contact = filteredContacts[indexPath.row]
+            let contact = filteredContacts[indexPath.row]
+            if UserProfile.shared.settingsProfile.haptic == true {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.prepare()
+                generator.impactOccurred()
+            }
+            let callStoryboard = UIStoryboard(name: "ContactProfile", bundle: nil)
+            if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "ContactProfiletoCheck") as? ContactProfileViewController {
+                
+                // Set the contact name and image
+                callViewController.contactPhone = (contact.phoneNumbers.first?.value.stringValue.digits)!
+                callViewController.contactName = "\(contact.givenName) \(contact.familyName)"
+               
+                // Push the callViewController
+                navigationController!.pushViewController(callViewController, animated: true)
+            }
+            
         } else {
             let key = sectionTitle[indexPath.section]
             if let contactsInSection = contactDict[key] {
-                contact = contactsInSection[indexPath.row]
-            } else {
-                return
+                let contact = contactsInSection[indexPath.row]
+                if UserProfile.shared.settingsProfile.haptic == true {
+                    let generator = UIImpactFeedbackGenerator(style: .light)
+                    generator.prepare()
+                    generator.impactOccurred()
+                }
+                let callStoryboard = UIStoryboard(name: "ContactProfile", bundle: nil)
+                if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "ContactProfiletoCheck") as? ContactProfileViewController {
+                    
+                    // Set the contact name and image
+                    callViewController.contactPhone = (contact.phoneNumbers.first?.value.stringValue.digits)!
+                    callViewController.contactName = "\(contact.givenName) \(contact.familyName)"
+                    
+                    // Push the callViewController
+                    navigationController!.pushViewController(callViewController, animated: true)
+                }
+                
             }
-        }
-
-        performSegue(withIdentifier: "ContactProfiletoCheck", sender: contact)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ContactProfiletoCheck",
-           let destinationVC = segue.destination as? ContactProfileViewController,
-           let contact = sender as? CNContact {
-            destinationVC.contactPhone = (contact.phoneNumbers.first?.value.stringValue.digits)!
-            destinationVC.contactName = "\(contact.givenName) \(contact.familyName)"
         }
     }
 }
+
 
 extension String {
     var digits: String {
@@ -214,3 +233,7 @@ extension String {
             .joined()
     }
 }
+
+
+
+

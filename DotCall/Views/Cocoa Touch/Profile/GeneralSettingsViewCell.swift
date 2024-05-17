@@ -22,25 +22,13 @@ class GeneralSettingsViewCell: UITableViewCell {
         }
     }
 
-    var publicSectionType: PublicSectionType? {
-        didSet {
-            guard let publicSectionType = publicSectionType else { return }
-            textLabel?.text = publicSectionType.description
-            textLabel?.font = UIFont.systemFont(ofSize: 15)
-            switchControl.isHidden = !publicSectionType.containSwitch
-            if !publicSectionType.imageName.isEmpty {
-                imageView?.image = UIImage(systemName: publicSectionType.imageName)
-            }
-        }
-    }
-
     
 
     // MARK: - Properties
     
     lazy var switchControl: UISwitch = {
         let switchControl = UISwitch()
-        switchControl.isOn = true
+        switchControl.isOn = false
         switchControl.translatesAutoresizingMaskIntoConstraints = false
         switchControl.addTarget(self, action: #selector(toggle), for: .valueChanged)
         return switchControl
@@ -50,12 +38,13 @@ class GeneralSettingsViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        contentView.addSubview(switchControl)  // Add switchControl to contentView
+           
+       switchControl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+       switchControl.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12).isActive = true
 
-        addSubview(switchControl)
-        switchControl.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        switchControl.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).isActive = true
-
-        self.shouldIndentWhileEditing = false
+       self.shouldIndentWhileEditing = false
     }
 
 
@@ -67,11 +56,30 @@ class GeneralSettingsViewCell: UITableViewCell {
     // MARK: - Selectors
     
     @objc func toggle(sender: UISwitch){
-        if sender.isOn{
-            print("ON")
-        }else{
-            print("OFf")
+        
+        if let option = GeneralnOptions(rawValue: sectionType!.id){
+            if sender.isOn {
+                switch option {
+                    case .notification:
+                        UserProfile.shared.settingsProfile.notification = true
+                    case .faceId:
+                        UserProfile.shared.settingsProfile.faceId = true
+                    case .haptic:
+                        UserProfile.shared.settingsProfile.haptic = true
+                        
+                }
+            }else{
+                switch option {
+                    case .notification:
+                        UserProfile.shared.settingsProfile.notification = false
+                    case .faceId:
+                        UserProfile.shared.settingsProfile.faceId = false
+                    case .haptic:
+                        UserProfile.shared.settingsProfile.haptic = false
+                }
+            }
         }
     }
+
     
 }

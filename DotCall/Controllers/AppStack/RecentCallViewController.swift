@@ -6,6 +6,7 @@
 //
 import FirebaseAuth
 import UIKit
+import PushKit
 
 class RecentCallViewController: UIViewController {
 
@@ -22,18 +23,6 @@ class RecentCallViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func SignOut(_ sender: UIButton) {
-        do {
-            try Auth.auth().signOut()
-            print("sign out successfully")
-        } catch let error as NSError {
-            print("Error signing out: \(error.localizedDescription)")
-        }
-    }
-    
-
-
 }
 
 
@@ -64,6 +53,37 @@ extension RecentCallViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath.row)
+        
+        let callStoryboard = UIStoryboard(name: "CallStoryboard", bundle: nil)
+        if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "CallViewControllerIdentifier") as? CallViewController {
+            
+            // Set the contact name and image
+            callViewController.contactName = "Ahmed"
+            callViewController.contactImage = UIImage(named: "profile")
+            
+            // Push the callViewController
+            navigationController!.pushViewController(callViewController, animated: true)
+        }
+    }
+
+}
+
+extension RecentCallViewController: PKPushRegistryDelegate {
+    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
+        // Handle the incoming call notification
+        // Present the CallViewController
+        UIStoryboard(name: "CallStoryboard", bundle: nil).instantiateViewController(withIdentifier: "CallViewControllerIdentifier") is CallViewController
+        
+        // Call the completion handler
+        completion()
+    }
+    
+    func pushRegistry(_ registry: PKPushRegistry, didInvalidatePushTokenFor type: PKPushType) {
+        // Handle token invalidation
+    }
+    
+    func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
+        // Handle token update
     }
 }
+

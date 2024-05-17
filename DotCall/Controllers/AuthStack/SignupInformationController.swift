@@ -28,6 +28,9 @@ class SignupInformationController: UIViewController {
     }
     
     @IBAction func AllSetButtonPressed(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
             
         guard let passwordText = passwordFeild.text, !passwordText.isEmpty,
             let confirmPasswordText = confirmPasswordFeild.text, !confirmPasswordText.isEmpty,
@@ -105,7 +108,7 @@ extension SignupInformationController{
     
     func searchUser( email: String ,completion: @escaping (Bool, String?) -> Void) {
         // Prepare the request URL
-        let url = URL(string: "http://localhost:3000/users/email")!
+        let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/email")!
         
         // Prepare the request body
         let json: [String: Any] = [

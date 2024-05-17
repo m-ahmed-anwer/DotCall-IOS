@@ -35,9 +35,11 @@ class SettingsViewController: UIViewController{
     
 
     @IBAction func EditButtonPressed(_ sender: UIBarButtonItem) {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.prepare()
-        generator.impactOccurred()
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
         performSegue(withIdentifier: "EdittoCheck", sender: nil)
         
     }
@@ -114,7 +116,16 @@ extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
     
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+        if let section = SettingsSection(rawValue: indexPath.section) {
+            switch section {
+            case .General:
+                return 55
+            case .LogOut:
+                return 60 // Return the desired height for the LogOut section
+            default:
+                return UITableView.automaticDimension
+            }
+        }
         return UITableView.automaticDimension
     }
 
@@ -129,7 +140,7 @@ extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileImageCell", for: indexPath) as! ProfileImageViewCell
             cell.backgroundColor = .clear
             
-            cell.contactName.text = "Ahmed Anwer"
+            cell.contactName.text = UserProfile.shared.generalProfile.name
 
             //cell.profileImage.image = UIImage(named: "your_profile_image_name")
             
@@ -151,11 +162,11 @@ extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
             // Set the detail text based on the option
             switch profile {
             case .name:
-                cell.detailTextLabel?.text = "Ahmed Anwer"
+                cell.detailTextLabel?.text = UserProfile.shared.generalProfile.name
             case .email:
-                cell.detailTextLabel?.text = "ahmedanwer0094@gmail.com"
+                cell.detailTextLabel?.text = UserProfile.shared.generalProfile.email
             case .phoneNumber:
-                cell.detailTextLabel?.text = "+94 76 8242884"
+                cell.detailTextLabel?.text = UserProfile.shared.generalProfile.phoneNumber
             default:
                 cell.detailTextLabel?.text = ""
             }
@@ -242,6 +253,7 @@ extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
         do {
             try Auth.auth().signOut()
             print("sign out successfully")
+            UserProfile.shared.logOut()
         } catch let error as NSError {
             print("Error signing out: \(error.localizedDescription)")
         }

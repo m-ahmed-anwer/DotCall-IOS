@@ -50,6 +50,9 @@ class SignupViewController: UIViewController {
     
     
     @IBAction func SignUpButtonPressed(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
         
         guard let phoneNumber = phoneNumberField.text, !phoneNumber.isEmpty, let _ = Int(phoneNumber)  else {
                 alert(title: "Missing Information", message: "Please enter your phone number.")
@@ -144,7 +147,7 @@ extension SignupViewController{
     
     func checkUserByPhoneNumber(phoneNumber: String, completion: @escaping (Bool, String?) -> Void) {
         // Prepare the request URL
-        let url = URL(string: "http://localhost:3000/users/phoneNumber")!
+        let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/phoneNumber")!
         
         // Prepare the request body
         let json: [String: Any] = [
@@ -180,12 +183,22 @@ extension SignupViewController{
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                         print("Response: \(json)")
                         
-                        // Check the success status in the response
                         if let success = json["success"] as? Int, success == 1 {
-                            // Login successful
+                            // Parse and store user data
+                            if let userData = json["user"] as? [String: Any] {
+                                UserProfile.shared.generalProfile.id = userData["_id"] as? String
+                                UserProfile.shared.generalProfile.name = userData["name"] as? String
+                                UserProfile.shared.generalProfile.email = userData["email"] as? String
+                                UserProfile.shared.generalProfile.phoneNumber = userData["phoneNumber"] as? String
+                                if let settings = userData["generalSettings"] as? [String: Any] {
+                                   UserProfile.shared.settingsProfile.notification = settings["notification"] as? Bool
+                                   UserProfile.shared.settingsProfile.faceId = settings["faceId"] as? Bool
+                                   UserProfile.shared.settingsProfile.haptic = settings["haptic"] as? Bool
+                               }
+                            }
+                            self.saveUserData()
                             completion(true, nil)
                         } else {
-                            // Login failed, get the error message
                             if let message = json["message"] as? String {
                                 completion(false, message)
                             } else {
@@ -208,3 +221,15 @@ extension SignupViewController{
     }
 }
 
+extension SignupViewController{
+    private func saveUserData() {
+        let defaults = UserDefaults.standard
+        defaults.set(UserProfile.shared.generalProfile.id, forKey: "userId")
+        defaults.set(UserProfile.shared.generalProfile.name, forKey: "userName")
+        defaults.set(UserProfile.shared.generalProfile.email, forKey: "userEmail")
+        defaults.set(UserProfile.shared.generalProfile.phoneNumber, forKey: "userPhoneNumber")
+        defaults.set(UserProfile.shared.settingsProfile.notification, forKey: "notification")
+        defaults.set(UserProfile.shared.settingsProfile.faceId, forKey: "faceId")
+        defaults.set(UserProfile.shared.settingsProfile.haptic, forKey: "haptic")
+    }
+}

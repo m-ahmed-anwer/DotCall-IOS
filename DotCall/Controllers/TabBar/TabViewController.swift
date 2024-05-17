@@ -9,12 +9,17 @@ import UIKit
 
 class TabViewController: UITabBarController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    func navigateToSettings() {
+            self.selectedIndex = 3
+    }
 
     /*
     // MARK: - Navigation

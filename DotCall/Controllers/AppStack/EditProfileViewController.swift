@@ -28,9 +28,11 @@ class EditProfileViewController: UIViewController {
     }
     
     @IBAction func SaveButtonPressed(_ sender: UIBarButtonItem) {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.prepare()
-        generator.impactOccurred()
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
         
         guard let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? NameViewCell,
              let name = nameCell.textField.text, !name.isEmpty else {
@@ -76,10 +78,10 @@ extension EditProfileViewController: UITableViewDataSource{
         cell.backgroundColor = .iosBoxBG
         if indexPath.section == 0 {
             cell.textField.placeholder = "Enter name"
-            cell.textField.text = "Ahmed Anwer"
+            cell.textField.text = UserProfile.shared.generalProfile.name
         } else if indexPath.section == 1 {
             cell.textField.placeholder = "Enter email"
-            cell.textField.text = "ahmedanwer0094@gmail.com"
+            cell.textField.text = UserProfile.shared.generalProfile.email
         }
         
         cell.selectionStyle = .none // Disable cell selection
@@ -123,8 +125,6 @@ extension EditProfileViewController: UITableViewDelegate {
         return 0
     }
 }
-
-
 
 extension EditProfileViewController {
     func showAlert(title: String, message: String) {

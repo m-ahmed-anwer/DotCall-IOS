@@ -55,6 +55,10 @@ class LoginOTPController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func OTPButtonPressed(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+        
         guard smsCode != "" else {
             return
         }

@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="401" height="146"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wJy-dh-h3U">
-                                <rect key="frame" x="20" y="12" width="366" height="122"/>
+                                <rect key="frame" x="20" y="12" width="356" height="122"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="fmX-26-dFe">
                                         <rect key="frame" x="0.0" y="36" width="50" height="50"/>
@@ -33,33 +32,30 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sfL-cO-CRA">
-                                        <rect key="frame" x="65" y="40" width="251" height="42.333333333333343"/>
+                                        <rect key="frame" x="65" y="40" width="261" height="42.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed Anwer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bJ-0K-le0">
-                                                <rect key="frame" x="0.0" y="0.0" width="251" height="20.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="261" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 min ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQb-S1-ltn">
-                                                <rect key="frame" x="0.0" y="25.333333333333329" width="251" height="17"/>
+                                                <rect key="frame" x="0.0" y="25.333333333333329" width="261" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mL-TR-NsR">
-                                        <rect key="frame" x="331" y="43.666666666666664" width="35" height="34.999999999999993"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I58-Fv-O5d">
+                                        <rect key="frame" x="341" y="53.666666666666671" width="15" height="15"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="QVn-jA-fKE"/>
-                                            <constraint firstAttribute="height" constant="35" id="rYL-va-g4y"/>
+                                            <constraint firstAttribute="height" constant="15" id="WPv-yd-qPr"/>
+                                            <constraint firstAttribute="width" constant="15" id="lp1-OC-Wiz"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="leading">
-                                            <imageReference key="image" image="arrow.down.left" catalog="system" symbolScale="medium"/>
-                                            <color key="baseForegroundColor" name="ThemeTextColor"/>
-                                        </buttonConfiguration>
+                                        <buttonConfiguration key="configuration" style="plain" image="phoneIncoming"/>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -67,7 +63,7 @@
                         <constraints>
                             <constraint firstItem="wJy-dh-h3U" firstAttribute="top" secondItem="wxg-qc-U5R" secondAttribute="top" constant="12" id="DZX-w5-icr"/>
                             <constraint firstItem="wJy-dh-h3U" firstAttribute="leading" secondItem="wxg-qc-U5R" secondAttribute="leading" constant="20" id="I14-Ka-Atx"/>
-                            <constraint firstAttribute="trailing" secondItem="wJy-dh-h3U" secondAttribute="trailing" constant="15" id="Txi-pa-cY5"/>
+                            <constraint firstAttribute="trailing" secondItem="wJy-dh-h3U" secondAttribute="trailing" constant="25" id="Txi-pa-cY5"/>
                             <constraint firstAttribute="bottom" secondItem="wJy-dh-h3U" secondAttribute="bottom" constant="12" id="p3d-al-N4i"/>
                         </constraints>
                     </view>
@@ -83,7 +79,7 @@
             <color key="backgroundColor" name="IOSBoxBG"/>
             <connections>
                 <outlet property="callTime" destination="KQb-S1-ltn" id="4uV-s2-WBM"/>
-                <outlet property="callType" destination="2mL-TR-NsR" id="TpK-Xn-xwp"/>
+                <outlet property="callType" destination="I58-Fv-O5d" id="SEZ-21-hdC"/>
                 <outlet property="contactImage" destination="fmX-26-dFe" id="4wn-IS-AH8"/>
                 <outlet property="contactName" destination="4bJ-0K-le0" id="cha-mK-N2d"/>
             </connections>
@@ -92,12 +88,9 @@
     </objects>
     <resources>
         <image name="Profile" width="240" height="240"/>
-        <image name="arrow.down.left" catalog="system" width="128" height="112"/>
+        <image name="phoneIncoming" width="17.768299102783203" height="17.548000335693359"/>
         <namedColor name="IOSBoxBG">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ThemeTextColor">
-            <color red="0.066666666666666666" green="0.17647058823529413" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="scrollViewTexturedBackgroundColor">
             <color red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

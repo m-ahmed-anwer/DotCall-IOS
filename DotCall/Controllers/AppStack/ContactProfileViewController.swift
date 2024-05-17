@@ -16,14 +16,18 @@ class ContactProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if let tabBarController = self.tabBarController {
+            tabBarController.tabBar.isHidden = true
+        }
+    
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 60
         tableView.backgroundColor = .IOSBG
+    
         
         tableView.register(SettingsViewCell.self, forCellReuseIdentifier: "SettingsCell")
-        tableView.register(GeneralSettingsViewCell.self, forCellReuseIdentifier: "GeneralSettingsCell")
+        tableView.register(PublicProfileViewCell.self, forCellReuseIdentifier: "PublicProfileViewCell")
         tableView.register(UINib(nibName: "ProfileImageViewCell", bundle: nil), forCellReuseIdentifier: "ProfileImageCell")
         navigationController?.navigationBar.tintColor = .backButton
         
@@ -158,11 +162,11 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
             return cell
             
         case .General:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralSettingsCell", for: indexPath) as! GeneralSettingsViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PublicProfileViewCell", for: indexPath) as! PublicProfileViewCell
 
-            
             if let general = PublicGeneralnOptions(rawValue: indexPath.row) {
                 cell.publicSectionType = general
+                cell.inputViewController?.hidesBottomBarWhenPushed = true
                 cell.backgroundColor = UIColor.iosBoxBG
                 cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
                 cell.selectionStyle = .none
@@ -181,7 +185,6 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
         
     }

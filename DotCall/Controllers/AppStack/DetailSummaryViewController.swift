@@ -10,7 +10,7 @@ import UIKit
 class DetailSummaryViewController: UIViewController {
 
 //    var summary: Summary?
-//       
+//
 //    init(summary: Summary) {
 //       self.summary = summary
 //       super.init(nibName: nil, bundle: nil)
@@ -42,9 +42,12 @@ class DetailSummaryViewController: UIViewController {
         tableView.delegate = self
         
         
-        tableView.register(UINib(nibName: "TranscriptionCell", bundle: nil), forCellReuseIdentifier: "TranscriptionCell")
-        tableView.register(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ReuseContact")
         
+        tableView.register(UINib(nibName: "RecordViewCell", bundle: nil), forCellReuseIdentifier: "RecordtoCheck")
+        tableView.register(UINib(nibName: "TranscriptionCell", bundle: nil), forCellReuseIdentifier: "TranscriptionCell")
+        tableView.register(UINib(nibName: "SummaryViewCell", bundle: nil), forCellReuseIdentifier: "SummaryCheck")
+        tableView.register(UINib(nibName: "ParticipantViewCell", bundle: nil), forCellReuseIdentifier: "ParticpantsCheck")
+        tableView.register(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ReuseContact")
         
     }
     
@@ -55,10 +58,12 @@ class DetailSummaryViewController: UIViewController {
 
     
     @IBAction func SegmentedControlAction(_ sender: UISegmentedControl) {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.prepare()
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
         currentSegmentIndex = sender.selectedSegmentIndex
-        generator.impactOccurred()
         tableView.reloadData()
         
     }
@@ -69,71 +74,102 @@ class DetailSummaryViewController: UIViewController {
 
 extension DetailSummaryViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        switch segmentedOutlet.selectedSegmentIndex {
+            case 0: return 1
+            case 1: return 5
+            case 2: return 1
+            case 3: return 2
+            default: return 0
+        }
     }
     
    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         switch segmentedOutlet.selectedSegmentIndex {
-               case 0:
-                   let cell = tableView.dequeueReusableCell(withIdentifier: "TranscriptionCell", for: indexPath) as! TranscriptionCell
-                   
-                   return cell
-               case 1:
-                   let cell = tableView.dequeueReusableCell(withIdentifier: "TranscriptionCell", for: indexPath) as! TranscriptionCell
-                    cell.time?.text  = "00.00.12"
-                    cell.speakerName?.text  = "Ahmed Anwer"
-                   cell.transcriptionText?.text  = "Content for segment 0"
-                   return cell
-               case 2:
-                   let cell = tableView.dequeueReusableCell(withIdentifier: "TranscriptionCell", for: indexPath) as! TranscriptionCell
-            
-                   cell.transcriptionText?.text  = "Content for segment 2"
-                   return cell
-               case 3:
-                   let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseContact", for: indexPath) as! ContactCell
-                    cell.contactName?.text  = "Ahmed Anwer"
-            cell.view.backgroundColor = UIColor.background
-            
-                   return cell
-               default:
-                   fatalError("Unexpected segment index")
-               }
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RecordtoCheck", for: indexPath) as! RecordViewCell
+                
+                return cell
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "TranscriptionCell", for: indexPath) as! TranscriptionCell
+                 cell.time?.text  = "00.00.12"
+                 cell.speakerName?.text  = "Ahmed Anwer"
+                cell.transcriptionText?.text  = "Content for segment 0"
+                return cell
+                
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryCheck", for: indexPath) as! SummaryViewCell
+                 cell.summaryTitle?.text  = "Hello this is the Title here"
+                 cell.summaryText?.text  = "Hello welcome to my youtube channel guyzzz, how are you ok now you just go and  do your work now go back to work buddy bye bye"
+                 return cell
+                
+            case 3:
+                if indexPath.row == 0{
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "ParticpantsCheck", for: indexPath) as! ParticipantViewCell
+                    cell.contactName?.text  = "\(UserProfile.shared.generalProfile.name ?? "") (You)"
+                    return cell
+                } else{
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "ParticpantsCheck", for: indexPath) as! ParticipantViewCell
+                    cell.contactName?.text  = "Mohamed"
+                    return cell
+                }
+                
+        default:
+            return UITableViewCell()
+        }
     }
 }
 
 extension DetailSummaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
     }
     
+    
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20))
-        headerView.backgroundColor = UIColor.background
+        let view = UIView()
+        view.backgroundColor = .background
 
-        let titleLabel = UILabel(frame: CGRect(x: 12, y: 0, width: headerView.frame.size.width - 30, height: headerView.frame.size.height))
+        let title = UILabel()
+        title.font = UIFont.boldSystemFont(ofSize: 17)
+        title.textColor = .themeText
         
         switch currentSegmentIndex {
         case 0:
-           titleLabel.text = "Recording"
+            title.text = "Recording"
+            view.addSubview(title)
         case 1:
-           titleLabel.text = "Transcription"
+            title.text = "Transcription"
+            view.addSubview(title)
         case 2:
-           titleLabel.text = "Summary"
+            title.text = "Summary"
+            view.addSubview(title)
         case 3:
-           titleLabel.text = "Participants"
+            title.text = "Participants"
+            view.addSubview(title)
         default:
-           break
+            title.text = ""
+            view.addSubview(title)
         }
-        titleLabel.textColor = UIColor.themeText
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        headerView.addSubview(titleLabel)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        title.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        
 
-        return headerView
+        return view
     }
+    
 
-        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 50
-        }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     
 }
+
+
+
+

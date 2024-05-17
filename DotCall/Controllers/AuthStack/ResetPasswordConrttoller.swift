@@ -26,6 +26,10 @@ class ResetPasswordConrttoller: UIViewController {
     
     
     @IBAction func ResetButtonPressed(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+        
         guard let newPasswordText = newPassword.text, !newPasswordText.isEmpty,
           let confirmPasswordText = confirmPassword.text, !confirmPasswordText.isEmpty else {
             

@@ -55,7 +55,7 @@ extension SummaryViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier:  "ReusableCell", for: indexPath) as! SummarizeCell
-        cell.summarizeTitleText?.text  = summaries[indexPath.row].title
+        cell.summarizeTitleText?.text  = "Topic - \(summaries[indexPath.row].title)"
         cell.callTimeText?.text  = summaries[indexPath.row].time
         cell.callRecieverText?.text  = summaries[indexPath.row].callReciver
         
@@ -68,19 +68,26 @@ extension SummaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let selectedSummary = summaries[indexPath.row]
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
 
+        _ = summaries[indexPath.row]
+      
         performSegue(withIdentifier: "DetailtoSummaryCheck", sender: nil)
     }
-    
     
 }
 extension SummaryViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         // Give haptic feedback
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.prepare()
-        generator.impactOccurred()
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
     }
     
 }

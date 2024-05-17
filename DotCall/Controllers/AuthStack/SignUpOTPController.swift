@@ -53,6 +53,10 @@ class SignUpOTPController: UIViewController, UITextFieldDelegate {
 
     
     @IBAction func OTPButtonPressed(_ sender: UIButton) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+        
         guard smsCode != "" else {
             return
         }
@@ -92,7 +96,7 @@ extension SignUpOTPController{
 extension SignUpOTPController {
     func signupUser(name: String, email: String, password: String, phoneNumber: String) {
         // Prepare the request URL
-        let url = URL(string: "http://localhost:3000/users/signup")!
+        let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/signup")!
         
         // Prepare the request body
         let json: [String: Any] = [
