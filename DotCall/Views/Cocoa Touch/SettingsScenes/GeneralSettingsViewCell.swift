@@ -22,13 +22,12 @@ class GeneralSettingsViewCell: UITableViewCell {
         }
     }
 
-    
 
     // MARK: - Properties
     
     lazy var switchControl: UISwitch = {
+        let sectionType = sectionType
         let switchControl = UISwitch()
-        switchControl.isOn = false
         switchControl.translatesAutoresizingMaskIntoConstraints = false
         switchControl.addTarget(self, action: #selector(toggle), for: .valueChanged)
         return switchControl
@@ -41,8 +40,8 @@ class GeneralSettingsViewCell: UITableViewCell {
         
         contentView.addSubview(switchControl)  // Add switchControl to contentView
            
-       switchControl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-       switchControl.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12).isActive = true
+        switchControl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        switchControl.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12).isActive = true
 
        self.shouldIndentWhileEditing = false
     }
@@ -78,8 +77,50 @@ class GeneralSettingsViewCell: UITableViewCell {
                         UserProfile.shared.settingsProfile.haptic = false
                 }
             }
+            updateGeneralSettings(
+                userId: UserProfile.shared.generalProfile.id ?? "" ,
+                notification: UserProfile.shared.settingsProfile.notification ?? false,
+                faceId: UserProfile.shared.settingsProfile.faceId ?? false,
+                haptic: UserProfile.shared.settingsProfile.haptic ?? false
+            )
         }
     }
+    
+    func updateGeneralSettings(userId: String, notification: Bool, faceId: Bool, haptic: Bool) {
+
+        let urlString = "https://dot-call-a7ff3d8633ee.herokuapp.com/users/editGeneralSettings/\(userId)"
+        guard let url = URL(string: urlString) else { return }
+
+        // Prepare the request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        // Prepare the request body
+        let requestBody: [String: Any] = [
+            "notification": notification,
+            "faceId": faceId,
+            "haptic": haptic
+        ]
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: requestBody) else { return }
+        request.httpBody = httpBody
+
+        // Send the request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            
+            let defaults = UserDefaults.standard
+            defaults.set(notification, forKey: "notification")
+            defaults.set(faceId, forKey: "faceId")
+            defaults.set(haptic, forKey: "haptic")
+            defaults.synchronize()
+        }
+        task.resume()
+    }
+
 
     
 }
