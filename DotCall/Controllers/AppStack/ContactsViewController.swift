@@ -19,6 +19,7 @@ class ContactsViewController: UIViewController, CNContactPickerDelegate, CNConta
     
     var filteredContacts = [CNContact]()
     let searchController = UISearchController(searchResultsController: nil)
+    var name: String = ""
 
     
     override func viewDidLoad() {
@@ -159,10 +160,20 @@ extension ContactsViewController: UITableViewDataSource {
                 return cell
             }
         }
-
-        cell.contactName?.text = "\(contact.givenName) \(contact.familyName)"
+        name = "\(contact.givenName) \(contact.familyName)"
+        cell.callButton.addTarget(self, action: #selector(callButtonPressed(_:)), for: .touchUpInside)
+        cell.contactName?.text = name
         return cell
     }
+    
+    @objc func callButtonPressed(_ sender: UIButton) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.performSegue(withIdentifier: "voiceCall", sender: nil)
+        }
+    }
+    
+ 
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return searchController.isActive ? nil : sectionTitle[section]
@@ -190,13 +201,14 @@ extension ContactsViewController: UITableViewDelegate {
                 generator.prepare()
                 generator.impactOccurred()
             }
-            let callStoryboard = UIStoryboard(name: "ContactProfile", bundle: nil)
+            
+            let callStoryboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
             if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "ContactProfiletoCheck") as? ContactProfileViewController {
                 
                 // Set the contact name and image
                 callViewController.contactPhone = (contact.phoneNumbers.first?.value.stringValue.digits)!
                 callViewController.contactName = "\(contact.givenName) \(contact.familyName)"
-               
+                
                 // Push the callViewController
                 navigationController!.pushViewController(callViewController, animated: true)
             }
@@ -210,7 +222,8 @@ extension ContactsViewController: UITableViewDelegate {
                     generator.prepare()
                     generator.impactOccurred()
                 }
-                let callStoryboard = UIStoryboard(name: "ContactProfile", bundle: nil)
+                
+                let callStoryboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
                 if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "ContactProfiletoCheck") as? ContactProfileViewController {
                     
                     // Set the contact name and image

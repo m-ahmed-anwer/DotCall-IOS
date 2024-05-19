@@ -122,7 +122,6 @@ extension SignUpOTPController {
                     return
                 }
                 
-                // Check if the response contains data
                 guard let data = data else {
                     print("No data in response")
                     return
@@ -131,7 +130,6 @@ extension SignUpOTPController {
                 // Parse the JSON response
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        print("Response: \(json)")
                         
                         // Handle the response data as needed
                         // For example, you can store the user details in your database

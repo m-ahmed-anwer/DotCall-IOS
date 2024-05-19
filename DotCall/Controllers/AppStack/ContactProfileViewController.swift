@@ -28,10 +28,11 @@ class ContactProfileViewController: UIViewController {
         
         tableView.register(SettingsViewCell.self, forCellReuseIdentifier: "SettingsCell")
         tableView.register(PublicProfileViewCell.self, forCellReuseIdentifier: "PublicProfileViewCell")
-        tableView.register(UINib(nibName: "ProfileImageViewCell", bundle: nil), forCellReuseIdentifier: "ProfileImageCell")
+        tableView.register(UINib(nibName: "ContactProfileViewCell", bundle: nil), forCellReuseIdentifier: "ContactProfileViewCell")
+        tableView.register(UINib(nibName: "ChatCallViewCell", bundle: nil), forCellReuseIdentifier: "ChatCallViewCell")
         navigationController?.navigationBar.tintColor = .backButton
         
-       navigationItem.title = "\(contactName)"
+        navigationItem.title = "\(contactName)"
       
 
         // Do any additional setup after loading the view.
@@ -59,6 +60,7 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
         
         switch section{
             case .Image: return 1
+            case .ChatCall: return 1
             case .Profile: return PublicProfileOptions.allCases.count
             case .General: return PublicGeneralnOptions.allCases.count
         }
@@ -76,6 +78,7 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
         
         switch section{
             case .Image: return 0
+            case .ChatCall: return 0
             case .Profile: return 40
             case .General: return 40
         }
@@ -88,6 +91,7 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
            
            switch section{
                case .Image: return UIView()
+               case .ChatCall: return UIView()
            default:
                let view = UIView()
                view.backgroundColor = .IOSBG
@@ -120,14 +124,18 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
         
         switch section {
         case .Image:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileImageCell", for: indexPath) as! ProfileImageViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactProfileViewCell", for: indexPath) as! ContactProfileViewCell
             cell.backgroundColor = .clear
+            //cell.profileImage.image = UIImage(named: "Profile")
+            return cell
+        case .ChatCall:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCallViewCell", for: indexPath) as! ChatCallViewCell
+            cell.backgroundColor = .clear
+            cell.callButton.addTarget(self, action: #selector(callButtonPressed(_:)), for: .touchUpInside)
+            cell.chatButton.addTarget(self, action: #selector(summaryButtonPressed(_:)), for: .touchUpInside)
             
-            cell.contactName.text = ""
-            //cell.profileImage.image = UIImage(named: "your_profile_image_name")
             
             return cell
-            
         case .Profile:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsViewCell
             
@@ -181,7 +189,32 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
             return cell
         }
     }
-
+    
+    @objc func callButtonPressed(_ sender: UIButton) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.performSegue(withIdentifier: "voiceCall", sender: nil)
+        }
+    }
+    
+    @objc func summaryButtonPressed(_ sender: UIButton) {
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
+        self.performSegue(withIdentifier: "SummariesCheck", sender: nil)
+        
+//        let storyboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
+//        if let summaryViewController = storyboard.instantiateViewController(withIdentifier: "SummariesCheck") as? SummarybyContactViewController {
+//
+//            summaryViewController.navigationItem.title = "Ahmed Anwer"
+//            
+//            navigationController!.pushViewController(summaryViewController, animated: true)
+//        }
+    
+    }
+    
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

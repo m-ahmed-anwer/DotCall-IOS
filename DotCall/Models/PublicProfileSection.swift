@@ -14,6 +14,7 @@ protocol PublicSectionType: CustomStringConvertible{
 
 enum PublicProfileSection: Int, CaseIterable, CustomStringConvertible{
     case Image
+    case ChatCall
     case Profile
     case General
     
@@ -21,6 +22,7 @@ enum PublicProfileSection: Int, CaseIterable, CustomStringConvertible{
     var description: String{
         switch self{
             case .Image: return ""
+            case .ChatCall: return ""
             case .Profile: return "Profile"
             case .General: return "General"
         }

@@ -7,6 +7,13 @@
 import FirebaseAuth
 import UIKit
 
+extension SettingsViewController: EditProfileDelegate {
+    func didUpdateUserProfile() {
+        tableView.reloadData()
+    }
+}
+
+
 class SettingsViewController: UIViewController{
 
 
@@ -22,6 +29,7 @@ class SettingsViewController: UIViewController{
         tableView.backgroundColor = .IOSBG
         tableView.register(SettingsViewCell.self, forCellReuseIdentifier: "SettingsCell")
         tableView.register(GeneralSettingsViewCell.self, forCellReuseIdentifier: "GeneralSettingsCell")
+        tableView.register(LogOutViewCell.self, forCellReuseIdentifier: "LogOutViewCell")
         tableView.register(UINib(nibName: "ProfileImageViewCell", bundle: nil), forCellReuseIdentifier: "ProfileImageCell")
         navigationItem.leftBarButtonItem?.tintColor = .backButton
 
@@ -43,15 +51,14 @@ class SettingsViewController: UIViewController{
         performSegue(withIdentifier: "EdittoCheck", sender: nil)
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let editProfileVC = segue.destination as? EditProfileViewController {
+            editProfileVC.delegate = self
+        }
     }
-    */
+
+    
 
 }
 
@@ -192,14 +199,20 @@ extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
                     cell.imageView?.image = UIImage(systemName: general.imageName)
                     cell.imageView?.tintColor = .backButton
                 }
-                
-                
+                switch general {
+                case .notification:
+                    cell.switchControl.isOn = UserProfile.shared.settingsProfile.notification ?? false
+                case .faceId:
+                    cell.switchControl.isOn = UserProfile.shared.settingsProfile.faceId ?? false
+                case .haptic:
+                    cell.switchControl.isOn = UserProfile.shared.settingsProfile.haptic ?? false
+                }
             }
             return cell
             
         case .LogOut:
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralSettingsCell", for: indexPath) as! GeneralSettingsViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LogOutViewCell", for: indexPath) as! LogOutViewCell
             
             let logout = LogOutOptions(rawValue: indexPath.row)
             cell.sectionType = logout

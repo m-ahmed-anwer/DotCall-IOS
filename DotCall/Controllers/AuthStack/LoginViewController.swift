@@ -178,7 +178,6 @@ extension LoginViewController{
                 
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        print("Response: \(json)")
                         
                         if let success = json["success"] as? Int, success == 1 {
                             // Parse and store user data
@@ -187,6 +186,12 @@ extension LoginViewController{
                                 UserProfile.shared.generalProfile.name = userData["name"] as? String
                                 UserProfile.shared.generalProfile.email = userData["email"] as? String
                                 UserProfile.shared.generalProfile.phoneNumber = userData["phoneNumber"] as? String
+                                
+                                if let settings = userData["generalSettings"] as? [String: Any] {
+                                   UserProfile.shared.settingsProfile.notification = settings["notification"] as? Bool
+                                   UserProfile.shared.settingsProfile.faceId = settings["faceId"] as? Bool
+                                   UserProfile.shared.settingsProfile.haptic = settings["haptic"] as? Bool
+                               }
                             }
                             self.saveUserData()
                             completion(true, nil)

@@ -142,7 +142,6 @@ extension SignupInformationController{
                 // Parse the JSON response
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        print("Response: \(json)")
                         
                         // Check the success status in the response
                         if let success = json["success"] as? Int, success == 1 {

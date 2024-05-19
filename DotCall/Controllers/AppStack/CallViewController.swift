@@ -6,217 +6,229 @@
 //
 
 import UIKit
-import AVFoundation
-import PushKit
+import AVKit
 import CallKit
+import MediaPlayer
 import AVFAudio
 
 
 class CallViewController: UIViewController {
     
-    var contactName: String?
-    var contactPhone: String?
-    var contactImage: UIImage?
+    @IBOutlet weak var profileImageView: UIImageView!
+//          {
+//    didSet {
+//            let profileURL = self.call.remoteUser?.profileURL
+//            self.profileImageView = UIImageView(image: .prof)
+//        }
+//    }
     
+    @IBOutlet weak var nameLabel: UILabel!
+//    {
+//        didSet {
+//            //let nickname = self.call.remoteUser?.nickname
+//            self.nameLabel.text =  "Ahmed Anwer" //nickname?.isEmptyOrWhitespace == true ? self.call.remoteUser?.userId : nickname
+//        }
+//    }
 
-    @IBOutlet weak var callerName: UILabel!
-    @IBOutlet weak var callerImage: UIImageView!
-    @IBOutlet weak var callingTime: UILabel!
-    
     @IBOutlet weak var speakerButton: UIButton!
-    @IBOutlet weak var muteButton: UIButton!
     
- 
+    @IBOutlet weak var muteAudioButton: UIButton! {
+        didSet {
+            //self.muteAudioButton.isSelected = !self.call.isLocalAudioEnabled
+        }
+    }
+    @IBOutlet weak var endButton: UIButton!
+    @IBOutlet weak var callTimerLabel: UILabel!
     
-    var isMicMuted = false
-    var isSpeakerOn = false
-    var timer: Timer?
-    var durationInSeconds: Int = 0
+    // Notify muted state
+    @IBOutlet weak var mutedStateImageView: UIImageView!
+    
+    @IBOutlet weak var mutedStateLabel: UILabel!
+//    {
+//        didSet {
+//            guard let remoteUser = self.call.remoteUser else { return }
+//            let name = remoteUser.nickname?.isEmptyOrWhitespace == true ? remoteUser.userId : remoteUser.nickname!
+//            
+//            self.mutedStateLabel.text = CallStatus.muted(user: name).message
+//        }
+//    }
+    
+    
+    //var call: DirectCall!
+    var isDialing: Bool?
+    
+    var callTimer: Timer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
         
-        callerName.text = contactName
-        callerImage.image = contactImage
+        if #available(iOS 13.0, *) {
+            self.isModalInPresentation = true
+        }
+
+        //self.call.delegate = self
         
-        callerImage.layer.cornerRadius = callerImage.bounds.width / 2
-        callerImage.clipsToBounds = true
-        
-        
-        callingTime.text = "calling \(contactPhone ?? "Ahmed")..."
-        //startTimer()
+//        self.setupAudioOutputButton()
+//        self.updateRemoteAudio(isEnabled: true)
+    }
     
-    
-//        
-//        let provider = CXProvider(configuration: CXProviderConfiguration(localizedName: "DotCall"))
-//        provider.setDelegate(self, queue: nil)
-//        let controller = CXCallController()
-//        
-//        
-//        ///just addeded for temoporary check
-//        ///delete it after the correceted
-//        
-//        
-//        if let contactName = contactName{
-//            let transaction = CXTransaction(action: CXStartCallAction(call: UUID(), handle: CXHandle(type: .generic, value: contactName )))
-//            controller.request(transaction, completion: { error in })
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        guard self.isDialing == true else { return }
+//        CXCallManager.shared.startCXCall(self.call) { [weak self] isSucceed in
+//            guard let self = self else { return }
+//            if !isSucceed {
+//                self.navigationController?.popViewController(animated: true)
+//            }
 //        }
-//     
+        
+    }
+    
+    // MARK: - IBActions
+    @IBAction func didTapAudioOption(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        //self.updateLocalAudio(isEnabled: sender.isSelected)
+    }
+    
+    @IBAction func didTapEnd() {
+        self.endButton.isEnabled = false
+        dismiss(animated: true, completion: nil)
+        //guard let call = SendBirdCall.getCall(forCallId: self.call.callId) else { return }
+        //call.end()
+        //CXCallManager.shared.endCXCall(call)
+    }
+    
+    // MARK: - Basic UI
+    func setupEndedCallUI() {
+        self.callTimer?.invalidate()    // Main thread
+        self.callTimer = nil
+        //self.callTimerLabel.text = CallStatus.ended(result: call.endResult.rawValue).message
+        
+        self.endButton.isHidden = true
+        self.speakerButton.isHidden = true
+        self.muteAudioButton.isHidden = true
+        
+        self.mutedStateImageView.isHidden = true
+        self.mutedStateLabel.isHidden = true
+    }
+}
+
+    
+
+//// MARK: - SendBirdCall: Audio Features
+//extension CallViewController {
+//    func updateLocalAudio(isEnabled: Bool) {
+//        self.muteAudioButton.setBackgroundImage(.audio(isOn: isEnabled), for: .normal)
+//        if isEnabled {
+//            call?.muteMicrophone()
+//        } else {
+//            call?.unmuteMicrophone()
+//        }
+//    }
+//    
+//    func updateRemoteAudio(isEnabled: Bool) {
+//        self.mutedStateImageView.isHidden = isEnabled
+//        self.mutedStateLabel.isHidden = isEnabled
+//    }
+//}
+//
+//// MARK: - SendBirdCall: Audio Output
+//extension CallViewController {
+//    func setupAudioOutputButton() {
+//        let width = self.speakerButton.frame.width
+//        let height = self.speakerButton.frame.height
+//        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+//    
+//        let routePickerView = SendBirdCall.routePickerView(frame: frame)
+//        self.customize(routePickerView)
+//        self.speakerButton.addSubview(routePickerView)
+//    }
+//    
+//    func customize(_ routePickerView: UIView) {
+//        if #available(iOS 11.0, *) {
+//            guard let routePickerView = routePickerView as? AVRoutePickerView else { return }
+//            routePickerView.activeTintColor = .clear
+//            routePickerView.tintColor = .clear
+//        } else {
+//            guard let volumeView = routePickerView as? MPVolumeView else { return }
+//            
+//            volumeView.showsVolumeSlider = false
+//            volumeView.setRouteButtonImage(nil, for: .normal)
+//            volumeView.routeButtonRect(forBounds: volumeView.frame)
+//        }
+//    }
+//}
+//
+//// MARK: - SendBirdCall: DirectCall duration
+//extension CallViewController {
+//    func activeTimer() {
+//        self.callTimerLabel.text = "00:00"
 //        
-    
-
-        
-    }
-    
-    deinit {
-        timer?.invalidate()
-    }
-
-    @IBAction func EndButtonPressed(_ sender: UIButton) {
-        timer?.invalidate()
-        
-        // Create a CXCallController and request to end the call
-        let controller = CXCallController()
-        let transaction = CXTransaction(action: CXEndCallAction(call: UUID()))
-        controller.request(transaction, completion: { error in
-            if let error = error {
-                print("Error ending call: \(error.localizedDescription)")
-            } else {
-                // Pop the view controller when the call is successfully ended
-                DispatchQueue.main.async {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
-        })
-    }
-
-    
-    
-    @IBAction func MuteButtonPressed(_ sender: UIButton) {
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(.playAndRecord, mode: .voiceChat, options: .mixWithOthers)
-            let currentRoute = session.currentRoute
-            for description in currentRoute.outputs {
-                if description.portType == AVAudioSession.Port.headphones {
-                    try session.overrideOutputAudioPort(.none)
-                } else {
-                    try session.overrideOutputAudioPort(.speaker)
-                }
-            }
-            let currentRouteInputs = session.currentRoute.inputs
-            for description in currentRouteInputs {
-                if description.portType == AVAudioSession.Port.builtInMic {
-                    if isMicMuted {
-                        try session.setPreferredInput(description)
-                    } else {
-                        try session.setPreferredInput(nil)
-                    }
-                }
-            }
-            try session.setActive(true)
-
-            // Toggle mic mute state
-            isMicMuted.toggle()
-            print("Microphone muted: \(isMicMuted)")
-
-            // Update button image and title
-            let imageName = isMicMuted ? "micSlash" : "mic"
-            sender.setImage(UIImage(named: imageName), for: .normal)
-
-        } catch {
-            print("Error toggling microphone state: \(error.localizedDescription)")
-        }
-    }
-
-    @IBAction func SpeakerButtonPressed(_ sender: UIButton) {
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(.playAndRecord, mode: .default, options: [])
-            try session.setActive(true)
-            
-            if isSpeakerOn {
-                try session.overrideOutputAudioPort(.none)
-            } else {
-                try session.overrideOutputAudioPort(.speaker)
-            }
-            
-            isSpeakerOn.toggle()
-            print("Speaker mode: \(isSpeakerOn ? "On" : "Off")")
-            
-            // Update button image and title
-            let imageName = isSpeakerOn ? "speakerWave" : "speakerNoWave"
-            sender.setImage(UIImage(named: imageName), for: .normal)
-            
-        } catch {
-            print("Error toggling speakerphone mode: \(error.localizedDescription)")
-        }
-    }
-
-    
-
-    func startTimer() {
-        // Invalidate any existing timer
-        timer?.invalidate()
-        
-        // Start a new timer
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            guard let self = self else { return }
-            
-            // Update the duration label
-            self.durationInSeconds += 1
-            let hours = self.durationInSeconds / 3600
-            let minutes = (self.durationInSeconds % 3600) / 60
-            let seconds = self.durationInSeconds % 60
-            self.callingTime.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-        }
-    }
-}
-
-extension UIButton {
-
-    func alignImageAndTitleVertically(padding: CGFloat = 6.0) {
-        let imageSize = self.imageView!.frame.size
-        let titleSize = self.titleLabel!.frame.size
-        let totalHeight = imageSize.height + titleSize.height + padding
-
-        self.imageEdgeInsets = UIEdgeInsets(
-            top: -(totalHeight - imageSize.height),
-            left: 0,
-            bottom: 0,
-            right: -titleSize.width
-        )
-
-        self.titleEdgeInsets = UIEdgeInsets(
-            top: 0,
-            left: -imageSize.width,
-            bottom: -(totalHeight - titleSize.height),
-            right: 0
-        )
-    }
-
-}
-
-extension CallViewController: CXProviderDelegate {
-    func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
-        // Handle answer action
-        action.fulfill()
-        startTimer()
-    }
-
-    func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
-        // Handle start call action
-        action.fulfill()
-    }
-
-    func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
-        // Handle end call action
-        action.fulfill()
-        navigationController?.popViewController(animated: true)
-    }
-
-    func providerDidReset(_ provider: CXProvider) {
-        // Reset any call-related state
-    }
-}
+//        // Main thread
+//        self.callTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
+//            guard let self = self else { return }
+//
+//            // update UI
+//            self.callTimerLabel.text = self.call.duration.durationText()
+//
+//            // Timer Invalidate
+//            if self.call.endedAt != 0, timer.isValid {
+//                timer.invalidate()
+//                self.callTimer = nil
+//            }
+//        }
+//    }
+//}
+//
+//// MARK: - SendBirdCall: DirectCallDelegate
+//// Delegate methods are executed on Main thread
+//
+//extension CallViewController: DirectCallDelegate {
+//    // MARK: Required Methods
+//    func didConnect(_ call: DirectCall) {
+//        self.activeTimer()      // call.duration
+//        self.updateRemoteAudio(isEnabled: call.isRemoteAudioEnabled)
+//      
+//        CXCallManager.shared.connectedCall(call)
+//    }
+//    
+//    func didEnd(_ call: DirectCall) {
+//        self.setupEndedCallUI()
+//        
+//        DispatchQueue.main.async {
+//            guard let callLog = call.callLog else { return }
+//            UserDefaults.standard.callHistories.insert(CallHistory(callLog: callLog), at: 0)
+//            
+//            CallHistoryViewController.main?.updateCallHistories()
+//        }
+//        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+//            guard let self = self else { return }
+//            self.dismiss(animated: true, completion: nil)
+//        }
+//        
+//        guard let enderId = call.endedBy?.userId, let myId = SendBirdCall.currentUser?.userId, enderId != myId else { return }
+//        guard let call = SendBirdCall.getCall(forCallId: self.call.callId) else { return }
+//        CXCallManager.shared.endCXCall(call)
+//    }
+//    
+//    // MARK: Optional Methods
+//    func didEstablish(_ call: DirectCall) {
+//        self.callTimerLabel.text = CallStatus.connecting.message
+//    }
+//    
+//    func didRemoteAudioSettingsChange(_ call: DirectCall) {
+//        self.updateRemoteAudio(isEnabled: call.isRemoteAudioEnabled)
+//    }
+//    
+//    func didAudioDeviceChange(_ call: DirectCall, session: AVAudioSession, previousRoute: AVAudioSessionRouteDescription, reason: AVAudioSession.RouteChangeReason) {
+//        guard !call.isEnded else { return }
+//        guard let output = session.currentRoute.outputs.first else { return }
+//        
+//        self.speakerButton.setBackgroundImage(.audio(output: output.portType),
+//                                                 for: .normal)
+//        print("[QuickStart] Audio Route has been changed to \(output.portName)")
+//    }
+//}

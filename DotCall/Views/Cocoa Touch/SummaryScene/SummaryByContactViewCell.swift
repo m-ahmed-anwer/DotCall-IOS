@@ -9,6 +9,9 @@ import UIKit
 
 class SummaryByContactViewCell: UITableViewCell {
 
+    @IBOutlet weak var timeText: UILabel!
+    @IBOutlet weak var titleText: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

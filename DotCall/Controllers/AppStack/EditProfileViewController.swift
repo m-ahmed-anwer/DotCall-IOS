@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol EditProfileDelegate: AnyObject {
+    func didUpdateUserProfile()
+}
+
+
 class EditProfileViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
-    
     @IBOutlet weak var nameFeild: UITextField!
+    
+    weak var delegate: EditProfileDelegate?
     
     
     override func viewDidLoad() {
@@ -45,12 +50,10 @@ class EditProfileViewController: UIViewController {
               showAlert(title: "Error", message: "Please enter a valid email address")
               return
         }
-
-        // Save the name and email
-        print("Name: \(name), Email: \(email)")
-        navigationController?.popViewController(animated: true)
         
+        updateProfile(userId: UserProfile.shared.generalProfile.id ?? "" ,name: name, email: email)
     }
+    
     
     func isValidEmail(_ email: String) -> Bool {
         // Regular expression for basic email validation
@@ -61,6 +64,50 @@ class EditProfileViewController: UIViewController {
     }
     
     
+    func updateProfile(userId: String, name: String, email: String) {
+        LoadingManager.shared.showLoadingScreen()
+        let urlString = "https://dot-call-a7ff3d8633ee.herokuapp.com/users/editProfile/\(userId)"
+        guard let url = URL(string: urlString) else { return }
+
+        // Prepare the request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        // Prepare the request body
+        let requestBody: [String: Any] = [
+            "name": name,
+            "email": email
+        ]
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: requestBody) else { return }
+        request.httpBody = httpBody
+
+        // Send the request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let error = error {
+                LoadingManager.shared.hideLoadingScreen()
+                print("Error: \(error)")
+                return
+            }
+            print("Profile updated successfully")
+            UserProfile.shared.generalProfile.email = email
+            UserProfile.shared.generalProfile.name = name
+            
+            let defaults = UserDefaults.standard
+            defaults.set(name, forKey: "userName")
+            defaults.set(email, forKey: "userEmail")
+            defaults.synchronize()
+            
+            DispatchQueue.main.async {
+                LoadingManager.shared.hideLoadingScreen()
+                self.delegate?.didUpdateUserProfile()
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        task.resume()
+    }
+
 
 }
 extension EditProfileViewController: UITableViewDataSource{
@@ -79,9 +126,14 @@ extension EditProfileViewController: UITableViewDataSource{
         if indexPath.section == 0 {
             cell.textField.placeholder = "Enter name"
             cell.textField.text = UserProfile.shared.generalProfile.name
+            cell.textField.autocapitalizationType = .words
+            cell.textField.textContentType = .name
         } else if indexPath.section == 1 {
             cell.textField.placeholder = "Enter email"
             cell.textField.text = UserProfile.shared.generalProfile.email
+            cell.textField.autocapitalizationType = .none
+            cell.textField.textContentType = .emailAddress
+            cell.textField.keyboardType = .emailAddress
         }
         
         cell.selectionStyle = .none // Disable cell selection
@@ -134,3 +186,4 @@ extension EditProfileViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+

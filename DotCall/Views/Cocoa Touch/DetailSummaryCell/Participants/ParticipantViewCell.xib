@@ -48,9 +48,6 @@
                                         <buttonConfiguration key="configuration" style="plain" title=" ">
                                             <imageReference key="image" image="info.circle" catalog="system" symbolScale="large"/>
                                         </buttonConfiguration>
-                                        <connections>
-                                            <action selector="DetailButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Z9w-AZ-DK9"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -75,6 +72,7 @@
             <connections>
                 <outlet property="contactImage" destination="sWC-3n-9fG" id="VnM-DK-Jt7"/>
                 <outlet property="contactName" destination="9ft-Sl-YzK" id="Y22-ra-lLA"/>
+                <outlet property="profileButton" destination="TOz-2I-Aze" id="pbF-ob-g7v"/>
             </connections>
             <point key="canvasLocation" x="115.26717557251908" y="23.239436619718312"/>
         </tableViewCell>

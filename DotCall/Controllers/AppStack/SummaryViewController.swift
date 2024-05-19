@@ -76,7 +76,7 @@ extension SummaryViewController: UITableViewDelegate {
 
         _ = summaries[indexPath.row]
       
-        performSegue(withIdentifier: "DetailtoSummaryCheck", sender: nil)
+        performSegue(withIdentifier: "SummaryDetailsbyContact", sender: nil)
     }
     
 }

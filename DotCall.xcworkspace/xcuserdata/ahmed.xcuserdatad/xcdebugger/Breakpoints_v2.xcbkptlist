@@ -8,14 +8,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B4DEBD04-835E-4FF9-8A67-417A42B8EDD0"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DotCall/Controllers/AppStack/ContactsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "plusIconPressed(_:)"
             landmarkType = "7">
             <Locations>
@@ -93,6 +93,99 @@
                   startingLineNumber = "55"
                   endingLineNumber = "55"
                   offsetFromSymbolStart = "128">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B0EE59C-E790-42B3-82F1-B5323D053814"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DotCall/Views/Cocoa Touch/ContactProfile/ChatCallViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "6B0EE59C-E790-42B3-82F1-B5323D053814 - 838c9a0b34287206"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DotCall.ChatCallViewCell.__allocating_init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; DotCall.ChatCallViewCell"
+                  moduleName = "DotCall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmed/Lectures/Final%20Project/DotCall/DotCall/Views/Cocoa%20Touch/ContactProfile/ChatCallViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "6B0EE59C-E790-42B3-82F1-B5323D053814 - 24b1c0a76bf0a126"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DotCall.ChatCallViewCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; DotCall.ChatCallViewCell"
+                  moduleName = "DotCall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmed/Lectures/Final%20Project/DotCall/DotCall/Views/Cocoa%20Touch/ContactProfile/ChatCallViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "6B0EE59C-E790-42B3-82F1-B5323D053814 - 3fa9403b8255fc2a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DotCall.ChatCallViewCell.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;DotCall.ChatCallViewCell&gt;"
+                  moduleName = "DotCall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmed/Lectures/Final%20Project/DotCall/DotCall/Views/Cocoa%20Touch/ContactProfile/ChatCallViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "6B0EE59C-E790-42B3-82F1-B5323D053814 - deef71889aba2624"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DotCall.ChatCallViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;DotCall.ChatCallViewCell&gt;"
+                  moduleName = "DotCall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmed/Lectures/Final%20Project/DotCall/DotCall/Views/Cocoa%20Touch/ContactProfile/ChatCallViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "6B0EE59C-E790-42B3-82F1-B5323D053814 - a526af54c3d81077"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DotCall.ChatCallViewCell.__deallocating_deinit"
+                  moduleName = "DotCall"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmed/Lectures/Final%20Project/DotCall/DotCall/Views/Cocoa%20Touch/ContactProfile/ChatCallViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>

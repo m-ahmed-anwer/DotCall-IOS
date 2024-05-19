@@ -54,17 +54,12 @@ extension RecentCallViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let callStoryboard = UIStoryboard(name: "CallStoryboard", bundle: nil)
-        if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "CallViewControllerIdentifier") as? CallViewController {
-            
-            // Set the contact name and image
-            callViewController.contactName = "Ahmed"
-            callViewController.contactImage = UIImage(named: "profile")
-            
-            // Push the callViewController
-            navigationController!.pushViewController(callViewController, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.performSegue(withIdentifier: "voiceCall", sender: nil)
         }
     }
+
 
 }
 

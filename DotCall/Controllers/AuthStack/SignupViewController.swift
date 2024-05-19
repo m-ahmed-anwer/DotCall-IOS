@@ -181,7 +181,6 @@ extension SignupViewController{
                 // Parse the JSON response
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        print("Response: \(json)")
                         
                         if let success = json["success"] as? Int, success == 1 {
                             // Parse and store user data

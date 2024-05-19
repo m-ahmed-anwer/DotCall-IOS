@@ -109,18 +109,58 @@ extension DetailSummaryViewController: UITableViewDataSource{
             case 3:
                 if indexPath.row == 0{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ParticpantsCheck", for: indexPath) as! ParticipantViewCell
+                    cell.profileButton.addTarget(self, action: #selector(currentUserProfileButtonPressed(_:)), for: .touchUpInside)
                     cell.contactName?.text  = "\(UserProfile.shared.generalProfile.name ?? "") (You)"
                     return cell
                 } else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ParticpantsCheck", for: indexPath) as! ParticipantViewCell
                     cell.contactName?.text  = "Mohamed"
+                    cell.profileButton.addTarget(self, action: #selector(profileButtonPressed(_:)), for: .touchUpInside)
                     return cell
                 }
+          
                 
         default:
             return UITableViewCell()
         }
     }
+    
+    @objc func profileButtonPressed(_ sender: UIButton) {
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
+        let callStoryboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
+        if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "ContactProfiletoCheck") as? ContactProfileViewController {
+            
+            // Set the contact name and image
+            callViewController.contactPhone = "0768242884"
+            callViewController.contactName = "Ahmed Anwer"
+            callViewController.hidesBottomBarWhenPushed = true
+            
+            // Push the callViewController
+            navigationController!.pushViewController(callViewController, animated: true)
+        }
+    }
+    
+    @objc func currentUserProfileButtonPressed(_ sender: UIButton) {
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
+        var responder: UIResponder? = self
+        while let nextResponder = responder?.next {
+            if let tabViewController = nextResponder as? TabViewController {
+                tabViewController.navigateToSettings()
+                break
+            }
+            responder = nextResponder
+        }
+    }
+    
+    
 }
 
 extension DetailSummaryViewController: UITableViewDelegate {
