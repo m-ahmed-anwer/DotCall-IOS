@@ -10,9 +10,43 @@ import AVKit
 import CallKit
 import MediaPlayer
 import AVFAudio
+import RealmSwift
 
 
 class CallViewController: UIViewController {
+    
+    let realm = try! Realm()
+
+    var selectedSummary: SummaryUser? {
+        didSet {
+            saveSummaryToRealm(selectedSummary!)
+        }
+    }
+    
+    private func saveSummaryToRealm(_ summaryUser: SummaryUser) {
+        let date = Date()
+        
+        do {
+            try realm.write {
+                let newSummary = Summary()
+                newSummary.callMakerName = UserProfile.shared.generalProfile.name ?? "Ahmed"
+                newSummary.callMakerPhoneNum = UserProfile.shared.generalProfile.phoneNumber ?? "123"
+                newSummary.callMakerEmail = UserProfile.shared.generalProfile.email ?? "ahmed@gmail.com"
+                newSummary.callReciverName = summaryUser.callReciverName
+                newSummary.callReciverEmail = "ahmedanwer0094@gmail.com"
+                newSummary.callReciverPhoneNum = summaryUser.callReciverPhoneNum
+                newSummary.summaryDetail = "The detail of summary is not a big detail, it's kind of ok or not a problem so far"
+                newSummary.summaryTopic = "The topic is this, nothing more or less than good or bad"
+                newSummary.time = date
+                newSummary.transcription = "This is the transcription, it's not more like nothing brother"
+                summaryUser.summary.append(newSummary)
+                summaryUser.recentTime = date
+            }
+            print("Savedddd summary")
+        } catch {
+            print("Error saving summary: \(error.localizedDescription)")
+        }
+    }
     
     @IBOutlet weak var profileImageView: UIImageView!
 //          {
@@ -66,6 +100,8 @@ class CallViewController: UIViewController {
         if #available(iOS 13.0, *) {
             self.isModalInPresentation = true
         }
+        
+       
 
         //self.call.delegate = self
         
@@ -92,12 +128,45 @@ class CallViewController: UIViewController {
         //self.updateLocalAudio(isEnabled: sender.isSelected)
     }
     
+    
+    
     @IBAction func didTapEnd() {
         self.endButton.isEnabled = false
+        
+        if let selectedSummary = selectedSummary{
+            saveCallLog()
+        }
+        
+        
         dismiss(animated: true, completion: nil)
+        
+       
+        
+        
         //guard let call = SendBirdCall.getCall(forCallId: self.call.callId) else { return }
         //call.end()
         //CXCallManager.shared.endCXCall(call)
+    }
+    
+    func saveCallLog() {
+
+        let date = Date()
+    
+        let newCall = CallLog()
+        newCall.callDuration = "00.10"
+        newCall.callName = "\(selectedSummary!.callReciverName)"
+        newCall.callPhoneNum = "\(selectedSummary!.callReciverPhoneNum)"
+        newCall.callStatus = "Answered"
+        newCall.callTime = date
+        newCall.callType = "Outgoing"
+    
+        do {
+            try realm.write {
+                realm.add(newCall)
+            }
+        } catch {
+            print("Error saving summary: \(error.localizedDescription)")
+        }
     }
     
     // MARK: - Basic UI

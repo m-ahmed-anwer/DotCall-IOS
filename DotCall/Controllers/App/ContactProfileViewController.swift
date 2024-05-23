@@ -6,11 +6,17 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ContactProfileViewController: UIViewController {
+    
+    let realm = try! Realm()
+    var newSummaryUser: SummaryUser?
+    
     var contactName: String = ""
     var contactEmail: String = ""
     var contactPhone: String = ""
+    var summaryRecent: String = "Loading Summary.."
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -35,20 +41,39 @@ class ContactProfileViewController: UIViewController {
         navigationItem.title = "\(contactName)"
       
 
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func saveSummary(contactName: String, contactPhone: String, recentSummary: String) {
+        let summary = realm.objects(SummaryUser.self).filter("callReciverPhoneNum == %@", contactPhone)
+        let date = Date()
+        
+        do {
+            if summary.isEmpty {
+                let newSummaryUser = SummaryUser()
+                newSummaryUser.callReciverName = contactName
+                newSummaryUser.callReciverPhoneNum = contactPhone
+                newSummaryUser.recentSummary = recentSummary
+                newSummaryUser.recentTime = date
+                try realm.write {
+                    realm.add(newSummaryUser)
+                }
+                self.newSummaryUser = newSummaryUser
+                print("Saved new summaryUser")
+            } else {
+                if let existingSummaryUser = summary.first {
+                    try realm.write {
+                        existingSummaryUser.recentTime = date
+                        existingSummaryUser.recentSummary = recentSummary
+                    }
+                    self.newSummaryUser = existingSummaryUser
+                    print("Updated existing summaryUser")
+                }
+            }
+        } catch {
+            print("Error saving summary: \(error.localizedDescription)")
+        }
     }
-    */
-
 }
 
 extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegate{
@@ -191,6 +216,9 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
     }
     
     @objc func callButtonPressed(_ sender: UIButton) {
+    
+        saveSummary(contactName: contactName, contactPhone: contactPhone, recentSummary: summaryRecent)
+        
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.performSegue(withIdentifier: "voiceCall", sender: nil)
@@ -204,16 +232,24 @@ extension ContactProfileViewController: UITableViewDataSource,UITableViewDelegat
             generator.impactOccurred()
         }
         self.performSegue(withIdentifier: "SummariesCheck", sender: nil)
-        
-//        let storyboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
-//        if let summaryViewController = storyboard.instantiateViewController(withIdentifier: "SummariesCheck") as? SummarybyContactViewController {
-//
-//            summaryViewController.navigationItem.title = "Ahmed Anwer"
-//            
-//            navigationController!.pushViewController(summaryViewController, animated: true)
-//        }
     
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "voiceCall" {
+            let destinationVC = segue.destination as? CallViewController
+            destinationVC!.selectedSummary = newSummaryUser
+        }
+        
+        if segue.identifier == "SummariesCheck" {
+            let destinationVC = segue.destination as? SummarybyContactViewController
+            destinationVC!.phoneByContact = contactPhone
+        }
+    }
+    
+
+
     
 
 

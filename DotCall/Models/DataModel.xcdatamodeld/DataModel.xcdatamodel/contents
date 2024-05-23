@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23D56" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CallLog" representedClassName="CallLog" syncable="YES" codeGenerationType="class">
+        <attribute name="callDuration" attributeType="String"/>
+        <attribute name="callName" attributeType="String"/>
+        <attribute name="callPhoneNum" attributeType="String"/>
+        <attribute name="callStatus" attributeType="String"/>
+        <attribute name="callTime" attributeType="String"/>
+        <attribute name="callType" attributeType="String"/>
+    </entity>
+    <entity name="Summary" representedClassName=".Summary" syncable="YES" codeGenerationType="class">
+        <attribute name="callMakerEmail" attributeType="String"/>
+        <attribute name="callMakerName" attributeType="String"/>
+        <attribute name="callMakerPhoneNum" attributeType="String"/>
+        <attribute name="callReciverEmail" attributeType="String"/>
+        <attribute name="callReciverName" attributeType="String"/>
+        <attribute name="callReciverPhoneNum" attributeType="String"/>
+        <attribute name="summaryDetail" attributeType="String"/>
+        <attribute name="summaryTopic" attributeType="String"/>
+        <attribute name="time" attributeType="String"/>
+        <attribute name="transcription" optional="YES" attributeType="String"/>
+        <relationship name="parentSummary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SummaryUser" inverseName="sumary" inverseEntity="SummaryUser"/>
+    </entity>
+    <entity name="SummaryUser" representedClassName=".SummaryUser" syncable="YES" codeGenerationType="class">
+        <attribute name="callReciverName" attributeType="String"/>
+        <attribute name="callReciverPhoneNum" attributeType="String"/>
+        <attribute name="recentSummary" attributeType="String"/>
+        <attribute name="recentTime" attributeType="String"/>
+        <relationship name="sumary" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Summary" inverseName="parentSummary" inverseEntity="Summary"/>
+    </entity>
+</model>

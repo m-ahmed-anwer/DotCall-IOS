@@ -6,14 +6,39 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class RecentCallCell: UITableViewCell {
+class RecentCallCell: SwipeTableViewCell {
+    
+    var time: Date? {
+        didSet {
+            updateCallTimeText()
+        }
+    }
+    
+    var type: String? {
+        didSet {
+            switch type {
+            case "Incoming":
+                callType.setImage(UIImage(named: "phoneDOWN"), for: .normal)
+                
+            case "Outgoing":
+                callType.setImage(UIImage(named: "phoneUP"), for: .normal)
+                
+            case "Missed":
+                callTime.textColor = .systemRed
+                contactName.textColor = .systemRed
+                callType.setImage(UIImage(named: "phoneDownMiss"), for: .normal)
+            default:
+                break
+            }
+        }
+    }
 
     @IBOutlet weak var contactImage: UIImageView!
     @IBOutlet weak var contactName: UILabel!
     @IBOutlet weak var callTime: UILabel!
     @IBOutlet weak var callType: UIButton!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,5 +57,40 @@ class RecentCallCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func updateTime(_ newTime: Date) {
+        time = newTime
+    }
     
+    private func updateCallTimeText() {
+        guard let time = time else {
+            callTime.text = "NaN"
+            return
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let now = Date()
+        let calendar = Calendar.current
+        
+        if calendar.isDateInToday(time) {
+            let components = calendar.dateComponents([.hour, .minute], from: time, to: now)
+            if let hour = components.hour, hour > 0 {
+                callTime.text = "\(hour) hour\(hour > 1 ? "s" : "") ago"
+            } else if let minute = components.minute, minute > 0 {
+                callTime.text = "\(minute) minute\(minute > 1 ? "s" : "") ago"
+            } else {
+                callTime.text = "Just now"
+            }
+        } else if calendar.isDateInYesterday(time) {
+            callTime.text = "Yesterday"
+        } else if now.timeIntervalSince(time) < TimeInterval(7 * 24 * 3600) {
+            let weekday = calendar.component(.weekday, from: time)
+            let weekdayName = dateFormatter.weekdaySymbols[weekday - 1]
+            callTime.text = "\(weekdayName)"
+        } else {
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            callTime.text = dateFormatter.string(from: time)
+        }
+    }
 }

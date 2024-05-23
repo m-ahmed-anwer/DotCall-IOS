@@ -6,20 +6,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DetailSummaryViewController: UIViewController {
 
-//    var summary: Summary?
-//
-//    init(summary: Summary) {
-//       self.summary = summary
-//       super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//       fatalError("init(coder:) has not been implemented")
-//    }
-
+    
+    let realm = try! Realm()
+    
+    var detailedSumary: Summary?
+    
     var currentSegmentIndex: Int = 0
     
     @IBOutlet weak var tableView: UITableView!
@@ -33,8 +28,16 @@ class DetailSummaryViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.backButton]
         navigationController?.navigationBar.tintColor = UIColor.backButton
+       
         
     }
+    
+    
+    func loadSummary(){
+        
+        //tableView.reloadData()
+    }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -49,6 +52,45 @@ class DetailSummaryViewController: UIViewController {
         tableView.register(UINib(nibName: "ParticipantViewCell", bundle: nil), forCellReuseIdentifier: "ParticpantsCheck")
         tableView.register(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ReuseContact")
         
+        
+        if let detailedSummary = detailedSumary {
+            titleLabel.text = detailedSummary.summaryTopic 
+            
+            if let time = detailedSummary.time {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                
+                let formatter = DateComponentsFormatter()
+                formatter.unitsStyle = .full
+                formatter.allowedUnits = [.day, .hour, .minute, .second]
+                
+                let now = Date()
+                let calendar = Calendar.current
+                if calendar.isDateInToday(time) {
+                    dateFormatter.dateFormat = "HH:mm"
+                    timeLabel.text = "Today \(dateFormatter.string(from: time))"
+                } else if calendar.isDateInYesterday(time) {
+                    dateFormatter.dateFormat = "HH:mm"
+                    timeLabel.text = "Yesterday \(dateFormatter.string(from: time))"
+                } else if now.timeIntervalSince(time) < TimeInterval(7 * 24 * 3600) {
+                    let timeString = formatter.string(from: time, to: now) ?? ""
+                    dateFormatter.dateFormat = "HH:mm"
+                    timeLabel.text = "\(timeString)"
+                } else {
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                    timeLabel.text = dateFormatter.string(from: time)
+                }
+            } else {
+                timeLabel.text = "NaN"
+            }
+        } else {
+            titleLabel.text = "NaN"
+            timeLabel.text = "NaN"
+        }
+
+        
+        
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,8 +144,8 @@ extension DetailSummaryViewController: UITableViewDataSource{
                 
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryCheck", for: indexPath) as! SummaryViewCell
-                 cell.summaryTitle?.text  = "Hello this is the Title here"
-                 cell.summaryText?.text  = "Hello welcome to my youtube channel guyzzz, how are you ok now you just go and  do your work now go back to work buddy bye bye"
+            cell.summaryTitle?.text  = "\(detailedSumary?.summaryTopic ?? "null")"
+            cell.summaryText?.text  = "\(detailedSumary?.summaryDetail ?? "null")"
                  return cell
                 
             case 3:
@@ -114,7 +156,7 @@ extension DetailSummaryViewController: UITableViewDataSource{
                     return cell
                 } else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ParticpantsCheck", for: indexPath) as! ParticipantViewCell
-                    cell.contactName?.text  = "Mohamed"
+                    cell.contactName?.text  = "\(detailedSumary?.callReciverName ?? "Nill")"
                     cell.profileButton.addTarget(self, action: #selector(profileButtonPressed(_:)), for: .touchUpInside)
                     return cell
                 }

@@ -32,23 +32,11 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-p2-wBW">
-                                        <rect key="frame" x="65" y="35" width="220" height="20.333333333333329"/>
+                                        <rect key="frame" x="65" y="35" width="265" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqZ-mI-87U">
-                                        <rect key="frame" x="300" y="30" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="K5h-Lh-DxP"/>
-                                            <constraint firstAttribute="height" constant="30" id="THu-Cp-wMB"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="phoneCircle" title=" "/>
-                                        <connections>
-                                            <action selector="CallButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Nhv-MW-NLa"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -70,7 +58,6 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" name="IOSBoxBG"/>
             <connections>
-                <outlet property="callButton" destination="cqZ-mI-87U" id="6kU-tA-NIi"/>
                 <outlet property="contactImage" destination="1dc-NF-wfQ" id="ykJ-Un-RB4"/>
                 <outlet property="contactName" destination="qdO-p2-wBW" id="GZO-q2-DBz"/>
                 <outlet property="view" destination="t8V-ci-e9b" id="VJu-7t-bLX"/>
@@ -80,7 +67,6 @@
     </objects>
     <resources>
         <image name="Profile" width="240" height="240"/>
-        <image name="phoneCircle" width="37.238700866699219" height="36.901798248291016"/>
         <namedColor name="IOSBoxBG">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

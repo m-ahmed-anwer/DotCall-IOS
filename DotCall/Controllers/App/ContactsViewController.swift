@@ -10,7 +10,8 @@ import ContactsUI
 import UIKit
 
 class ContactsViewController: UIViewController, CNContactPickerDelegate, CNContactViewControllerDelegate {
-
+    
+   
     @IBOutlet weak var tableView: UITableView!
     
     var sectionTitle = [String]()
@@ -20,6 +21,8 @@ class ContactsViewController: UIViewController, CNContactPickerDelegate, CNConta
     var filteredContacts = [CNContact]()
     let searchController = UISearchController(searchResultsController: nil)
     var name: String = ""
+    
+    
 
     
     override func viewDidLoad() {
@@ -37,6 +40,7 @@ class ContactsViewController: UIViewController, CNContactPickerDelegate, CNConta
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater = self
+        
         definesPresentationContext = true
         navigationItem.leftBarButtonItem?.tintColor = .backButton
         navigationItem.rightBarButtonItem?.tintColor = .backButton
@@ -44,6 +48,7 @@ class ContactsViewController: UIViewController, CNContactPickerDelegate, CNConta
         fetchAllContact()
     }
     
+
     
     @IBAction func GroupCallButtonPressed(_ sender: UIBarButtonItem) {
         let contactPicker = CNContactPickerViewController()
@@ -146,8 +151,10 @@ extension ContactsViewController: UITableViewDataSource {
         }
     }
 
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier:  "ReuseContact", for: indexPath) as! ContactCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseContact", for: indexPath) as! ContactCell
 
         let contact: CNContact
         if searchController.isActive {
@@ -160,18 +167,15 @@ extension ContactsViewController: UITableViewDataSource {
                 return cell
             }
         }
-        name = "\(contact.givenName) \(contact.familyName)"
-        cell.callButton.addTarget(self, action: #selector(callButtonPressed(_:)), for: .touchUpInside)
+        let name = "\(contact.givenName) \(contact.familyName)"
         cell.contactName?.text = name
+        
+        
         return cell
     }
+
+
     
-    @objc func callButtonPressed(_ sender: UIButton) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.performSegue(withIdentifier: "voiceCall", sender: nil)
-        }
-    }
     
  
 
@@ -192,7 +196,7 @@ extension ContactsViewController: UITableViewDataSource {
 
 extension ContactsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        
         
         if searchController.isActive {
             let contact = filteredContacts[indexPath.row]
@@ -233,9 +237,9 @@ extension ContactsViewController: UITableViewDelegate {
                     // Push the callViewController
                     navigationController!.pushViewController(callViewController, animated: true)
                 }
-                
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23D56" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Summary" representedClassName=".Summary" syncable="YES" codeGenerationType="class">
+        <attribute name="callMakerEmail" attributeType="String"/>
+        <attribute name="callMakerName" attributeType="String"/>
+        <attribute name="callMakerPhoneNum" attributeType="String"/>
+        <attribute name="callReciverEmail" attributeType="String"/>
+        <attribute name="callReciverName" attributeType="String"/>
+        <attribute name="callReciverPhoneNum" attributeType="String"/>
+        <attribute name="summaryDetail" attributeType="String"/>
+        <attribute name="summaryTopic" attributeType="String"/>
+        <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="transcription" attributeType="String"/>
+    </entity>
+</model>

@@ -41,7 +41,7 @@
                     <navigationItem key="navigationItem" title="Summary" largeTitleDisplayMode="always" id="ufr-up-Zd2"/>
                     <connections>
                         <outlet property="tableView" destination="YUW-fM-SbX" id="IwA-PP-9xL"/>
-                        <segue destination="t6h-1A-r2T" kind="show" identifier="SummaryDetailsbyContact" id="5Np-po-Pfh"/>
+                        <segue destination="sn5-XQ-3Ac" kind="show" identifier="SummaryDetailsbyContact" id="fjB-Wy-7ev"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -92,44 +92,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dt-yE-fia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3116.7938931297708" y="767.6056338028169"/>
-        </scene>
-        <!--RecentCall-->
-        <scene sceneID="DbC-Ad-AXP">
-            <objects>
-                <viewController id="nQk-5a-7Ji" userLabel="RecentCall" customClass="RecentCallViewController" customModule="DotCall" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CPI-Cu-AAj">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="i6a-X9-HeB">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aV8-TB-0MP">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                        <color key="backgroundColor" name="IOSBG"/>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" name="IOSBG"/>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="h7X-0D-esv"/>
-                        <color key="backgroundColor" name="IOSBG"/>
-                        <constraints>
-                            <constraint firstItem="i6a-X9-HeB" firstAttribute="leading" secondItem="h7X-0D-esv" secondAttribute="leading" id="HYh-4d-Ngk"/>
-                            <constraint firstAttribute="bottom" secondItem="i6a-X9-HeB" secondAttribute="bottom" id="Yb6-oq-JlM"/>
-                            <constraint firstItem="i6a-X9-HeB" firstAttribute="top" secondItem="CPI-Cu-AAj" secondAttribute="top" id="kqw-lc-Fap"/>
-                            <constraint firstItem="i6a-X9-HeB" firstAttribute="trailing" secondItem="h7X-0D-esv" secondAttribute="trailing" id="uRX-pq-qzY"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Recents" id="Hiz-eC-qP8"/>
-                    <connections>
-                        <outlet property="tableView" destination="aV8-TB-0MP" id="2YL-5y-CGk"/>
-                        <segue destination="7wq-rL-euo" kind="presentation" identifier="voiceCall" modalPresentationStyle="fullScreen" id="jrd-IW-awd"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QZJ-hT-3sI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="969" y="768"/>
         </scene>
         <!--Contacts-->
         <scene sceneID="Aub-pT-Qy2">
@@ -194,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qyd-Ea-HXH">
-                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="IIw-S0-Nli">
                                         <rect key="frame" x="20" y="0.0" width="353" height="129.66666666666666"/>
@@ -231,7 +193,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="T0I-rX-Q8e">
-                                        <rect key="frame" x="0.0" y="149.66666666666669" width="393" height="643.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="149.66666666666669" width="393" height="599.33333333333326"/>
                                         <color key="backgroundColor" name="BackgroundColor"/>
                                     </tableView>
                                 </subviews>
@@ -280,6 +242,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="selectedImageTintColor" name="ThemeTextColor"/>
+                        <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
                         <outlet property="tabBar" destination="cbQ-jz-jGT" id="Cvo-GN-hjq"/>
@@ -321,6 +284,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0lI-T1-uVh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-144" y="4"/>
+        </scene>
+        <!--Recents-->
+        <scene sceneID="SZD-P6-NA8">
+            <objects>
+                <tableViewController id="cDT-d6-csl" customClass="RecentCallViewController" customModule="DotCall" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="saX-oS-KGt">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="IOSBG"/>
+                        <connections>
+                            <outlet property="dataSource" destination="cDT-d6-csl" id="rqP-8b-fYB"/>
+                            <outlet property="delegate" destination="cDT-d6-csl" id="hqG-iy-5vL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Recents" largeTitleDisplayMode="always" id="q5X-WC-N6M"/>
+                    <connections>
+                        <segue destination="7wq-rL-euo" kind="presentation" identifier="voiceCall" modalPresentationStyle="fullScreen" id="6h1-WS-L4y"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fuv-QD-vnj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="969" y="768"/>
         </scene>
         <!--EditProfile-->
         <scene sceneID="UAQ-aQ-os8">
@@ -439,7 +424,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="nQk-5a-7Ji" kind="relationship" relationship="rootViewController" id="xn0-gl-ei2"/>
+                        <segue destination="cDT-d6-csl" kind="relationship" relationship="rootViewController" id="1sM-m3-hpk"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuM-Ck-n8b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -555,6 +540,7 @@
                             <constraint firstItem="Llf-QY-tj1" firstAttribute="trailing" secondItem="8Qt-34-mxR" secondAttribute="trailing" constant="24" id="uIn-EY-10o"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="BIh-3E-9fd"/>
                     <connections>
                         <outlet property="callTimerLabel" destination="8Qt-34-mxR" id="g70-3a-kig"/>
                         <outlet property="endButton" destination="JFI-cy-1Jg" id="DiS-Ak-6Az"/>
@@ -598,63 +584,42 @@
                     <connections>
                         <outlet property="tableView" destination="Bbb-YJ-wqx" id="sOs-w8-qhI"/>
                         <segue destination="7wq-rL-euo" kind="presentation" identifier="voiceCall" modalPresentationStyle="fullScreen" id="ETg-9O-Otf"/>
-                        <segue destination="t6h-1A-r2T" kind="show" identifier="SummariesCheck" id="u4k-Zc-Sp3"/>
+                        <segue destination="sn5-XQ-3Ac" kind="show" identifier="SummariesCheck" id="A8L-Xi-8eL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="33e-ck-SKY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2044" y="2515"/>
         </scene>
-        <!--SummaryContact-->
-        <scene sceneID="AQX-pE-KFS">
+        <!--Summaryby Contact View Controller-->
+        <scene sceneID="yBs-s2-ib2">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="t6h-1A-r2T" userLabel="SummaryContact" customClass="SummarybyContactViewController" customModule="DotCall" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uXL-A4-UBv">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="sn5-XQ-3Ac" customClass="SummarybyContactViewController" customModule="DotCall" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="9A4-u1-sg3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f52-aL-gFh">
-                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VzK-kX-lZd">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
-                                        <color key="backgroundColor" name="IOSBG"/>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="VzK-kX-lZd" secondAttribute="bottom" id="fFw-Ug-ixp"/>
-                                    <constraint firstItem="VzK-kX-lZd" firstAttribute="leading" secondItem="f52-aL-gFh" secondAttribute="leading" id="m4a-SO-dVa"/>
-                                    <constraint firstAttribute="trailing" secondItem="VzK-kX-lZd" secondAttribute="trailing" id="mR7-B5-gQ9"/>
-                                    <constraint firstItem="VzK-kX-lZd" firstAttribute="top" secondItem="f52-aL-gFh" secondAttribute="top" id="t1i-cQ-KMH"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="IKD-uL-Emu"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="f52-aL-gFh" secondAttribute="bottom" id="ES9-kN-eJs"/>
-                            <constraint firstItem="f52-aL-gFh" firstAttribute="top" secondItem="IKD-uL-Emu" secondAttribute="top" id="GLN-M0-Yzh"/>
-                            <constraint firstItem="f52-aL-gFh" firstAttribute="leading" secondItem="IKD-uL-Emu" secondAttribute="leading" id="KPm-aQ-9ip"/>
-                            <constraint firstItem="f52-aL-gFh" firstAttribute="trailing" secondItem="IKD-uL-Emu" secondAttribute="trailing" id="zUC-6t-96f"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Ahmed Anwer" largeTitleDisplayMode="never" id="5Q5-Wn-0dh"/>
+                        <color key="backgroundColor" name="IOSBG"/>
+                        <connections>
+                            <outlet property="dataSource" destination="sn5-XQ-3Ac" id="Z3r-jA-zF6"/>
+                            <outlet property="delegate" destination="sn5-XQ-3Ac" id="clf-vh-EFo"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="zXb-sB-ZP7"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="tableView" destination="VzK-kX-lZd" id="l4V-Cj-8sA"/>
-                        <segue destination="s8o-Jq-hy7" kind="show" identifier="DetailtoSummaryCheck" id="uXg-lL-EdU"/>
+                        <segue destination="s8o-Jq-hy7" kind="show" identifier="DetailtoSummaryCheck" id="9i5-6G-huI"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="r0o-Io-onj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="erT-9z-kI5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-144" y="1646"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="u4k-Zc-Sp3"/>
-        <segue reference="tgg-eR-Eky"/>
-        <segue reference="ETg-9O-Otf"/>
+        <segue reference="A8L-Xi-8eL"/>
+        <segue reference="iuZ-ud-iW0"/>
+        <segue reference="6h1-WS-L4y"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Profile" width="240" height="240"/>

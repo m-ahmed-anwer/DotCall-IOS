@@ -234,7 +234,7 @@ extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        
         
         guard let section = SettingsSection(rawValue: indexPath.section) else { return }
         
@@ -251,6 +251,8 @@ extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
                 showLogoutConfirmation()
                 generator.impactOccurred()
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func showLogoutConfirmation() {

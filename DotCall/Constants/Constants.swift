@@ -7,7 +7,6 @@
 
 struct K {
     static let borderRadius = 16
-    
     struct BrandColors {
         static let purple = "BrandPurple"
         static let lightPurple = "BrandLightPurple"

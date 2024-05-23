@@ -32,16 +32,16 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sfL-cO-CRA">
-                                        <rect key="frame" x="65" y="40" width="261" height="42.333333333333343"/>
+                                        <rect key="frame" x="65" y="40" width="251" height="42.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed Anwer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bJ-0K-le0">
-                                                <rect key="frame" x="0.0" y="0.0" width="261" height="20.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="251" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 min ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQb-S1-ltn">
-                                                <rect key="frame" x="0.0" y="25.333333333333329" width="261" height="17"/>
+                                                <rect key="frame" x="0.0" y="25.333333333333329" width="251" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                 <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
@@ -49,13 +49,13 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I58-Fv-O5d">
-                                        <rect key="frame" x="341" y="53.666666666666671" width="15" height="15"/>
+                                        <rect key="frame" x="331" y="48.666666666666664" width="25" height="24.999999999999993"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="WPv-yd-qPr"/>
-                                            <constraint firstAttribute="width" constant="15" id="lp1-OC-Wiz"/>
+                                            <constraint firstAttribute="height" constant="25" id="WPv-yd-qPr"/>
+                                            <constraint firstAttribute="width" constant="25" id="lp1-OC-Wiz"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="phoneIncoming"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="phoneDownMiss"/>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -88,7 +88,7 @@
     </objects>
     <resources>
         <image name="Profile" width="240" height="240"/>
-        <image name="phoneIncoming" width="17.768299102783203" height="17.548000335693359"/>
+        <image name="phoneDownMiss" width="31.081100463867188" height="30.751499176025391"/>
         <namedColor name="IOSBoxBG">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
