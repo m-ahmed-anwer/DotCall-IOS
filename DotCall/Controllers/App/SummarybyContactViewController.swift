@@ -7,54 +7,40 @@
 
 import UIKit
 import RealmSwift
-import SwipeCellKit
 
 class SummarybyContactViewController: UITableViewController {
     
-    var summaries: Results<Summary>?
-    let realm = try! Realm()
+    // MARK: - Properties
     
-    var phoneByContact:String?{
-        didSet{
+    private var summaries: Results<Summary>?
+    private let realm = try! Realm()
+    
+    internal var phoneByContact: String? {
+        didSet {
             loadSummary(phone: phoneByContact!)
         }
     }
     
-    var selectedSumary: SummaryUser? {
+    internal var selectedSumary: SummaryUser? {
         didSet {
             if let name = selectedSumary?.callReciverName {
                 navigationItem.title = name
             }
-            loadSummary(phone:selectedSumary!.callReciverPhoneNum)
+            loadSummary(phone: selectedSumary!.callReciverPhoneNum)
         }
     }
     
-    let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
     
-    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.backButton]
         navigationController?.navigationBar.tintColor = UIColor.backButton
-        
-        searchController.searchBar.placeholder = "Search by Summarizations"
-        searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchResultsUpdater = self
-        
-        tableView.register(UINib(nibName: "SummaryByContactViewCell", bundle: nil), forCellReuseIdentifier: "SummaryByContact")
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "NoSummariesCell")
-    }
-   
-    
-    func loadSummary(phone:String) {
-        summaries = realm.objects(Summary.self).filter("callReciverPhoneNum == %@", phone).sorted(byKeyPath: "time", ascending: false)
-        
-        tableView.reloadData()
+        setupSearchController()
+        setupTableView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,16 +49,18 @@ class SummarybyContactViewController: UITableViewController {
     }
 }
 
+// MARK: - Table View Data Source
+
 extension SummarybyContactViewController {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return summaries?.count ?? 1
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if summaries?.count != nil  {
+        if !(summaries!.isEmpty) {
             let summary = summaries?[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryByContact", for: indexPath) as! SummaryByContactViewCell
-            cell.delegate = self
             cell.time = summary!.time
             cell.titleText.text = summary?.summaryTopic
             return cell
@@ -84,13 +72,34 @@ extension SummarybyContactViewController {
             return cell
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alertController = UIAlertController(title: "Delete Summary", message: "Once you delete this summary, it cannot be retrieved. Are you sure you want to delete it?", preferredStyle: .actionSheet)
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+                self.deleteSummary(at: indexPath)
+            }
+            alertController.addAction(deleteAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+    }
 }
 
+// MARK: - Table View Delegate
 
 extension SummarybyContactViewController {
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if summaries?.count != nil  {
+        if summaries?.count != nil {
             if UserProfile.shared.settingsProfile.haptic == true {
                 let generator = UIImpactFeedbackGenerator(style: .light)
                 generator.prepare()
@@ -101,12 +110,11 @@ extension SummarybyContactViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? DetailSummaryViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
-                destinationVC.detailedSumary = summaries?[indexPath.row]
+                destinationVC.detailedSummary = summaries?[indexPath.row]
             } else {
                 print("No row is selected")
             }
@@ -114,10 +122,12 @@ extension SummarybyContactViewController {
     }
 }
 
+// MARK: - Search Results Updating
+
 extension SummarybyContactViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
-
+        
         if searchText.isEmpty {
             if let selectedSummary = selectedSumary {
                 loadSummary(phone: selectedSummary.callReciverPhoneNum)
@@ -129,40 +139,40 @@ extension SummarybyContactViewController: UISearchResultsUpdating {
     }
 }
 
+// MARK: - Private Methods
 
-
-extension SummarybyContactViewController: SwipeTableViewCellDelegate {
+private extension SummarybyContactViewController {
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            self.deleteSummary(at: indexPath)
-        }
-        
-        deleteAction.image = UIImage(named: "delete")
-
-        return [deleteAction]
+    private func setupSearchController() {
+        searchController.searchBar.placeholder = "Search by Summarizations"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchResultsUpdater = self
     }
     
-
-    
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-        var options = SwipeOptions()
-        options.expansionStyle = .destructive
-        return options
+    private func setupTableView() {
+        tableView.register(UINib(nibName: "SummaryByContactViewCell", bundle: nil), forCellReuseIdentifier: "SummaryByContact")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "NoSummariesCell")
     }
     
-    func deleteSummary(at indexPath: IndexPath) {
-        if let summaryToDelete = summaries?[indexPath.row]{
-            do{
-                try realm.write{
+    private func loadSummary(phone: String) {
+        summaries = realm.objects(Summary.self).filter("callReciverPhoneNum == %@", phone).sorted(byKeyPath: "time", ascending: false)
+        tableView.reloadData()
+    }
+    
+    private func deleteSummary(at indexPath: IndexPath) {
+        tableView.beginUpdates()
+        if let summaryToDelete = summaries?[indexPath.row] {
+            do {
+                try realm.write {
                     realm.delete(summaryToDelete)
                 }
-            }catch{
-                print("Error on deleting")
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } catch {
+                print("Error deleting summary: \(error)")
             }
         }
-        tableView.reloadData()
+        tableView.endUpdates()
     }
 }

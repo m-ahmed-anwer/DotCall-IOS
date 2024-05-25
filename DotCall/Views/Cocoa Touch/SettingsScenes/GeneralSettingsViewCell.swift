@@ -14,7 +14,7 @@ class GeneralSettingsViewCell: UITableViewCell {
         didSet {
             guard let sectionType = sectionType else { return }
             textLabel?.text = sectionType.description
-            textLabel?.font = UIFont.systemFont(ofSize: 15)
+            textLabel?.font = UIFont.systemFont(ofSize: 16)
             switchControl.isHidden = !sectionType.containSwitch
             if !sectionType.imageName.isEmpty {
                 imageView?.image = UIImage(systemName: sectionType.imageName)

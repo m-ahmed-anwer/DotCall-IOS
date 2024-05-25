@@ -6,23 +6,27 @@
 //
 
 import UIKit
-import SwipeCellKit
 
-class RecentCallCell: SwipeTableViewCell {
+class RecentCallCell: UITableViewCell {
     
     var time: Date? {
         didSet {
             updateCallTimeText()
         }
     }
+    @IBOutlet weak var recentView: UIView!
     
     var type: String? {
         didSet {
             switch type {
             case "Incoming":
+                callTime.textColor = .systemGray
+                contactName.textColor = .label
                 callType.setImage(UIImage(named: "phoneDOWN"), for: .normal)
                 
             case "Outgoing":
+                callTime.textColor = .systemGray
+                contactName.textColor = .label
                 callType.setImage(UIImage(named: "phoneUP"), for: .normal)
                 
             case "Missed":
@@ -42,7 +46,6 @@ class RecentCallCell: SwipeTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         callType.setTitle("", for: .normal)
         callType.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         callType.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

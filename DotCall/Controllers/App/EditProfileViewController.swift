@@ -14,24 +14,22 @@ protocol EditProfileDelegate: AnyObject {
 
 class EditProfileViewController: UIViewController {
 
+    // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameFeild: UITextField!
     
+    // MARK: - Properties
     weak var delegate: EditProfileDelegate?
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(NameViewCell.self, forCellReuseIdentifier: "NameViewCell")
         navigationController?.navigationBar.tintColor = .backButton
         navigationItem.leftBarButtonItem?.tintColor = .backButton
-
-        // Do any additional setup after loading the view.
+        setupTableView()
     }
     
+    // MARK: - Actions
     @IBAction func SaveButtonPressed(_ sender: UIBarButtonItem) {
         if UserProfile.shared.settingsProfile.haptic == true {
             let generator = UIImpactFeedbackGenerator(style: .light)
@@ -55,61 +53,12 @@ class EditProfileViewController: UIViewController {
     }
     
     
-    func isValidEmail(_ email: String) -> Bool {
-        // Regular expression for basic email validation
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        return emailPredicate.evaluate(with: email)
-    }
-    
-    
-    func updateProfile(userId: String, name: String, email: String) {
-        LoadingManager.shared.showLoadingScreen()
-        let urlString = "https://dot-call-a7ff3d8633ee.herokuapp.com/users/editProfile/\(userId)"
-        guard let url = URL(string: urlString) else { return }
-
-        // Prepare the request
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        // Prepare the request body
-        let requestBody: [String: Any] = [
-            "name": name,
-            "email": email
-        ]
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: requestBody) else { return }
-        request.httpBody = httpBody
-
-        // Send the request
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            if let error = error {
-                LoadingManager.shared.hideLoadingScreen()
-                print("Error: \(error)")
-                return
-            }
-            print("Profile updated successfully")
-            UserProfile.shared.generalProfile.email = email
-            UserProfile.shared.generalProfile.name = name
-            
-            let defaults = UserDefaults.standard
-            defaults.set(name, forKey: "userName")
-            defaults.set(email, forKey: "userEmail")
-            defaults.synchronize()
-            
-            DispatchQueue.main.async {
-                LoadingManager.shared.hideLoadingScreen()
-                self.delegate?.didUpdateUserProfile()
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-        task.resume()
-    }
 
 
 }
+
+// MARK: - UITableViewDataSource
+
 extension EditProfileViewController: UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -152,9 +101,10 @@ extension EditProfileViewController: UITableViewDataSource{
            return nil
     }
     
-    
-    
 }
+
+// MARK: - UITableViewDelegate
+
 extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 1 {
@@ -187,3 +137,67 @@ extension EditProfileViewController {
     }
 }
 
+
+// MARK: - Private Methods
+
+private extension EditProfileViewController{
+    
+    private func isValidEmail(_ email: String) -> Bool {
+        // Regular expression for basic email validation
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
+    
+    
+    private func updateProfile(userId: String, name: String, email: String) {
+        LoadingManager.shared.showLoadingScreen()
+        let urlString = "https://dot-call-a7ff3d8633ee.herokuapp.com/users/editProfile/\(userId)"
+        guard let url = URL(string: urlString) else { return }
+
+        // Prepare the request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        // Prepare the request body
+        let requestBody: [String: Any] = [
+            "name": name,
+            "email": email
+        ]
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: requestBody) else { return }
+        request.httpBody = httpBody
+
+        // Send the request
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let error = error {
+                LoadingManager.shared.hideLoadingScreen()
+                print("Error: \(error)")
+                return
+            }
+            print("Profile updated successfully")
+            UserProfile.shared.generalProfile.email = email
+            UserProfile.shared.generalProfile.name = name
+            
+            let defaults = UserDefaults.standard
+            defaults.set(name, forKey: "userName")
+            defaults.set(email, forKey: "userEmail")
+            defaults.synchronize()
+            
+            DispatchQueue.main.async {
+                LoadingManager.shared.hideLoadingScreen()
+                self.delegate?.didUpdateUserProfile()
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        task.resume()
+    }
+    
+    private func setupTableView(){
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(NameViewCell.self, forCellReuseIdentifier: "NameViewCell")
+    }
+}

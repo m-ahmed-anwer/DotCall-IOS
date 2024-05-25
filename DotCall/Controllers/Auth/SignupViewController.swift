@@ -9,55 +9,64 @@ import UIKit
 
 class SignupViewController: UIViewController {
     
+    // MARK: - Outlets
     
     @IBOutlet weak var countryButton: UIButton!
-    
     @IBOutlet weak var otpButton: UIButton!
-    
     @IBOutlet weak var phoneNumberField: UITextField!
-    
     @IBOutlet weak var greetingText: UILabel!
     
-    var countryCode = ""
+    // MARK: - Properties
     
+    var countryCode = ""
     var name: String = ""
     
+    // MARK: - View Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         greetingText.text = "Hello \(name)!"
     }
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        phoneNumberField.delegate = self
-        
-        let countryMenu = UIMenu(title: "Country Code", children: createCountryMenuItems())
-        countryButton.menu = countryMenu
-        
-        
-        navigationController?.navigationBar.barStyle = .black
-        
-        otpButton.layer.cornerRadius = CGFloat(K.borderRadius)
-        
-        phoneNumberField.addBottomBorder(withColor: UIColor.inputBelow, thickness: 1.0)
-        
-        
+        setupUI()
     }
     
+    // MARK: - Private Methods
+    
+    private func setupUI() {
+        phoneNumberField.delegate = self
+        let countryMenu = UIMenu(title: "Country Code", children: createCountryMenuItems())
+        countryButton.menu = countryMenu
+        navigationController?.navigationBar.barStyle = .black
+        otpButton.layer.cornerRadius = CGFloat(K.borderRadius)
+        phoneNumberField.addBottomBorder(withColor: UIColor.inputBelow, thickness: 1.0)
+    }
+    
+    private func createCountryMenuItems() -> [UIMenuElement] {
+        return countries.map { country in
+            let components = country.components(separatedBy: " ")
+            let countryCode = components.last ?? ""
+            
+            return UIAction(title: country, handler: { [weak self] action in
+                self?.countryButton.setTitle(country, for: .normal)
+                self?.countryCode = countryCode
+                UserDefaults.standard.set(countryCode, forKey: "selectedCountryCode")
+            })
+        }
+    }
+    
+    // MARK: - Button Actions
     
     @IBAction func SignUpButtonPressed(_ sender: UIButton) {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.prepare()
-        generator.impactOccurred()
+        impactFeedback()
         
-        guard let phoneNumber = phoneNumberField.text, !phoneNumber.isEmpty, let _ = Int(phoneNumber)  else {
-                alert(title: "Missing Information", message: "Please enter your phone number.")
-                return
-            }
+        guard let phoneNumber = phoneNumberField.text, !phoneNumber.isEmpty,
+              let _ = Int(phoneNumber)  else {
+            alert(title: "Missing Information", message: "Please enter your phone number.")
+            return
+        }
         
         var finalPhoneNumber: String
         
@@ -67,76 +76,48 @@ class SignupViewController: UIViewController {
             finalPhoneNumber = "\(countryCode)\(phoneNumber)"
         }
         
-        
-        
         LoadingManager.shared.showLoadingScreen()
         checkUserByPhoneNumber(phoneNumber: finalPhoneNumber) { success, message in
-            if success {
-                AuthManager.shared.startAuth(phoneNumber: finalPhoneNumber) { [weak self] success, error in
-                    guard let self = self else { return }
-                    DispatchQueue.main.async {
-                        LoadingManager.shared.hideLoadingScreen()
-                        if success {
-                            userPhoneNumber = finalPhoneNumber
-                            self.performSegue(withIdentifier: "SignUpToCheck",  sender: finalPhoneNumber)
-                        } else {
-                            self.alert(title: "Authentication Error", message: error != nil ? error!.localizedDescription:"Failed to start authentication process.")
-                        }
-                    }
-                }
-            } else {
-                // Login failed, display the error message
-                DispatchQueue.main.async {
-                    LoadingManager.shared.hideLoadingScreen()
+            DispatchQueue.main.async {
+                LoadingManager.shared.hideLoadingScreen()
+                
+                if success {
+                    userPhoneNumber = finalPhoneNumber
+                    self.performSegue(withIdentifier: "SignUpToCheck",  sender: finalPhoneNumber)
+                } else {
                     self.alert(title: "Login Failed", message: message ?? "Unknown error")
                 }
             }
         }
     }
     
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignUpToCheck" {
-            if let destinationVC = segue.destination as? SignUpOTPController {
-                if let phoneNumber = sender as? String {
-                    destinationVC.phoneNumberText = phoneNumber
-                }
+            if let destinationVC = segue.destination as? SignUpOTPController,
+               let phoneNumber = sender as? String {
+                destinationVC.phoneNumberText = phoneNumber
             }
         }
     }
-    
-    
-    func createCountryMenuItems() -> [UIMenuElement] {
-    
-        return countries.map { country in
-                let components = country.components(separatedBy: " ")
-                let countryCode = components.last ?? ""
-                
-                
-                return UIAction(title: country, handler: { [weak self] action in
-                    // Set the button title to the selected country
-                    self?.countryButton.setTitle(country, for: .normal)
-                    self?.countryCode = countryCode // Update countryCode here
-                    
-                    UserDefaults.standard.set(countryCode, forKey: "selectedCountryCode")
-                })
-            }
-    }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension SignupViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // Allow backspace
         guard string != "" else {
             return true
         }
         
-        // Check if the replacement string contains only numbers
         let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
         let stringCharacterSet = CharacterSet(charactersIn: string)
         return allowedCharacterSet.isSuperset(of: stringCharacterSet)
     }
 }
+
+// MARK: - Helper Extensions
 
 extension SignupViewController{
     func alert(title:String, message:String){
@@ -144,8 +125,21 @@ extension SignupViewController{
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-    
-    func checkUserByPhoneNumber(phoneNumber: String, completion: @escaping (Bool, String?) -> Void) {
+    private func impactFeedback() {
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
+    }
+}
+
+
+// MARK: - Private Helper Methods
+
+private extension SignupViewController{
+
+    private func checkUserByPhoneNumber(phoneNumber: String, completion: @escaping (Bool, String?) -> Void) {
         // Prepare the request URL
         let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/phoneNumber")!
         
@@ -218,9 +212,7 @@ extension SignupViewController{
             completion(false, "Error creating JSON data")
         }
     }
-}
-
-extension SignupViewController{
+    
     private func saveUserData() {
         let defaults = UserDefaults.standard
         defaults.set(UserProfile.shared.generalProfile.id, forKey: "userId")

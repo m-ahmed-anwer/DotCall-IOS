@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,18 +33,18 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sfL-cO-CRA">
-                                        <rect key="frame" x="65" y="40" width="251" height="42.333333333333343"/>
+                                        <rect key="frame" x="65" y="40.333333333333329" width="251" height="41.333333333333329"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed Anwer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bJ-0K-le0">
-                                                <rect key="frame" x="0.0" y="0.0" width="251" height="20.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="251" height="19.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 min ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQb-S1-ltn">
-                                                <rect key="frame" x="0.0" y="25.333333333333329" width="251" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
+                                                <rect key="frame" x="0.0" y="24.333333333333336" width="251" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -68,6 +69,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" name="IOSBoxBG"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="wxg-qc-U5R" secondAttribute="trailing" id="7VF-aX-Idj"/>
                     <constraint firstAttribute="bottom" secondItem="wxg-qc-U5R" secondAttribute="bottom" id="AHF-EO-meu"/>
@@ -76,12 +78,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" name="IOSBoxBG"/>
             <connections>
                 <outlet property="callTime" destination="KQb-S1-ltn" id="4uV-s2-WBM"/>
                 <outlet property="callType" destination="I58-Fv-O5d" id="SEZ-21-hdC"/>
                 <outlet property="contactImage" destination="fmX-26-dFe" id="4wn-IS-AH8"/>
                 <outlet property="contactName" destination="4bJ-0K-le0" id="cha-mK-N2d"/>
+                <outlet property="recentView" destination="wxg-qc-U5R" id="JIf-4W-fYh"/>
             </connections>
             <point key="canvasLocation" x="156.4885496183206" y="34.507042253521128"/>
         </tableViewCell>
@@ -92,8 +94,8 @@
         <namedColor name="IOSBoxBG">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="scrollViewTexturedBackgroundColor">
-            <color red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

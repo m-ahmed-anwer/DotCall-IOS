@@ -25,15 +25,15 @@
                                 <rect key="frame" x="20" y="8" width="330" height="90"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="1dc-NF-wfQ">
-                                        <rect key="frame" x="0.0" y="20" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="25" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Erj-9S-zME"/>
-                                            <constraint firstAttribute="width" constant="50" id="Qfm-8c-Zn4"/>
+                                            <constraint firstAttribute="height" constant="40" id="Erj-9S-zME"/>
+                                            <constraint firstAttribute="width" constant="40" id="Qfm-8c-Zn4"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-p2-wBW">
-                                        <rect key="frame" x="65" y="35" width="265" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <rect key="frame" x="55" y="35.333333333333336" width="275" height="19.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>

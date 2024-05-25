@@ -78,7 +78,7 @@
 		E2A398292BDFBCE5002239E1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */; };
 		E2B3F7BA2BF4C64200710DC9 /* RecordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B3F7B82BF4C64200710DC9 /* RecordViewCell.swift */; };
 		E2B3F7BB2BF4C64200710DC9 /* RecordViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B3F7B92BF4C64200710DC9 /* RecordViewCell.xib */; };
-		E2B5F95B2BFCAC8700D7740B /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = E2B5F95A2BFCAC8700D7740B /* SwipeCellKit */; };
+		E2B4C1872C00C655008050A5 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E2B5F96B2BFDE65900D7740B /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E2B5F95D2BFD23D200D7740B /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5F95C2BFD23D200D7740B /* Summary.swift */; };
 		E2B5F9612BFD23F300D7740B /* SummaryUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5F9602BFD23F300D7740B /* SummaryUser.swift */; };
 		E2B5F9632BFD240100D7740B /* CallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5F9622BFD240100D7740B /* CallLog.swift */; };
@@ -108,6 +108,20 @@
 			remoteInfo = DotCall;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E2B4C1862C00C5E6008050A5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E2B4C1872C00C655008050A5 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2D726AC61A7F398581195D3C /* Pods-DotCall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotCall.release.xcconfig"; path = "Target Support Files/Pods-DotCall/Pods-DotCall.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,7 +220,6 @@
 				E23E2C4F2BE139DD004D85B7 /* FirebaseFirestore in Frameworks */,
 				E23E2C4D2BE139DD004D85B7 /* FirebaseAuthCombine-Community in Frameworks */,
 				E23E2C512BE139DD004D85B7 /* FirebaseStorage in Frameworks */,
-				E2B5F95B2BFCAC8700D7740B /* SwipeCellKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +581,7 @@
 				E22B6BF72BD6261700D9E9CE /* Resources */,
 				E23E2C462BDFF547004D85B7 /* ShellScript */,
 				85F23D95D87E8C2CE9464298 /* [CP] Embed Pods Frameworks */,
+				E2B4C1862C00C5E6008050A5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -580,7 +594,6 @@
 				E23E2C4C2BE139DD004D85B7 /* FirebaseAuthCombine-Community */,
 				E23E2C4E2BE139DD004D85B7 /* FirebaseFirestore */,
 				E23E2C502BE139DD004D85B7 /* FirebaseStorage */,
-				E2B5F95A2BFCAC8700D7740B /* SwipeCellKit */,
 				E2B5F96B2BFDE65900D7740B /* RealmSwift */,
 			);
 			productName = DotCall;
@@ -658,7 +671,6 @@
 			packageReferences = (
 				E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				E2B5F9592BFCAC8700D7740B /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 				E2B5F96A2BFDE65900D7740B /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = E22B6BFA2BD6261700D9E9CE /* Products */;
@@ -1212,14 +1224,6 @@
 				minimumVersion = 7.0.2;
 			};
 		};
-		E2B5F9592BFCAC8700D7740B /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.7.1;
-			};
-		};
 		E2B5F96A2BFDE65900D7740B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -1255,11 +1259,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
-		};
-		E2B5F95A2BFCAC8700D7740B /* SwipeCellKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E2B5F9592BFCAC8700D7740B /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
-			productName = SwipeCellKit;
 		};
 		E2B5F96B2BFDE65900D7740B /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;

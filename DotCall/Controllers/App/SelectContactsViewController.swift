@@ -10,19 +10,27 @@ import Contacts
 
 class SelectContactsViewController: UIViewController {
 
+    // MARK: - Outlets
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var groupCallButton: UIButton!
 
-    var contacts = [CNContact]()
-    var selectedContacts = [CNContact]()
+    // MARK: - Properties
+
+    private var contacts = [CNContact]()
+    private var selectedContacts = [CNContact]()
+
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchContacts()
     }
 
-    func fetchContacts() {
+    // MARK: - Fetch Contacts
+
+    private func fetchContacts() {
         let contactStore = CNContactStore()
         let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey] as [CNKeyDescriptor]
 
@@ -36,6 +44,8 @@ class SelectContactsViewController: UIViewController {
         }
     }
 
+    // MARK: - Button Actions
+
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -46,6 +56,8 @@ class SelectContactsViewController: UIViewController {
     }
 
 }
+
+// MARK: - Table View Data Source
 
 extension SelectContactsViewController: UITableViewDataSource, UITableViewDelegate {
 

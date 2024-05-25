@@ -11,40 +11,35 @@ import RealmSwift
 class SummaryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    let realm = try! Realm()
-    var summaries: Results<SummaryUser>?
-
-    let searchController = UISearchController(searchResultsController: nil)
+    private let realm = try! Realm()
+    private var summaries: Results<SummaryUser>?
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
+    private let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        tableView.register(UINib(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
-        tableView.register(UINib(nibName: "SummarizeCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "NoSummariesCell")
-        searchController.searchBar.placeholder = "Search"
-        searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
-        searchController.searchResultsUpdater = self
-        //loadSummaries()
-        tabBarController?.delegate = self
+        setupTableView()
+        setupSearchController()
+        setupTabBarController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-//        loadSummaries()
-  }
+        super.viewWillAppear(animated)
+        loadSummaries()
+    }
     
+    @IBAction func EditButtonPressed(_ sender: UIBarButtonItem) {
+        // Handle edit button action
+    }
     
-    func loadSummaries() {
+    private func loadSummaries() {
         summaries = realm.objects(SummaryUser.self).sorted(byKeyPath: "recentTime", ascending: false)
         tableView.reloadData()
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension SummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,7 +47,13 @@ extension SummaryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if summaries?.count != nil  {
+        if summaries!.isEmpty {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoSummariesCell", for: indexPath)
+            cell.textLabel?.text = "No any Summarizations recorded"
+            cell.textLabel?.textAlignment = .center
+            cell.selectionStyle = .none
+            return cell
+        } else {
             let summary = summaries?[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! SummarizeCell
             
@@ -61,16 +62,20 @@ extension SummaryViewController: UITableViewDataSource {
             cell.callRecieverText?.text = summary!.callReciverName
             cell.selectionStyle = .gray
             return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NoSummariesCell", for: indexPath)
-            cell.textLabel?.text = "No any Summarizations recorded"
-            cell.textLabel?.textAlignment = .center
-            cell.selectionStyle = .none
-            return cell
         }
     }
-
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
 }
+
+// MARK: - UITableViewDelegate
 
 extension SummaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,9 +100,9 @@ extension SummaryViewController: UITableViewDelegate {
             }
         }
     }
-
-
 }
+
+// MARK: - UITabBarControllerDelegate
 
 extension SummaryViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -109,6 +114,8 @@ extension SummaryViewController: UITabBarControllerDelegate {
     }
 }
 
+// MARK: - UISearchResultsUpdating
+
 extension SummaryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
@@ -119,5 +126,29 @@ extension SummaryViewController: UISearchResultsUpdating {
             summaries = realm.objects(SummaryUser.self).filter("callReciverName CONTAINS[cd] %@", searchText).sorted(byKeyPath: "recentTime", ascending: false)
         }
         tableView.reloadData()
+    }
+}
+
+// MARK: - Private Methods
+
+private extension SummaryViewController {
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: "TitleCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
+        tableView.register(UINib(nibName: "SummarizeCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "NoSummariesCell")
+    }
+    
+    private func setupSearchController() {
+        searchController.searchBar.placeholder = "Search"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.searchResultsUpdater = self
+    }
+    
+    private func setupTabBarController() {
+        tabBarController?.delegate = self
     }
 }

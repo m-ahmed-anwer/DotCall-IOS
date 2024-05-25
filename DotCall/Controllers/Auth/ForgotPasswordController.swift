@@ -9,21 +9,30 @@ import UIKit
 
 class ForgotPasswordController: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Outlets
+    
     @IBOutlet weak var fPasswordFeild: UITextField!
     @IBOutlet weak var otpButton: UIButton!
     @IBOutlet weak var countryButton: UIButton!
     
+    // MARK: - Properties
+    
     var countryCode = ""
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupUI()
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupUI() {
         fPasswordFeild.delegate = self
         
         let countryMenu = UIMenu(title: "Country Code", children: createCountryMenuItems())
-       
         countryButton.menu = countryMenu
-               
         
         navigationController?.navigationBar.barStyle = .black
         
@@ -31,18 +40,15 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
         fPasswordFeild.addBottomBorder(withColor: UIColor.inputBelow, thickness: 1.0)
     }
     
+    // MARK: - Button Actions
     
     @IBAction func ForgotButtonPressed(_ sender: UIButton) {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.prepare()
-        generator.impactOccurred()
+        impactFeedback()
         
         guard let phoneNumber = fPasswordFeild.text,
               let _ = Int(phoneNumber) else {
             // Show an alert if the phone number contains non-numeric characters
-            let alert = UIAlertController(title: "Invalid Phone Number", message: "Please enter a valid phone number.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            alert(title: "Invalid Phone Number", message: "Please enter a valid phone number.")
             return
         }
         
@@ -53,33 +59,21 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
             finalPhoneNumber = "\(countryCode)\(phoneNumber)"
         }
         
-        
         LoadingManager.shared.showLoadingScreen()
         checkUserByPhoneNumberToChangePassword(phoneNumber: finalPhoneNumber) { success, message in
-            if success {
-                AuthManager.shared.startAuth(phoneNumber: finalPhoneNumber) { [weak self] success, error in
-                    guard let self = self else { return }
-                    DispatchQueue.main.async {
-                        LoadingManager.shared.hideLoadingScreen()
-                        if success {
-                            self.performSegue(withIdentifier: "OTPToCheck", sender: finalPhoneNumber)
-                        } else {
-                            self.alert(title: "Authentication Error", message: error != nil ? error!.localizedDescription:"Failed to start authentication process.")
-                        }
-                    }
-                }
-            } else {
-                DispatchQueue.main.async {
-                    LoadingManager.shared.hideLoadingScreen()
-                    self.alert(title: "Login Failed", message: message ?? "Unknown error")
+            DispatchQueue.main.async {
+                LoadingManager.shared.hideLoadingScreen()
+                if success {
+                    self.performSegue(withIdentifier: "OTPToCheck", sender: finalPhoneNumber)
+                } else {
+                    self.alert(title: "Authentication Error", message: message ?? "Unknown error")
                 }
             }
         }
-        
-        
-
-        
     }
+    
+    // MARK: - Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "OTPtoCheck" {
             if let destinationVC = segue.destination as? LoginOTPController {
@@ -89,28 +83,27 @@ class ForgotPasswordController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
     
+    // MARK: - Helper Methods
     
-    func createCountryMenuItems() -> [UIMenuElement] {
-        
+    private func createCountryMenuItems() -> [UIMenuElement] {
         return countries.map { country in
-                let components = country.components(separatedBy: " ")
-                let countryCode = components.last ?? ""
+            let components = country.components(separatedBy: " ")
+            let countryCode = components.last ?? ""
+            
+            return UIAction(title: country, handler: { [weak self] action in
+                // Set the button title to the selected country
+                self?.countryButton.setTitle(country, for: .normal)
+                self?.countryCode = countryCode // Update countryCode here
                 
-                
-                return UIAction(title: country, handler: { [weak self] action in
-                    // Set the button title to the selected country
-                    self?.countryButton.setTitle(country, for: .normal)
-                    self?.countryCode = countryCode // Update countryCode here
-                    
-                    UserDefaults.standard.set(countryCode, forKey: "selectedCountryCode")
-                })
-            }
+                UserDefaults.standard.set(countryCode, forKey: "selectedCountryCode")
+            })
+        }
     }
     
 }
 
+// MARK: - UITextFieldDelegate
 
 extension ForgotPasswordController {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -124,14 +117,12 @@ extension ForgotPasswordController {
         let stringCharacterSet = CharacterSet(charactersIn: string)
         return allowedCharacterSet.isSuperset(of: stringCharacterSet)
     }
-    
-    func alert(title:String, message:String){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func checkUserByPhoneNumberToChangePassword(phoneNumber: String, completion: @escaping (Bool, String?) -> Void) {
+}
+
+// MARK: - Network Requests
+
+extension ForgotPasswordController {
+    private func checkUserByPhoneNumberToChangePassword(phoneNumber: String, completion: @escaping (Bool, String?) -> Void) {
         // Prepare the request URL
         let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/passwordChange")!
         
@@ -196,3 +187,20 @@ extension ForgotPasswordController {
     }
 }
 
+// MARK: - UI Updates
+
+extension ForgotPasswordController {
+    private func impactFeedback() {
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
+    }
+    
+    private func alert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+}

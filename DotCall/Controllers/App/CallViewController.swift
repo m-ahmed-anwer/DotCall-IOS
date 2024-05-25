@@ -11,13 +11,14 @@ import CallKit
 import MediaPlayer
 import AVFAudio
 import RealmSwift
+import WebKit
 
 
 class CallViewController: UIViewController {
     
-    let realm = try! Realm()
+    private let realm = try! Realm()
 
-    var selectedSummary: SummaryUser? {
+    internal var selectedSummary: SummaryUser? {
         didSet {
             saveSummaryToRealm(selectedSummary!)
         }
@@ -89,9 +90,9 @@ class CallViewController: UIViewController {
     
     
     //var call: DirectCall!
-    var isDialing: Bool?
+    private var isDialing: Bool?
     
-    var callTimer: Timer?
+    private var callTimer: Timer?
     
     
     override func viewDidLoad() {
@@ -148,7 +149,7 @@ class CallViewController: UIViewController {
         //CXCallManager.shared.endCXCall(call)
     }
     
-    func saveCallLog() {
+    private func saveCallLog() {
 
         let date = Date()
     
@@ -158,7 +159,7 @@ class CallViewController: UIViewController {
         newCall.callPhoneNum = "\(selectedSummary!.callReciverPhoneNum)"
         newCall.callStatus = "Answered"
         newCall.callTime = date
-        newCall.callType = "Outgoing"
+        newCall.callType = "Incoming"
     
         do {
             try realm.write {
@@ -170,7 +171,7 @@ class CallViewController: UIViewController {
     }
     
     // MARK: - Basic UI
-    func setupEndedCallUI() {
+    private func setupEndedCallUI() {
         self.callTimer?.invalidate()    // Main thread
         self.callTimer = nil
         //self.callTimerLabel.text = CallStatus.ended(result: call.endResult.rawValue).message

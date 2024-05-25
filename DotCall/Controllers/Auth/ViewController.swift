@@ -9,42 +9,55 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Outlets
+    
     @IBOutlet weak var createButton: UIButton!
-    
     @IBOutlet weak var loginButton: UIButton!
-    
     @IBOutlet weak var underlineText: UILabel!
     
-
-  
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        createButton.layer.cornerRadius = CGFloat(K.borderRadius)
-        loginButton.layer.cornerRadius = CGFloat(K.borderRadius)
-
-        
-        
-        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
-        let underlineAttributedString = NSAttributedString(string: "Clear Conversation", attributes: underlineAttribute)
-        underlineText.attributedText = underlineAttributedString
-        
+        setupButtons()
+        setupUnderlineText()
     }
+   
+    
+    // MARK: - Button Actions
+    
     @IBAction func CreateButtonPressed(_ sender: UIButton) {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.prepare()
-        generator.impactOccurred()
+        impactFeedback()
     }
     
     @IBAction func LoginButtonPressed(_ sender: UIButton) {
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.prepare()
-        generator.impactOccurred()
+        impactFeedback()
     }
     
+    // MARK: - Helper Methods
     
-
-
+    private func impactFeedback() {
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
+    }
 }
 
+// MARK: - Private Methods
+
+private extension ViewController{
+    
+    
+    private  func setupButtons() {
+        createButton.layer.cornerRadius = CGFloat(K.borderRadius)
+        loginButton.layer.cornerRadius = CGFloat(K.borderRadius)
+    }
+    
+    private func setupUnderlineText() {
+        let underlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+        let underlineAttributedString = NSAttributedString(string: "Clear Conversation", attributes: underlineAttribute)
+        underlineText.attributedText = underlineAttributedString
+    }
+}

@@ -32,6 +32,7 @@ class SummarizeCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    
  
     // Function to update the callTimeText label based on the current value of the time property
     private func updateCallTimeText() {

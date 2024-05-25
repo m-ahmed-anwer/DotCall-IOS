@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import SwipeCellKit
 
 
-class SummaryByContactViewCell: SwipeTableViewCell {
+class SummaryByContactViewCell: UITableViewCell {
     
     var time:Date?{
         didSet {

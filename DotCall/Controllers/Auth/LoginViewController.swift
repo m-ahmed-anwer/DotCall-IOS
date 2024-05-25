@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         loginButton.layer.cornerRadius = CGFloat(K.borderRadius)
     }
     
-    func addLeftPadding(to textField: UITextField) {
+    private func addLeftPadding(to textField: UITextField) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftView = paddingView
         textField.leftViewMode = .always
@@ -101,7 +101,7 @@ class LoginViewController: UIViewController {
 
     
    
-    func createCountryMenuItems() -> [UIMenuElement] {
+    private func createCountryMenuItems() -> [UIMenuElement] {
         return countries.map { country in
             let components = country.components(separatedBy: " ")
             let countryCode = components.last ?? ""
@@ -147,7 +147,7 @@ extension LoginViewController{
         present(alert, animated: true, completion: nil)
     }
     
-    func loginUser(_ phoneNumber: String, _ password: String, completion: @escaping (Bool, String?) -> Void) {
+    private func loginUser(_ phoneNumber: String, _ password: String, completion: @escaping (Bool, String?) -> Void) {
         let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/login")!
         
         let json: [String: Any] = [

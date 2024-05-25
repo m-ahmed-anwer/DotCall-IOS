@@ -13,7 +13,7 @@ class SettingsViewCell: UITableViewCell {
         didSet {
             guard let sectionType = sectionType else { return }
             textLabel?.text = sectionType.description
-            textLabel?.font = UIFont.systemFont(ofSize: 15)
+            textLabel?.font = UIFont.systemFont(ofSize: 16)
             if !sectionType.imageName.isEmpty {
                 imageView?.image = UIImage(systemName: sectionType.imageName)
             }
@@ -24,7 +24,7 @@ class SettingsViewCell: UITableViewCell {
         didSet {
             guard let sectionType = publicSectionType else { return }
             textLabel?.text = sectionType.description
-            textLabel?.font = UIFont.systemFont(ofSize: 15)
+            textLabel?.font = UIFont.systemFont(ofSize: 16)
             if !sectionType.imageName.isEmpty {
                 imageView?.image = UIImage(systemName: sectionType.imageName)
             }

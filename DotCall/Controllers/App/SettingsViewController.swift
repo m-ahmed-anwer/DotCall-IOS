@@ -4,8 +4,11 @@
 //
 //  Created by Ahmed Anwer on 2024-05-02.
 //
+
 import FirebaseAuth
 import UIKit
+
+// MARK: - EditProfileDelegate
 
 extension SettingsViewController: EditProfileDelegate {
     func didUpdateUserProfile() {
@@ -13,34 +16,16 @@ extension SettingsViewController: EditProfileDelegate {
     }
 }
 
+// MARK: - SettingsViewController
 
-class SettingsViewController: UIViewController{
-
+class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Set the delegate and data source
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 60
-        tableView.backgroundColor = .IOSBG
-        tableView.register(SettingsViewCell.self, forCellReuseIdentifier: "SettingsCell")
-        tableView.register(GeneralSettingsViewCell.self, forCellReuseIdentifier: "GeneralSettingsCell")
-        tableView.register(LogOutViewCell.self, forCellReuseIdentifier: "LogOutViewCell")
-        tableView.register(UINib(nibName: "ProfileImageViewCell", bundle: nil), forCellReuseIdentifier: "ProfileImageCell")
-        navigationItem.leftBarButtonItem?.tintColor = .backButton
-
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
-        footerView.backgroundColor = .clear
-        tableView.tableFooterView = footerView
-        
-        
-
+        setupTableView()
     }
-    
 
     @IBAction func EditButtonPressed(_ sender: UIBarButtonItem) {
         if UserProfile.shared.settingsProfile.haptic == true {
@@ -49,95 +34,39 @@ class SettingsViewController: UIViewController{
             generator.impactOccurred()
         }
         performSegue(withIdentifier: "EdittoCheck", sender: nil)
-        
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let editProfileVC = segue.destination as? EditProfileViewController {
             editProfileVC.delegate = self
         }
     }
 
-    
-
+   
 }
 
+// MARK: - UITableViewDataSource
 
-extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
-  
-   
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     
-        guard let section = SettingsSection(rawValue: section) else {return 0}
-        
-        switch section{
-            case .Image: return 1
-            case .Profile: return ProfileOptions.allCases.count
-            case .General: return GeneralnOptions.allCases.count
-            case .LogOut: return LogOutOptions.allCases.count
-        }
-    
-    }
-    
+extension SettingsViewController: UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return SettingsSection.allCases.count
     }
-    
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        guard let section = SettingsSection(rawValue: section) else {return 0}
-        
-        switch section{
-            case .Image: return 0
-            case .Profile: return 40
-            case .General: return 40
-            case .LogOut: return 5
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let section = SettingsSection(rawValue: section) else { return 0 }
+        switch section {
+        case .Image:
+            return 1
+        case .Profile:
+            return ProfileOptions.allCases.count
+        case .General:
+            return GeneralnOptions.allCases.count
+        case .LogOut:
+            return LogOutOptions.allCases.count
         }
-    
-    }
-    
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-           guard let section = SettingsSection(rawValue: section) else { return UIView()}
-           
-           switch section{
-               case .Image: return UIView()
-           default:
-               let view = UIView()
-               view.backgroundColor = .IOSBG
-
-               let title = UILabel()
-               title.font = UIFont.systemFont(ofSize: 15)
-               title.textColor = .sectionHeader
-               title.text = SettingsSection(rawValue: section.rawValue)?.description
-               view.addSubview(title)
-               title.translatesAutoresizingMaskIntoConstraints = false
-               title.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-               title.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-
-               return view
-           }
-       }
-
-    
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let section = SettingsSection(rawValue: indexPath.section) {
-            switch section {
-            case .General:
-                return 55
-            case .LogOut:
-                return 60 // Return the desired height for the LogOut section
-            default:
-                return UITableView.automaticDimension
-            }
-        }
-        return UITableView.automaticDimension
     }
 
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         guard let section = SettingsSection(rawValue: indexPath.section) else { return UITableViewCell() }
@@ -229,33 +158,95 @@ extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
             return cell
         }
     }
+}
 
+// MARK: - UITableViewDelegate
 
+extension SettingsViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let section = SettingsSection(rawValue: section) else { return 0 }
+        switch section {
+        case .Image:
+            return 0
+        default:
+            return 40
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let section = SettingsSection(rawValue: section) else { return nil }
+        if section == .Image {
+            return nil
+        } else {
+            let view = UIView()
+            view.backgroundColor = .IOSBG
+
+            let title = UILabel()
+            title.font = UIFont.systemFont(ofSize: 15)
+            title.textColor = .sectionHeader
+            title.text = SettingsSection(rawValue: section.rawValue)?.description
+            view.addSubview(title)
+            title.translatesAutoresizingMaskIntoConstraints = false
+            title.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+            title.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+
+            return view
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let section = SettingsSection(rawValue: indexPath.section) {
+            switch section {
+            case .Profile:
+                return 60
+            case .General:
+                return 65
+            case .LogOut:
+                return 65
+            default:
+                return UITableView.automaticDimension
+            }
+        }
+        return UITableView.automaticDimension
+    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        
         guard let section = SettingsSection(rawValue: indexPath.section) else { return }
-        
         switch section {
-            case .Image:
-                return
-            case .Profile:
-                return
-            case .General:
-                return
-            case .LogOut:
+        case .Image, .Profile, .General:
+            return
+        case .LogOut:
+            if UserProfile.shared.settingsProfile.haptic == true {
                 let generator = UIImpactFeedbackGenerator(style: .heavy)
                 generator.prepare()
                 showLogoutConfirmation()
                 generator.impactOccurred()
+            }
         }
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+
+// MARK: - Private Methods
+
+private extension SettingsViewController {
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .IOSBG
+        tableView.register(SettingsViewCell.self, forCellReuseIdentifier: "SettingsCell")
+        tableView.register(GeneralSettingsViewCell.self, forCellReuseIdentifier: "GeneralSettingsCell")
+        tableView.register(LogOutViewCell.self, forCellReuseIdentifier: "LogOutViewCell")
+        tableView.register(UINib(nibName: "ProfileImageViewCell", bundle: nil), forCellReuseIdentifier: "ProfileImageCell")
+
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        footerView.backgroundColor = .clear
+        tableView.tableFooterView = footerView
+    }
     
-    func showLogoutConfirmation() {
+    private func showLogoutConfirmation() {
         let alert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { _ in
@@ -264,17 +255,13 @@ extension SettingsViewController: UITableViewDataSource,UITableViewDelegate{
         present(alert, animated: true, completion: nil)
     }
     
-    func signOutUser() {
+    private func signOutUser() {
         do {
             try Auth.auth().signOut()
-            print("sign out successfully")
+            print("Sign out successful")
             UserProfile.shared.logOut()
         } catch let error as NSError {
             print("Error signing out: \(error.localizedDescription)")
         }
     }
-    
-    
 }
-
-

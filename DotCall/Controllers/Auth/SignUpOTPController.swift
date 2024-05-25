@@ -5,29 +5,26 @@
 //  Created by Ahmed Anwer on 2024-04-29.
 //
 
-
 import AEOTPTextField
-
 import UIKit
 
 class SignUpOTPController: UIViewController, UITextFieldDelegate {
+    // MARK: - Outlets
     @IBOutlet weak var resendText: UILabel!
-    
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var OTPButton: UIButton!
-    
-    var smsCode:String = ""
-    var phoneNumberText: String = ""
-
-    
     @IBOutlet weak var otpTextField: AEOTPTextField!
     
+    // MARK: - Properties
+    var smsCode: String = ""
+    var phoneNumberText: String = ""
+    
+    // MARK: - View Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         phoneNumber.text = phoneNumberText
     }
 
-    
     override func viewDidLoad() {
        super.viewDidLoad()
        navigationController?.navigationBar.barStyle = .black
@@ -51,7 +48,7 @@ class SignUpOTPController: UIViewController, UITextFieldDelegate {
        phoneNumber.attributedText = underlineAttributedString
     }
 
-    
+    // MARK: - Actions
     @IBAction func OTPButtonPressed(_ sender: UIButton) {
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.prepare()
@@ -61,12 +58,10 @@ class SignUpOTPController: UIViewController, UITextFieldDelegate {
             return
         }
         verify(code: smsCode)
-        
     }
-    
 }
 
-
+// MARK: - AEOTPTextFieldDelegate
 extension SignUpOTPController: AEOTPTextFieldDelegate {
     func didUserFinishEnter(the code: String) {
         smsCode = code
@@ -74,27 +69,23 @@ extension SignUpOTPController: AEOTPTextFieldDelegate {
     }
 }
 
-extension SignUpOTPController{
-    func verify(code: String){
+// MARK: - Private Methods
+extension SignUpOTPController {
+    private func verify(code: String) {
         LoadingManager.shared.showLoadingScreen()
         AuthManager.shared.verifyCode(smsCode: code) { success, error in
             LoadingManager.shared.hideLoadingScreen()
             if success {
                 self.signupUser(name: userName, email: userEmail, password: userPassword, phoneNumber: userPhoneNumber)
-                //self.performSegue(withIdentifier: "CreatetoCheck", sender: nil)
             } else {
                 let alert = UIAlertController(title: "Authentication Error", message: error != nil ? error?.localizedDescription:"Failed to start authentication process.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-
             }
         }
-
     }
-}
 
-extension SignUpOTPController {
-    func signupUser(name: String, email: String, password: String, phoneNumber: String) {
+    private func signupUser(name: String, email: String, password: String, phoneNumber: String) {
         // Prepare the request URL
         let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/signup")!
         
@@ -130,9 +121,6 @@ extension SignUpOTPController {
                 // Parse the JSON response
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        
-                        // Handle the response data as needed
-                        // For example, you can store the user details in your database
                     }
                 } catch {
                     print("Error parsing JSON: \(error.localizedDescription)")
@@ -147,7 +135,3 @@ extension SignUpOTPController {
         }
     }
 }
-
-
-
-
