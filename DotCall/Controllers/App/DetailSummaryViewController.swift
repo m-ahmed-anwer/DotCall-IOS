@@ -68,15 +68,11 @@ class DetailSummaryViewController: UIViewController {
     
     @objc func currentUserProfileButtonPressed(_ sender: UIButton) {
         hapticImpact()
-        var responder: UIResponder? = self
-        while let nextResponder = responder?.next {
-            if let tabViewController = nextResponder as? TabViewController {
-                tabViewController.navigateToSettings()
-                break
-            }
-            responder = nextResponder
+        if let tabViewController = UIApplication.shared.keyWindow?.rootViewController as? TabViewController {
+            tabViewController.navigateToSettings()
         }
     }
+
     
 
 }

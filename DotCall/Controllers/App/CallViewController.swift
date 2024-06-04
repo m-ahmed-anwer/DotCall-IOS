@@ -31,7 +31,7 @@ class CallViewController: UIViewController {
             try realm.write {
                 let newSummary = Summary()
                 newSummary.callMakerName = UserProfile.shared.generalProfile.name ?? "Ahmed"
-                newSummary.callMakerPhoneNum = UserProfile.shared.generalProfile.phoneNumber ?? "123"
+                newSummary.callMakerPhoneNum = UserProfile.shared.generalProfile.username ?? "123"
                 newSummary.callMakerEmail = UserProfile.shared.generalProfile.email ?? "ahmed@gmail.com"
                 newSummary.callReciverName = summaryUser.callReciverName
                 newSummary.callReciverEmail = "ahmedanwer0094@gmail.com"

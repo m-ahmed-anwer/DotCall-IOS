@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactCell: UITableViewCell {
+class FriendCell: UITableViewCell {
 
     @IBOutlet weak var contactName: UILabel!
     @IBOutlet weak var contactImage: UIImageView!

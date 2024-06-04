@@ -82,8 +82,18 @@ class SignupViewController: UIViewController {
                 LoadingManager.shared.hideLoadingScreen()
                 
                 if success {
-                    userPhoneNumber = finalPhoneNumber
-                    self.performSegue(withIdentifier: "SignUpToCheck",  sender: finalPhoneNumber)
+                    AuthManager.shared.startAuth(phoneNumber: finalPhoneNumber) { [weak self] success, error in
+                       guard let self = self else { return }
+                       DispatchQueue.main.async {
+                           LoadingManager.shared.hideLoadingScreen()
+                           if success {
+                               userPhoneNumber = finalPhoneNumber
+                               self.performSegue(withIdentifier: "SignUpToCheck",  sender: finalPhoneNumber)
+                           } else {
+                               self.alert(title: "Authentication Error", message: error != nil ? error!.localizedDescription:"Failed to start authentication process.")
+                           }
+                       }
+                   }
                 } else {
                     self.alert(title: "Login Failed", message: message ?? "Unknown error")
                 }
@@ -176,20 +186,7 @@ private extension SignupViewController{
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                         
-                        if let success = json["success"] as? Int, success == 1 {
-                            // Parse and store user data
-                            if let userData = json["user"] as? [String: Any] {
-                                UserProfile.shared.generalProfile.id = userData["_id"] as? String
-                                UserProfile.shared.generalProfile.name = userData["name"] as? String
-                                UserProfile.shared.generalProfile.email = userData["email"] as? String
-                                UserProfile.shared.generalProfile.phoneNumber = userData["phoneNumber"] as? String
-                                if let settings = userData["generalSettings"] as? [String: Any] {
-                                   UserProfile.shared.settingsProfile.notification = settings["notification"] as? Bool
-                                   UserProfile.shared.settingsProfile.faceId = settings["faceId"] as? Bool
-                                   UserProfile.shared.settingsProfile.haptic = settings["haptic"] as? Bool
-                               }
-                            }
-                            self.saveUserData()
+                        if let success = json["success"] as? Int, success == 1 {                            
                             completion(true, nil)
                         } else {
                             if let message = json["message"] as? String {
@@ -213,14 +210,5 @@ private extension SignupViewController{
         }
     }
     
-    private func saveUserData() {
-        let defaults = UserDefaults.standard
-        defaults.set(UserProfile.shared.generalProfile.id, forKey: "userId")
-        defaults.set(UserProfile.shared.generalProfile.name, forKey: "userName")
-        defaults.set(UserProfile.shared.generalProfile.email, forKey: "userEmail")
-        defaults.set(UserProfile.shared.generalProfile.phoneNumber, forKey: "userPhoneNumber")
-        defaults.set(UserProfile.shared.settingsProfile.notification, forKey: "notification")
-        defaults.set(UserProfile.shared.settingsProfile.faceId, forKey: "faceId")
-        defaults.set(UserProfile.shared.settingsProfile.haptic, forKey: "haptic")
-    }
+   
 }

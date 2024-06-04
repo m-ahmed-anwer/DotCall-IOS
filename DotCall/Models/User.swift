@@ -8,15 +8,6 @@
 import Foundation
 
 
-    
-var userEmail: String = ""
-var userName: String = ""
-var userPhoneNumber: String = ""
-var userCreatedAt: String = ""
-var userPassword: String = ""
-
-
-
 class UserProfile {
     static let shared = UserProfile()
 
@@ -24,7 +15,8 @@ class UserProfile {
         var id: String?
         var name: String?
         var email: String?
-        var phoneNumber: String?
+        var username: String?
+        var token: String?
     }
 
     struct SettingsProfile {
@@ -36,6 +28,14 @@ class UserProfile {
     var generalProfile = GeneralProfile()
     var settingsProfile = SettingsProfile()
 
+    var isDetailsAvailable: Bool {
+        return generalProfile.id != nil &&
+               generalProfile.name != nil &&
+               generalProfile.email != nil &&
+               generalProfile.username != nil &&
+               generalProfile.token != nil
+    }
+
     private init() {
         loadUserData()
         loadUserSettings()
@@ -46,21 +46,23 @@ class UserProfile {
         generalProfile.id = defaults.string(forKey: "userId")
         generalProfile.name = defaults.string(forKey: "userName")
         generalProfile.email = defaults.string(forKey: "userEmail")
-        generalProfile.phoneNumber = defaults.string(forKey: "userPhoneNumber")
+        generalProfile.username = defaults.string(forKey: "userUsername")
+        generalProfile.token = defaults.string(forKey: "token")
     }
-    
+
     private func loadUserSettings() {
         let defaults = UserDefaults.standard
         settingsProfile.notification = defaults.bool(forKey: "notification")
         settingsProfile.faceId = defaults.bool(forKey: "faceId")
         settingsProfile.haptic = defaults.bool(forKey: "haptic")
     }
-    
+
     func logOut() {
         generalProfile.id = nil
         generalProfile.name = nil
         generalProfile.email = nil
-        generalProfile.phoneNumber = nil
+        generalProfile.username = nil
+        generalProfile.token = nil
 
         settingsProfile.notification = nil
         settingsProfile.faceId = nil
@@ -70,7 +72,8 @@ class UserProfile {
         defaults.removeObject(forKey: "userId")
         defaults.removeObject(forKey: "userName")
         defaults.removeObject(forKey: "userEmail")
-        defaults.removeObject(forKey: "userPhoneNumber")
+        defaults.removeObject(forKey: "userUsername")
+        defaults.removeObject(forKey: "token")
         defaults.removeObject(forKey: "notification")
         defaults.removeObject(forKey: "faceId")
         defaults.removeObject(forKey: "theme")

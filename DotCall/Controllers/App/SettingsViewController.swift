@@ -28,11 +28,7 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func EditButtonPressed(_ sender: UIBarButtonItem) {
-        if UserProfile.shared.settingsProfile.haptic == true {
-            let generator = UIImpactFeedbackGenerator(style: .light)
-            generator.prepare()
-            generator.impactOccurred()
-        }
+        impactOccur()
         performSegue(withIdentifier: "EdittoCheck", sender: nil)
     }
 
@@ -88,8 +84,8 @@ extension SettingsViewController: UITableViewDataSource {
             let profile = ProfileOptions(rawValue: indexPath.row)
             cell.sectionType = profile
             cell.backgroundColor = UIColor.iosBoxBG
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
-            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 18)
+            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 16)
             cell.detailTextLabel?.textColor = .gray
             cell.detailTextLabel?.textAlignment = .right
             cell.selectionStyle = .none
@@ -101,8 +97,8 @@ extension SettingsViewController: UITableViewDataSource {
                 cell.detailTextLabel?.text = UserProfile.shared.generalProfile.name
             case .email:
                 cell.detailTextLabel?.text = UserProfile.shared.generalProfile.email
-            case .phoneNumber:
-                cell.detailTextLabel?.text = UserProfile.shared.generalProfile.phoneNumber
+            case .username:
+                cell.detailTextLabel?.text = UserProfile.shared.generalProfile.username
             default:
                 cell.detailTextLabel?.text = ""
             }
@@ -121,7 +117,7 @@ extension SettingsViewController: UITableViewDataSource {
             if let general = GeneralnOptions(rawValue: indexPath.row) {
                 cell.sectionType = general
                 cell.backgroundColor = UIColor.iosBoxBG
-                cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
+                cell.textLabel?.font = UIFont.systemFont(ofSize: 18)
                 cell.selectionStyle = .none
                 
                 if !general.imageName.isEmpty {
@@ -147,7 +143,7 @@ extension SettingsViewController: UITableViewDataSource {
             cell.sectionType = logout
             cell.backgroundColor = UIColor.iosBoxBG
             cell.textLabel?.textAlignment = .center
-            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
             cell.textLabel?.textColor = UIColor.red
             cell.clipsToBounds = true
             cell.layer.cornerRadius = CGFloat(K.borderRadius)
@@ -183,7 +179,7 @@ extension SettingsViewController: UITableViewDelegate {
             view.backgroundColor = .IOSBG
 
             let title = UILabel()
-            title.font = UIFont.systemFont(ofSize: 15)
+            title.font = UIFont.systemFont(ofSize: 16)
             title.textColor = .sectionHeader
             title.text = SettingsSection(rawValue: section.rawValue)?.description
             view.addSubview(title)
@@ -199,11 +195,11 @@ extension SettingsViewController: UITableViewDelegate {
         if let section = SettingsSection(rawValue: indexPath.section) {
             switch section {
             case .Profile:
-                return 60
+                return 53
             case .General:
-                return 65
+                return 58
             case .LogOut:
-                return 65
+                return 62
             default:
                 return UITableView.automaticDimension
             }
@@ -217,12 +213,8 @@ extension SettingsViewController: UITableViewDelegate {
         case .Image, .Profile, .General:
             return
         case .LogOut:
-            if UserProfile.shared.settingsProfile.haptic == true {
-                let generator = UIImpactFeedbackGenerator(style: .heavy)
-                generator.prepare()
-                showLogoutConfirmation()
-                generator.impactOccurred()
-            }
+            impactOccur()
+            showLogoutConfirmation()
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -260,8 +252,17 @@ private extension SettingsViewController {
             try Auth.auth().signOut()
             print("Sign out successful")
             UserProfile.shared.logOut()
+            AuthManager.shared.resetState()
         } catch let error as NSError {
             print("Error signing out: \(error.localizedDescription)")
         }
     }
+    private func impactOccur(){
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
+    }
 }
+

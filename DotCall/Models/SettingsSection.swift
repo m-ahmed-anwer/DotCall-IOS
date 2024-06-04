@@ -31,9 +31,10 @@ enum SettingsSection: Int, CaseIterable, CustomStringConvertible {
 
 // MARK: - Profile Options Enum
 enum ProfileOptions: Int, CaseIterable, SectionType {
+    
+    case username
     case name
     case email
-    case phoneNumber
 
     var id: Int {
         return 0
@@ -45,17 +46,17 @@ enum ProfileOptions: Int, CaseIterable, SectionType {
 
     var description: String {
         switch self {
+        case .username: return "Username"
         case .name: return "Name"
         case .email: return "Email"
-        case .phoneNumber: return "Phone Number"
         }
     }
 
     var imageName: String {
         switch self {
+        case .username: return "key"
         case .name: return "person"
         case .email: return "envelope"
-        case .phoneNumber: return "phone"
         }
     }
 }

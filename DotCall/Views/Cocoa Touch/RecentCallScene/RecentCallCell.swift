@@ -88,9 +88,15 @@ class RecentCallCell: UITableViewCell {
         } else if calendar.isDateInYesterday(time) {
             callTime.text = "Yesterday"
         } else if now.timeIntervalSince(time) < TimeInterval(7 * 24 * 3600) {
-            let weekday = calendar.component(.weekday, from: time)
-            let weekdayName = dateFormatter.weekdaySymbols[weekday - 1]
-            callTime.text = "\(weekdayName)"
+            let components = calendar.dateComponents([.day], from: time, to: now)
+            if let days = components.day, let weekday = calendar.dateComponents([.weekday], from: time).weekday {
+                if days == 1 {
+                    callTime.text = "Yesterday"
+                } else if days < 7 {
+                    let weekdayName = calendar.weekdaySymbols[(weekday - 1) % 7]
+                    callTime.text = weekdayName
+                }
+            }
         } else {
             dateFormatter.dateFormat = "yyyy-MM-dd"
             callTime.text = dateFormatter.string(from: time)

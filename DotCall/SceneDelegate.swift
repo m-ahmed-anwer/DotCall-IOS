@@ -27,19 +27,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
        // Listen for authentication state changes
         
-       Auth.auth().addStateDidChangeListener { (_, user) in
-           if user == nil {
-               // User is signed out, update to AuthStoryboard
-               let storyboard = UIStoryboard(name: "MainAuth", bundle: nil)
-               let initialViewController = storyboard.instantiateInitialViewController()
-               self.window?.rootViewController = initialViewController
-           } else {
-               // User is signed in, update to AppStoryboard
-               let storyboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
-               let initialViewController = storyboard.instantiateInitialViewController()
-               self.window?.rootViewController = initialViewController
-           }
-       }
+        Auth.auth().addStateDidChangeListener { (_, user) in
+            if let user = user {
+                if user.isEmailVerified {
+                    let storyboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
+                    let initialViewController = storyboard.instantiateInitialViewController()
+                    self.window?.rootViewController = initialViewController
+                } else {
+                    let storyboard = UIStoryboard(name: "MainAuth", bundle: nil)
+                    let initialViewController = storyboard.instantiateInitialViewController()
+                    self.window?.rootViewController = initialViewController
+                }
+            } else {
+                let storyboard = UIStoryboard(name: "MainAuth", bundle: nil)
+                let initialViewController = storyboard.instantiateInitialViewController()
+                self.window?.rootViewController = initialViewController
+            }
+        }
 
        window.makeKeyAndVisible()
     }

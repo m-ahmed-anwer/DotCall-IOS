@@ -42,7 +42,7 @@ class SummarizeCell: UITableViewCell {
         if let convertedDate = time {
             let formatter = DateComponentsFormatter()
             formatter.unitsStyle = .full
-            
+
             let now = Date()
             let calendar = Calendar.current
             if calendar.isDateInToday(convertedDate) {
@@ -51,12 +51,20 @@ class SummarizeCell: UITableViewCell {
             } else if calendar.isDateInYesterday(convertedDate) {
                 callTimeText.text = "Yesterday"
             } else if now.timeIntervalSince(convertedDate) < TimeInterval(7 * 24 * 3600) {
-                formatter.allowedUnits = [.day]
-                callTimeText.text = formatter.string(from: convertedDate, to: now)
+                let components = calendar.dateComponents([.day], from: convertedDate, to: now)
+                if let days = components.day, let weekday = calendar.dateComponents([.weekday], from: convertedDate).weekday {
+                    if days == 1 {
+                        callTimeText.text = "Yesterday"
+                    } else if days < 7 {
+                        let weekdayName = calendar.weekdaySymbols[(weekday - 1) % 7]
+                        callTimeText.text = weekdayName
+                    }
+                }
             } else {
                 dateFormatter.dateFormat = "MMM dd, yyyy"
                 callTimeText.text = dateFormatter.string(from: convertedDate)
             }
+
         } else {
             callTimeText.text = "NaN"
         }

@@ -31,8 +31,7 @@ enum PublicProfileSection: Int, CaseIterable, CustomStringConvertible {
 // MARK: - Public Profile Options Enum
 enum PublicProfileOptions: Int, CaseIterable, PublicSectionType {
     case name
-    case email
-    case phoneNumber
+    case username
 
     var containSwitch: Bool {
         return false
@@ -41,16 +40,14 @@ enum PublicProfileOptions: Int, CaseIterable, PublicSectionType {
     var description: String {
         switch self {
         case .name: return "Name"
-        case .email: return "Email"
-        case .phoneNumber: return "Phone Number"
+        case .username: return "UserName"
         }
     }
 
     var imageName: String {
         switch self {
         case .name: return "person"
-        case .email: return "envelope"
-        case .phoneNumber: return "phone"
+        case .username: return "key"
         }
     }
 }

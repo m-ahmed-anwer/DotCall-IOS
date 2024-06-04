@@ -42,13 +42,9 @@
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="ksi-DI-eQh">
                             <imageReference key="image" image="ellipsis.circle" catalog="system" symbolScale="large"/>
                             <color key="tintColor" systemColor="labelColor"/>
-                            <connections>
-                                <action selector="EditButtonPressed:" destination="Y6W-OH-hqX" id="V3b-4e-ifn"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="ksi-DI-eQh" id="ent-cP-N0Z"/>
                         <outlet property="tableView" destination="YUW-fM-SbX" id="IwA-PP-9xL"/>
                         <segue destination="sn5-XQ-3Ac" kind="show" identifier="SummaryDetailsbyContact" id="fjB-Wy-7ev"/>
                     </connections>
@@ -101,60 +97,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dt-yE-fia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3116.7938931297708" y="767.6056338028169"/>
-        </scene>
-        <!--Contacts-->
-        <scene sceneID="Aub-pT-Qy2">
-            <objects>
-                <viewController id="644-WG-0GH" userLabel="Contacts" customClass="ContactsViewController" customModule="DotCall" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hfP-uq-ENY">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Z3e-OQ-lTB">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="S4G-4Y-eq9">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                        <color key="backgroundColor" name="IOSBG"/>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" name="IOSBG"/>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="nes-Xg-zg7"/>
-                        <color key="backgroundColor" name="IOSBG"/>
-                        <constraints>
-                            <constraint firstItem="Z3e-OQ-lTB" firstAttribute="trailing" secondItem="nes-Xg-zg7" secondAttribute="trailing" id="1Tb-Sp-qoh"/>
-                            <constraint firstItem="Z3e-OQ-lTB" firstAttribute="top" secondItem="hfP-uq-ENY" secondAttribute="top" id="aJR-zX-H3e"/>
-                            <constraint firstItem="Z3e-OQ-lTB" firstAttribute="leading" secondItem="nes-Xg-zg7" secondAttribute="leading" id="g5z-4Z-fnz"/>
-                            <constraint firstAttribute="bottom" secondItem="Z3e-OQ-lTB" secondAttribute="bottom" id="pN9-cI-g1I"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Contacts" largeTitleDisplayMode="always" id="m0q-MU-x5t">
-                        <barButtonItem key="leftBarButtonItem" title="Add New Contact" id="XkV-5W-NM0">
-                            <imageReference key="image" image="plus.circle" catalog="system" symbolScale="large"/>
-                            <color key="tintColor" systemColor="labelColor"/>
-                            <connections>
-                                <action selector="plusIconPressed:" destination="644-WG-0GH" id="vmt-CZ-kti"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="fQC-kS-13o">
-                            <imageReference key="image" image="person.3" catalog="system" symbolScale="large"/>
-                            <color key="tintColor" systemColor="labelColor"/>
-                            <connections>
-                                <action selector="GroupCallButtonPressed:" destination="644-WG-0GH" id="eym-xe-oZT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="tableView" destination="S4G-4Y-eq9" id="ugz-fo-JJe"/>
-                        <segue destination="7wq-rL-euo" kind="presentation" identifier="voiceCall" modalPresentationStyle="fullScreen" id="DWO-hg-q20"/>
-                        <segue destination="acT-H9-YVE" kind="show" identifier="ContactProfiletoCheck" id="iuZ-ud-iW0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DUy-qg-86a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2043.5114503816792" y="767.6056338028169"/>
         </scene>
         <!--Summary-->
         <scene sceneID="n8z-8G-hjF">
@@ -301,14 +243,14 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="saX-oS-KGt">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="IOSBG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
                             <outlet property="dataSource" destination="cDT-d6-csl" id="rqP-8b-fYB"/>
                             <outlet property="delegate" destination="cDT-d6-csl" id="hqG-iy-5vL"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recents" largeTitleDisplayMode="always" id="q5X-WC-N6M">
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="GSy-SO-hDd">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="GSy-SO-hDd">
                             <rect key="frame" x="133" y="5.6666666666666679" width="127" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
@@ -322,7 +264,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Clear" id="Ib5-1L-MaR">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
-                                <action selector="ClearCallHistory:" destination="cDT-d6-csl" id="Ehz-rm-omn"/>
+                                <action selector="ClearCallHistory:" destination="cDT-d6-csl" id="uCf-0c-dOH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -372,13 +314,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcb-ZS-SjK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3117" y="1646"/>
+            <point key="canvasLocation" x="4262" y="768"/>
         </scene>
-        <!--Contacts-->
+        <!--Friends-->
         <scene sceneID="bGk-Vt-nkg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BuW-MR-FhW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contacts" image="person.2" catalog="system" selectedImage="person.2.fill" id="Do5-jA-MkC">
+                    <tabBarItem key="tabBarItem" title="Friends" image="person.2" catalog="system" selectedImage="person.2.fill" id="Do5-jA-MkC">
                         <color key="badgeColor" name="ThemeIconColor"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -394,7 +336,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="644-WG-0GH" kind="relationship" relationship="rootViewController" id="9AE-Ro-c4w"/>
+                        <segue destination="vIa-XI-Guu" kind="relationship" relationship="rootViewController" id="Zk0-dC-S6K"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7d2-ZP-gnT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -583,6 +525,34 @@
             </objects>
             <point key="canvasLocation" x="969" y="1646"/>
         </scene>
+        <!--AddFriendTable-->
+        <scene sceneID="OFU-F8-IxU">
+            <objects>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="mJf-XJ-66X" userLabel="AddFriendTable" customClass="AddFriendTableViewController" customModule="DotCall" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Ixa-Gj-Elg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="IOSBG"/>
+                        <connections>
+                            <outlet property="dataSource" destination="mJf-XJ-66X" id="R4T-3m-AHf"/>
+                            <outlet property="delegate" destination="mJf-XJ-66X" id="pDg-Dq-dRS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Friends" largeTitleDisplayMode="never" id="PNL-Dr-DDj">
+                        <barButtonItem key="leftBarButtonItem" id="yUd-2u-Pee">
+                            <imageReference key="image" image="chevron.left" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="BackButtonPressed:" destination="mJf-XJ-66X" id="baC-Wo-zg6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BzQ-8e-aBm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2639" y="1668"/>
+        </scene>
         <!--ContactProfile-->
         <scene sceneID="ycJ-YS-z7I">
             <objects>
@@ -642,10 +612,61 @@
             </objects>
             <point key="canvasLocation" x="-144" y="1646"/>
         </scene>
+        <!--Friends-->
+        <scene sceneID="sDI-F8-Wji">
+            <objects>
+                <tableViewController id="vIa-XI-Guu" customClass="FriendsViewController" customModule="DotCall" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="bEv-md-xpR">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="IOSBG"/>
+                        <connections>
+                            <outlet property="dataSource" destination="vIa-XI-Guu" id="Eck-uR-9mG"/>
+                            <outlet property="delegate" destination="vIa-XI-Guu" id="iBc-jf-u5L"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Friends" largeTitleDisplayMode="always" id="ZxG-lC-jMS">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="xT6-R6-uiS">
+                            <imageReference key="image" image="person.3" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="GroupCallButtonPressed:" destination="vIa-XI-Guu" id="DU1-44-eZn"/>
+                            </connections>
+                        </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jOp-3m-yRX">
+                            <rect key="frame" x="109" y="5.6666666666666679" width="175" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="My Firends"/>
+                                <segment title="To Accept"/>
+                            </segments>
+                            <connections>
+                                <action selector="SegmentedControlAction:" destination="vIa-XI-Guu" eventType="valueChanged" id="qwz-lu-duo"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="Omo-Fz-FSF">
+                            <imageReference key="image" image="plus.circle" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="plusIconPressed:" destination="vIa-XI-Guu" id="Qdh-7R-o2R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="jOp-3m-yRX" id="WxO-7V-zxX"/>
+                        <segue destination="acT-H9-YVE" kind="show" identifier="ContactProfiletoCheck" id="yAh-kR-gK4"/>
+                        <segue destination="7wq-rL-euo" kind="presentation" identifier="voiceCall" modalPresentationStyle="fullScreen" id="tO5-yU-NNd"/>
+                        <segue destination="mJf-XJ-66X" kind="show" identifier="addFriend" id="MjA-Zt-MZ9"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n6w-u2-tXz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2044" y="768"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fjB-Wy-7ev"/>
-        <segue reference="iuZ-ud-iW0"/>
+        <segue reference="A8L-Xi-8eL"/>
+        <segue reference="yAh-kR-gK4"/>
         <segue reference="6h1-WS-L4y"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -653,6 +674,7 @@
         <image name="btnAudioOff" width="64" height="64"/>
         <image name="btnCallEnd" width="64" height="64"/>
         <image name="btnSpeaker" width="64" height="64"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
         <image name="gear" catalog="system" width="128" height="122"/>
         <image name="iconAudioOff" width="32" height="32"/>
@@ -686,7 +708,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

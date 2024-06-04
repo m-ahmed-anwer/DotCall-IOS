@@ -74,7 +74,7 @@ extension ContactProfileViewController: UITableViewDataSource, UITableViewDelega
             view.backgroundColor = .IOSBG
 
             let title = UILabel()
-            title.font = UIFont.systemFont(ofSize: 15)
+            title.font = UIFont.systemFont(ofSize: 16)
             title.textColor = .sectionHeader
             title.text = PublicProfileSection(rawValue: section.rawValue)?.description
             view.addSubview(title)
@@ -92,7 +92,7 @@ extension ContactProfileViewController: UITableViewDataSource, UITableViewDelega
             case .Profile:
                 return 53
             case .General:
-                return 60
+                return 58
             default:
                 return UITableView.automaticDimension
             }
@@ -120,8 +120,8 @@ extension ContactProfileViewController: UITableViewDataSource, UITableViewDelega
             let profile = PublicProfileOptions(rawValue: indexPath.row)
             cell.publicSectionType = profile
             cell.backgroundColor = UIColor.iosBoxBG
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
-            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 18)
+            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 16)
             cell.detailTextLabel?.textColor = .gray
             cell.detailTextLabel?.textAlignment = .right
             cell.selectionStyle = .none
@@ -130,10 +130,8 @@ extension ContactProfileViewController: UITableViewDataSource, UITableViewDelega
             switch profile {
             case .name:
                 cell.detailTextLabel?.text = "\(contactName)"
-            case .email:
+            case .username:
                 cell.detailTextLabel?.text = "ahmedanwer0094@gmail.com"
-            case .phoneNumber:
-                cell.detailTextLabel?.text = "\(contactPhone)"
             default:
                 cell.detailTextLabel?.text = ""
             }
@@ -152,7 +150,7 @@ extension ContactProfileViewController: UITableViewDataSource, UITableViewDelega
                 cell.publicSectionType = general
                 cell.inputViewController?.hidesBottomBarWhenPushed = true
                 cell.backgroundColor = UIColor.iosBoxBG
-                cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
+                cell.textLabel?.font = UIFont.systemFont(ofSize: 18)
                 cell.selectionStyle = .none
                 
                 if !general.imageName.isEmpty {
@@ -163,15 +161,6 @@ extension ContactProfileViewController: UITableViewDataSource, UITableViewDelega
             
             return cell
         }
-    }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        tableView.beginUpdates()
-        tableView.endUpdates()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

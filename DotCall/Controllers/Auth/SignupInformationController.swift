@@ -6,17 +6,19 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignupInformationController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var usernameFeild: UITextField!
     @IBOutlet weak var emailFeild: UITextField!
     @IBOutlet weak var nameFeild: UITextField!
     @IBOutlet weak var passwordFeild: UITextField!
     @IBOutlet weak var confirmPasswordFeild: UITextField!
-    
     @IBOutlet weak var confirmButton: UIButton!
+    private var loadingView: UIView?
     
     // MARK: - View Lifecycle
     
@@ -29,10 +31,8 @@ class SignupInformationController: UIViewController {
     
     private func setupUI() {
         navigationController?.navigationBar.barStyle = .black
-        
         confirmButton.layer.cornerRadius = CGFloat(K.borderRadius)
-        
-        [emailFeild, nameFeild, passwordFeild, confirmPasswordFeild].forEach { $0?.addBottomBorder(withColor: UIColor.inputBelow, thickness: 1.0) }
+        [usernameFeild,emailFeild, nameFeild, passwordFeild, confirmPasswordFeild].forEach { $0?.addBottomBorder(withColor: UIColor.inputBelow, thickness: 1.0) }
     }
     
     // MARK: - Button Actions
@@ -42,9 +42,17 @@ class SignupInformationController: UIViewController {
         
         guard let passwordText = passwordFeild.text, !passwordText.isEmpty,
               let confirmPasswordText = confirmPasswordFeild.text, !confirmPasswordText.isEmpty,
+              let username = usernameFeild.text, !username.isEmpty,
               let email = emailFeild.text, !email.isEmpty,
               let name = nameFeild.text, !name.isEmpty else {
-            alert(title: "Missing Information", message: "Please enter your email, name, and passwords.")
+            alert(title: "Missing Information", message: "Please enter your username, email, name, and passwords.")
+            return
+        }
+        
+        
+        
+        guard username.count >= 6 else {
+            alert(title: "Username Validation", message: "Username must be at least 6 characters long.")
             return
         }
         
@@ -63,34 +71,19 @@ class SignupInformationController: UIViewController {
             return
         }
         
-        userEmail = email
-        userName = name
-        userPassword = passwordText
-        
-        LoadingManager.shared.showLoadingScreen()
-        searchUser(email: email) { success, message in
+        LoadingManager.shared.showValidatingLoadingScreen()
+        searchUser(username: username) { success, message in
             DispatchQueue.main.async {
-                LoadingManager.shared.hideLoadingScreen()
                 if success {
-                    self.performSegue(withIdentifier: "CreatetoCheck",  sender: name)
+                    self.createUserAccountAndSendVerificationEmail(email: email, password: passwordText, name: name, username: username)
                 } else {
-                    self.alert(title: "SignUp Failed", message: message ?? "Unknown error")
+                    LoadingManager.shared.hideLoadingScreen()
+                    self.alert(title: "Sign Up Failed", message: message ?? "Unknown error")
                 }
             }
         }
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CreatetoCheck" {
-            if let destinationVC = segue.destination as? SignupViewController {
-                if let name = sender as? String {
-                    destinationVC.name = name
-                }
-            }
-        }
-    }
 }
 
 // MARK: - Helper Methods
@@ -104,13 +97,13 @@ extension SignupInformationController{
         return emailPredicate.evaluate(with: email)
     }
     
-    private func searchUser( email: String ,completion: @escaping (Bool, String?) -> Void) {
+    private func searchUser( username: String ,completion: @escaping (Bool, String?) -> Void) {
         // Prepare the request URL
-        let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/email")!
+        let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/username"+username)!
         
         // Prepare the request body
         let json: [String: Any] = [
-            "email": email
+            "username": username
         ]
         
         do {
@@ -122,7 +115,6 @@ extension SignupInformationController{
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             
-            // Perform the request
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     print("Error: \(error.localizedDescription)")
@@ -130,23 +122,17 @@ extension SignupInformationController{
                     return
                 }
                 
-                // Check if the response contains data
                 guard let data = data else {
                     print("No data in response")
                     completion(false, "No data in response")
                     return
                 }
-                
-                // Parse the JSON response
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                         
-                        // Check the success status in the response
                         if let success = json["success"] as? Int, success == 1 {
-                            // Login successful
                             completion(true, nil)
                         } else {
-                            // Login failed, get the error message
                             if let message = json["message"] as? String {
                                 completion(false, message)
                             } else {
@@ -183,4 +169,100 @@ extension SignupInformationController{
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
+    private func createUserAccountAndSendVerificationEmail(email: String, password: String, name: String, username:String) {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            guard let user = authResult?.user, error == nil else {
+                LoadingManager.shared.hideLoadingScreen()
+                self.alert(title: "Error creating user:", message: error!.localizedDescription)
+                return
+            }
+            
+            let changeRequest = user.createProfileChangeRequest()
+            changeRequest.displayName = name
+            changeRequest.commitChanges { error in
+                
+                if let error = error {
+                    LoadingManager.shared.hideLoadingScreen()
+                    self.alert(title: "Error setting display name:", message: error.localizedDescription)
+                    return
+                }
+                
+                Auth.auth().currentUser?.sendEmailVerification { error in
+                    if let error = error {
+                        self.alert(title: "Error sending email verification:", message: error.localizedDescription)
+                    } else {
+                        LoadingManager.shared.hideLoadingScreen()
+                        self.registerUser(name: name, username: username, email: email, password: password)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func registerUser(name: String, username: String, email: String, password: String) {
+            // Prepare the request URL
+            let url = URL(string: "https://dot-call-a7ff3d8633ee.herokuapp.com/users/signup")!
+            
+            // Prepare the request body
+            let json: [String: Any] = [
+                "name" : name,
+                "email" : email,
+                "username" : username,
+                "password" : password
+            ]
+            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+                
+                // Create the request
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.httpBody = jsonData
+                
+                // Perform the request
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        self.alert(title: "Error:", message: error.localizedDescription)
+                        return
+                    }
+                    
+                    guard let data = data else {
+                        self.alert(title: "Error:", message: "No data in response")
+                        return
+                    }
+                    
+                    do {
+                        if try JSONSerialization.jsonObject(with: data, options: []) is [String: Any] {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "confirmationCheck", sender: name)
+                            }
+                        }
+                    } catch {
+                        self.alert(title: "Error parsing JSON:", message: error.localizedDescription)
+                    }
+                }
+                task.resume()
+            } catch {
+                alert(title: "Error creating JSON:", message: error.localizedDescription)
+            }
+        }
+    
+
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "confirmationCheck" {
+            if let destinationVC = segue.destination as? SignupConfirmationController {
+                if let name = sender as? String {
+                    if let confirmationText = destinationVC.confirmationText {
+                        confirmationText.text = "Hello \(name)! You are in."
+                    }
+                }
+            }
+        }
+    }
+
+
+
 }

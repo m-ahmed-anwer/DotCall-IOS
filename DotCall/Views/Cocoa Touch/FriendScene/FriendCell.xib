@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ReuseContact" rowHeight="106" id="KGk-i7-Jjw" customClass="ContactCell" customModule="DotCall" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ReuseContact" rowHeight="106" id="KGk-i7-Jjw" customClass="FriendCell" customModule="DotCall" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -22,18 +22,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="106"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="GTo-Rm-CHp">
-                                <rect key="frame" x="20" y="8" width="330" height="90"/>
+                                <rect key="frame" x="20" y="12" width="330" height="82"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="1dc-NF-wfQ">
-                                        <rect key="frame" x="0.0" y="25" width="40" height="40"/>
+                                        <rect key="frame" x="0.0" y="13.666666666666671" width="55" height="55"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Erj-9S-zME"/>
-                                            <constraint firstAttribute="width" constant="40" id="Qfm-8c-Zn4"/>
+                                            <constraint firstAttribute="height" constant="55" id="Erj-9S-zME"/>
+                                            <constraint firstAttribute="width" constant="55" id="Qfm-8c-Zn4"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-p2-wBW">
-                                        <rect key="frame" x="55" y="35.333333333333336" width="275" height="19.333333333333336"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <rect key="frame" x="70" y="31" width="260" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -41,10 +41,10 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="GTo-Rm-CHp" firstAttribute="top" secondItem="t8V-ci-e9b" secondAttribute="top" constant="8" id="6Uh-6J-gkP"/>
+                            <constraint firstItem="GTo-Rm-CHp" firstAttribute="top" secondItem="t8V-ci-e9b" secondAttribute="top" constant="12" id="6Uh-6J-gkP"/>
                             <constraint firstItem="GTo-Rm-CHp" firstAttribute="leading" secondItem="t8V-ci-e9b" secondAttribute="leading" constant="20" id="DgH-WW-Gas"/>
                             <constraint firstAttribute="trailing" secondItem="GTo-Rm-CHp" secondAttribute="trailing" constant="25" id="PxF-PU-hfe"/>
-                            <constraint firstAttribute="bottom" secondItem="GTo-Rm-CHp" secondAttribute="bottom" constant="8" id="ekS-B2-tsm"/>
+                            <constraint firstAttribute="bottom" secondItem="GTo-Rm-CHp" secondAttribute="bottom" constant="12" id="ekS-B2-tsm"/>
                         </constraints>
                     </view>
                 </subviews>

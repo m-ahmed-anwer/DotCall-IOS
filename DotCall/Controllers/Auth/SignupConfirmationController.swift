@@ -11,6 +11,7 @@ class SignupConfirmationController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var confirmationText: UILabel!
     @IBOutlet weak var completeButton: UIButton!
     
     // MARK: - View Lifecycle
@@ -20,6 +21,9 @@ class SignupConfirmationController: UIViewController {
         setupUI()
     }
     
+    @IBAction func confirmationPressed(_ sender: UIButton) {
+        navigationController?.popToRootViewController(animated: true)
+    }
     // MARK: - Private Methods
     
     private func setupUI() {

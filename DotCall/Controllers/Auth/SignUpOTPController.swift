@@ -71,16 +71,19 @@ extension SignUpOTPController: AEOTPTextFieldDelegate {
 
 // MARK: - Private Methods
 extension SignUpOTPController {
+    
     private func verify(code: String) {
         LoadingManager.shared.showLoadingScreen()
         AuthManager.shared.verifyCode(smsCode: code) { success, error in
-            LoadingManager.shared.hideLoadingScreen()
-            if success {
-                self.signupUser(name: userName, email: userEmail, password: userPassword, phoneNumber: userPhoneNumber)
-            } else {
-                let alert = UIAlertController(title: "Authentication Error", message: error != nil ? error?.localizedDescription:"Failed to start authentication process.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                LoadingManager.shared.hideLoadingScreen()
+                if success {
+                    self.signupUser(name: userName, email: userEmail, password: userPassword, phoneNumber: userPhoneNumber)
+                } else {
+                    let alert = UIAlertController(title: "Authentication Error", message: error != nil ? error?.localizedDescription : "Failed to start authentication process.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -118,20 +121,43 @@ extension SignUpOTPController {
                     return
                 }
                 
-                // Parse the JSON response
                 do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let userData = json["user"] as? [String: Any] {
+                        // Save user data
+                        UserProfile.shared.generalProfile.id = userData["_id"] as? String
+                        UserProfile.shared.generalProfile.name = userData["name"] as? String
+                        UserProfile.shared.generalProfile.email = userData["email"] as? String
+                        UserProfile.shared.generalProfile.phoneNumber = userData["phoneNumber"] as? String
+                        if let settings = userData["generalSettings"] as? [String: Any] {
+                           UserProfile.shared.settingsProfile.notification = settings["notification"] as? Bool
+                           UserProfile.shared.settingsProfile.faceId = settings["faceId"] as? Bool
+                           UserProfile.shared.settingsProfile.haptic = settings["haptic"] as? Bool
+                       }
                     }
                 } catch {
                     print("Error parsing JSON: \(error.localizedDescription)")
                 }
-
             }
             
-            // Execute the task
             task.resume()
         } catch {
             print("Error creating JSON data: \(error.localizedDescription)")
         }
     }
+
+    
+    
+    private func saveUserData() {
+        let defaults = UserDefaults.standard
+        defaults.set(UserProfile.shared.generalProfile.id, forKey: "userId")
+        defaults.set(UserProfile.shared.generalProfile.name, forKey: "userName")
+        defaults.set(UserProfile.shared.generalProfile.email, forKey: "userEmail")
+        defaults.set(UserProfile.shared.generalProfile.phoneNumber, forKey: "userPhoneNumber")
+        defaults.set(UserProfile.shared.settingsProfile.notification, forKey: "notification")
+        defaults.set(UserProfile.shared.settingsProfile.faceId, forKey: "faceId")
+        defaults.set(UserProfile.shared.settingsProfile.haptic, forKey: "haptic")
+    }
+    
 }
+
