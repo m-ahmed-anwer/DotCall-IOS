@@ -31,11 +31,11 @@ class CallViewController: UIViewController {
             try realm.write {
                 let newSummary = Summary()
                 newSummary.callMakerName = UserProfile.shared.generalProfile.name ?? "Ahmed"
-                newSummary.callMakerPhoneNum = UserProfile.shared.generalProfile.username ?? "123"
+                newSummary.callMakerUsername = UserProfile.shared.generalProfile.username ?? "123"
                 newSummary.callMakerEmail = UserProfile.shared.generalProfile.email ?? "ahmed@gmail.com"
                 newSummary.callReciverName = summaryUser.callReciverName
                 newSummary.callReciverEmail = "ahmedanwer0094@gmail.com"
-                newSummary.callReciverPhoneNum = summaryUser.callReciverPhoneNum
+                newSummary.callReciverUsername = summaryUser.callReciverUsername
                 newSummary.summaryDetail = "The detail of summary is not a big detail, it's kind of ok or not a problem so far"
                 newSummary.summaryTopic = "The topic is this, nothing more or less than good or bad"
                 newSummary.time = date
@@ -156,7 +156,7 @@ class CallViewController: UIViewController {
         let newCall = CallLog()
         newCall.callDuration = "00.10"
         newCall.callName = "\(selectedSummary!.callReciverName)"
-        newCall.callPhoneNum = "\(selectedSummary!.callReciverPhoneNum)"
+        newCall.callUsername = "\(selectedSummary!.callReciverUsername)"
         newCall.callStatus = "Answered"
         newCall.callTime = date
         newCall.callType = "Incoming"

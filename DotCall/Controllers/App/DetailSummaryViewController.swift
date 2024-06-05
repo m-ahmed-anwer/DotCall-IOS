@@ -56,7 +56,7 @@ class DetailSummaryViewController: UIViewController {
             let callStoryboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
             if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "ContactProfiletoCheck") as? ContactProfileViewController {
                 // Set the contact name and image
-                callViewController.contactPhone = "\(detailedSummary.callReciverPhoneNum)"
+                //callViewController.contactPhone = "\(detailedSummary.callReciverPhoneNum)"
                 callViewController.contactName = "\(detailedSummary.callReciverName)"
                 callViewController.hidesBottomBarWhenPushed = true
                 

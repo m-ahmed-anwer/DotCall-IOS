@@ -158,9 +158,27 @@ extension FriendsViewController : AcceptFriendCellDelegate{
 
 extension FriendsViewController {
 
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         impactOccur()
+        if !friendsList.isEmpty {
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                let callStoryboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
+               if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "ContactProfiletoCheck") as? ContactProfileViewController {
+                   
+                   // Set the contact name and image
+                   callViewController.contactusername = friendsList[indexPath.row]["username"] as! String
+                   callViewController.contactName = friendsList[indexPath.row]["name"] as! String
+                   
+                   // Push the callViewController
+                   navigationController!.pushViewController(callViewController, animated: true)
+               }
+                
+                tableView.deselectRow(at: indexPath, animated: true)
+            default:
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

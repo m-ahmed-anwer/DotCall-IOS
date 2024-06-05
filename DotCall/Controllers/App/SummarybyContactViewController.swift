@@ -15,9 +15,9 @@ class SummarybyContactViewController: UITableViewController {
     private var summaries: Results<Summary>?
     private let realm = try! Realm()
     
-    internal var phoneByContact: String? {
+    internal var username: String? {
         didSet {
-            loadSummary(phone: phoneByContact!)
+            loadSummary(username: username!)
         }
     }
     
@@ -26,7 +26,7 @@ class SummarybyContactViewController: UITableViewController {
             if let name = selectedSumary?.callReciverName {
                 navigationItem.title = name
             }
-            loadSummary(phone: selectedSumary!.callReciverPhoneNum)
+            loadSummary(username: selectedSumary!.callReciverUsername)
         }
     }
     
@@ -130,10 +130,10 @@ extension SummarybyContactViewController: UISearchResultsUpdating {
         
         if searchText.isEmpty {
             if let selectedSummary = selectedSumary {
-                loadSummary(phone: selectedSummary.callReciverPhoneNum)
+                loadSummary(username: selectedSummary.callReciverUsername)
             }
         } else {
-            summaries = realm.objects(Summary.self).filter("callReciverPhoneNum == %@ AND summaryTopic CONTAINS[cd] %@", selectedSumary!.callReciverPhoneNum, searchText).sorted(byKeyPath: "time", ascending: false)
+            summaries = realm.objects(Summary.self).filter("callReciverUsername == %@ AND summaryTopic CONTAINS[cd] %@", selectedSumary!.callReciverUsername, searchText).sorted(byKeyPath: "time", ascending: false)
         }
         tableView.reloadData()
     }
@@ -156,8 +156,8 @@ private extension SummarybyContactViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "NoSummariesCell")
     }
     
-    private func loadSummary(phone: String) {
-        summaries = realm.objects(Summary.self).filter("callReciverPhoneNum == %@", phone).sorted(byKeyPath: "time", ascending: false)
+    private func loadSummary(username: String) {
+        summaries = realm.objects(Summary.self).filter("callReciverUsername == %@", username).sorted(byKeyPath: "time", ascending: false)
         tableView.reloadData()
     }
     
