@@ -9,13 +9,16 @@ import Contacts
 import ContactsUI
 import UIKit
 import Firebase
+import RealmSwift
 
 class FriendsViewController: UITableViewController {
     
     // MARK: - Properties
-    private var friendsList: [[String: Any]] = []
+    private var friendsList: Results<Friend>?
     private var toAcceptfriendsList: [[String: Any]] = []
     private let searchController = UISearchController(searchResultsController: nil)
+    private let realm = try! Realm()
+
     
     // MARK: - Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -33,7 +36,8 @@ class FriendsViewController: UITableViewController {
         setupTableView()
         setupSearchController()
         updateDetails()
-    
+        loadFriends()
+        tableView.reloadData()
     }
     
     
@@ -64,10 +68,11 @@ extension FriendsViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text?.lowercased() else { return }
 
         if searchText.isEmpty {
-           
+           loadFriends()
         } else {
-            
+            friendsList = realm.objects(Friend.self).filter("name CONTAINS[cd] %@", searchText)
         }
+        tableView.reloadData()
     }
 }
 
@@ -79,7 +84,7 @@ extension FriendsViewController : AcceptFriendCellDelegate{
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
-        case 0: return friendsList.isEmpty ? 1 : friendsList.count
+        case 0: return  friendsList?.isEmpty ?? true ? 1 : friendsList!.count
         case 1: return toAcceptfriendsList.isEmpty ? 1 : toAcceptfriendsList.count
         default: return 1
         }
@@ -88,7 +93,7 @@ extension FriendsViewController : AcceptFriendCellDelegate{
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            if friendsList.isEmpty{
+            if friendsList?.isEmpty ?? true{
                 return 200
             } else {
                 return UITableView.automaticDimension
@@ -108,15 +113,17 @@ extension FriendsViewController : AcceptFriendCellDelegate{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            if friendsList.isEmpty {
+            if let friendsList = friendsList, !friendsList.isEmpty {
+                let friend = friendsList[indexPath.row]
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseContact", for: indexPath) as! FriendCell
+                cell.contactName.text = friend.name
+                return cell
+                
+            } else {
                 let cell = CenteredTextTableViewCell(style: .default, reuseIdentifier: nil)
                 cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
                 cell.textLabel?.textColor = .gray
                 cell.textLabel?.text = "You have no friends. Add friends..."
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseContact", for: indexPath) as! FriendCell
-                cell.contactName.text = friendsList[indexPath.row]["name"] as? String
                 return cell
             }
         case 1:
@@ -160,15 +167,16 @@ extension FriendsViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         impactOccur()
-        if !friendsList.isEmpty {
+        if let friendsList = friendsList, !friendsList.isEmpty {
             switch segmentedControl.selectedSegmentIndex {
             case 0:
                 let callStoryboard = UIStoryboard(name: "AppStoryboard", bundle: nil)
                if let callViewController = callStoryboard.instantiateViewController(withIdentifier: "ContactProfiletoCheck") as? ContactProfileViewController {
                    
                    // Set the contact name and image
-                   callViewController.contactusername = friendsList[indexPath.row]["username"] as! String
-                   callViewController.contactName = friendsList[indexPath.row]["name"] as! String
+                   let friend = friendsList[indexPath.row]
+                   callViewController.contactUsername = friend.username
+                   callViewController.contactName = friend.name
                    
                    // Push the callViewController
                    navigationController!.pushViewController(callViewController, animated: true)
@@ -326,6 +334,7 @@ private extension FriendsViewController{
     }
     
     private func updateDetails(){
+        
         friendsToAccept() { (users, success, error) in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
@@ -340,16 +349,53 @@ private extension FriendsViewController{
         }
         
         findFriends() { (users, success, error) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            } else if success {
-                if let users = users {
-                    self.friendsList = users
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                } else if success {
+                    if let users = users {
+                        for user in users {
+                            guard let name = user["name"] as? String,
+                                  let username = user["username"] as? String,
+                                  let email = user["email"] as? String else {
+                                continue
+                            }
+                            self.saveFriend(name: name, username: username, email: email)
+                        }
                     }
                 }
             }
+        }
+    }
+    
+    private func saveFriend(name: String, username: String, email: String) {
+        DispatchQueue.main.async {
+            let realm = try! Realm()
+            // Check if a friend with the same email already exists in Realm
+            if realm.objects(Friend.self).filter("email == %@", email).isEmpty {
+                // If not, save the friend
+                let friend = Friend()
+                friend.name = name
+                friend.email = email
+                friend.username = username
+                
+                do {
+                    try realm.write {
+                        realm.add(friend)
+                    }
+                } catch {
+                    print("Error saving friend: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+
+
+    private func loadFriends(){
+        DispatchQueue.main.async {
+            self.friendsList = self.realm.objects(Friend.self)
+            print(self.friendsList)
+            self.tableView.reloadData()
         }
     }
     

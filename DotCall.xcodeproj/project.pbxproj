@@ -20,10 +20,6 @@
 		E23C79902BD7C0760027ECFC /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C798F2BD7C0760027ECFC /* ForgotPasswordController.swift */; };
 		E23C79922BD7CC5B0027ECFC /* SignupInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C79912BD7CC5B0027ECFC /* SignupInformationController.swift */; };
 		E23E2C482BE13448004D85B7 /* AppStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23E2C472BE13448004D85B7 /* AppStoryboard.storyboard */; };
-		E23E2C4B2BE139DD004D85B7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E23E2C4A2BE139DD004D85B7 /* FirebaseAuth */; };
-		E23E2C4D2BE139DD004D85B7 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E23E2C4C2BE139DD004D85B7 /* FirebaseAuthCombine-Community */; };
-		E23E2C4F2BE139DD004D85B7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E23E2C4E2BE139DD004D85B7 /* FirebaseFirestore */; };
-		E23E2C512BE139DD004D85B7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E23E2C502BE139DD004D85B7 /* FirebaseStorage */; };
 		E23E2C552BE1441D004D85B7 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E2C542BE1441D004D85B7 /* AuthManager.swift */; };
 		E23E2C5D2BE20A00004D85B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E23E2C5C2BE20A00004D85B7 /* GoogleService-Info.plist */; };
 		E23E2C602BE2167A004D85B7 /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23E2C5F2BE2167A004D85B7 /* LoadingManager.swift */; };
@@ -73,18 +69,20 @@
 		E27E2E012BD64F0600D89CD8 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E27E2E002BD64F0600D89CD8 /* Inter.ttf */; };
 		E27E2E032BD6638400D89CD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E2E022BD6638400D89CD8 /* Constants.swift */; };
 		E27E2E052BD684C400D89CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E2E042BD684C400D89CD8 /* LoginViewController.swift */; };
+		E28FEB2A2C10387200AFD587 /* CallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FEB292C10387200AFD587 /* CallLog.swift */; };
+		E28FEB2C2C10388D00AFD587 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FEB2B2C10388D00AFD587 /* Summary.swift */; };
+		E28FEB2E2C1038AC00AFD587 /* SummaryUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FEB2D2C1038AC00AFD587 /* SummaryUser.swift */; };
+		E28FEB332C103A2100AFD587 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E28FEB322C103A2100AFD587 /* RealmSwift */; };
+		E28FEB372C103FA100AFD587 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E28FEB362C103FA100AFD587 /* FirebaseAuth */; };
+		E28FEB392C103FC400AFD587 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E28FEB382C103FC400AFD587 /* IQKeyboardManagerSwift */; };
+		E28FEB3B2C103FD400AFD587 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E28FEB3A2C103FD400AFD587 /* FirebaseFirestore */; };
+		E28FEB3D2C10434D00AFD587 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FEB3C2C10434D00AFD587 /* Friend.swift */; };
 		E29C887C2BE4E8BB00B335F7 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C887A2BE4E8BB00B335F7 /* FriendCell.swift */; };
 		E29C887D2BE4E8BB00B335F7 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29C887B2BE4E8BB00B335F7 /* FriendCell.xib */; };
 		E29C88812BE4EC8800B335F7 /* RecentCallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C887F2BE4EC8800B335F7 /* RecentCallCell.swift */; };
 		E29C88822BE4EC8800B335F7 /* RecentCallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29C88802BE4EC8800B335F7 /* RecentCallCell.xib */; };
-		E2A398292BDFBCE5002239E1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */; };
 		E2B3F7BA2BF4C64200710DC9 /* RecordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B3F7B82BF4C64200710DC9 /* RecordViewCell.swift */; };
 		E2B3F7BB2BF4C64200710DC9 /* RecordViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B3F7B92BF4C64200710DC9 /* RecordViewCell.xib */; };
-		E2B4C1872C00C655008050A5 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E2B5F96B2BFDE65900D7740B /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		E2B5F95D2BFD23D200D7740B /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5F95C2BFD23D200D7740B /* Summary.swift */; };
-		E2B5F9612BFD23F300D7740B /* SummaryUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5F9602BFD23F300D7740B /* SummaryUser.swift */; };
-		E2B5F9632BFD240100D7740B /* CallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B5F9622BFD240100D7740B /* CallLog.swift */; };
-		E2B5F96C2BFDE65900D7740B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E2B5F96B2BFDE65900D7740B /* RealmSwift */; };
 		E2E140422BDEA32D00F3A48C /* CountrySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E140412BDEA32D00F3A48C /* CountrySelector.swift */; };
 		E2F7855E2BF5CECE001CFCD8 /* ParticipantViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7855C2BF5CECE001CFCD8 /* ParticipantViewCell.swift */; };
 		E2F7855F2BF5CECE001CFCD8 /* ParticipantViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2F7855D2BF5CECE001CFCD8 /* ParticipantViewCell.xib */; };
@@ -117,7 +115,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E2B4C1872C00C655008050A5 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,15 +190,16 @@
 		E27E2E002BD64F0600D89CD8 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		E27E2E022BD6638400D89CD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E27E2E042BD684C400D89CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E28FEB292C10387200AFD587 /* CallLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallLog.swift; sourceTree = "<group>"; };
+		E28FEB2B2C10388D00AFD587 /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		E28FEB2D2C1038AC00AFD587 /* SummaryUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryUser.swift; sourceTree = "<group>"; };
+		E28FEB3C2C10434D00AFD587 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		E29C887A2BE4E8BB00B335F7 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		E29C887B2BE4E8BB00B335F7 /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		E29C887F2BE4EC8800B335F7 /* RecentCallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCallCell.swift; sourceTree = "<group>"; };
 		E29C88802BE4EC8800B335F7 /* RecentCallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentCallCell.xib; sourceTree = "<group>"; };
 		E2B3F7B82BF4C64200710DC9 /* RecordViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewCell.swift; sourceTree = "<group>"; };
 		E2B3F7B92BF4C64200710DC9 /* RecordViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordViewCell.xib; sourceTree = "<group>"; };
-		E2B5F95C2BFD23D200D7740B /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
-		E2B5F9602BFD23F300D7740B /* SummaryUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryUser.swift; sourceTree = "<group>"; };
-		E2B5F9622BFD240100D7740B /* CallLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallLog.swift; sourceTree = "<group>"; };
 		E2E140412BDEA32D00F3A48C /* CountrySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelector.swift; sourceTree = "<group>"; };
 		E2F7855C2BF5CECE001CFCD8 /* ParticipantViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantViewCell.swift; sourceTree = "<group>"; };
 		E2F7855D2BF5CECE001CFCD8 /* ParticipantViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParticipantViewCell.xib; sourceTree = "<group>"; };
@@ -215,13 +213,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2B5F96C2BFDE65900D7740B /* RealmSwift in Frameworks */,
-				E2A398292BDFBCE5002239E1 /* IQKeyboardManagerSwift in Frameworks */,
-				E23E2C4B2BE139DD004D85B7 /* FirebaseAuth in Frameworks */,
+				E28FEB332C103A2100AFD587 /* RealmSwift in Frameworks */,
+				E28FEB392C103FC400AFD587 /* IQKeyboardManagerSwift in Frameworks */,
+				E28FEB372C103FA100AFD587 /* FirebaseAuth in Frameworks */,
+				E28FEB3B2C103FD400AFD587 /* FirebaseFirestore in Frameworks */,
 				5A3317C18BD1DA347AFCFA47 /* Pods_DotCall.framework in Frameworks */,
-				E23E2C4F2BE139DD004D85B7 /* FirebaseFirestore in Frameworks */,
-				E23E2C4D2BE139DD004D85B7 /* FirebaseAuthCombine-Community in Frameworks */,
-				E23E2C512BE139DD004D85B7 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,9 +550,10 @@
 		E2B5F9642BFD240700D7740B /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				E2B5F95C2BFD23D200D7740B /* Summary.swift */,
-				E2B5F9602BFD23F300D7740B /* SummaryUser.swift */,
-				E2B5F9622BFD240100D7740B /* CallLog.swift */,
+				E28FEB292C10387200AFD587 /* CallLog.swift */,
+				E28FEB2B2C10388D00AFD587 /* Summary.swift */,
+				E28FEB2D2C1038AC00AFD587 /* SummaryUser.swift */,
+				E28FEB3C2C10434D00AFD587 /* Friend.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -608,12 +605,10 @@
 			);
 			name = DotCall;
 			packageProductDependencies = (
-				E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */,
-				E23E2C4A2BE139DD004D85B7 /* FirebaseAuth */,
-				E23E2C4C2BE139DD004D85B7 /* FirebaseAuthCombine-Community */,
-				E23E2C4E2BE139DD004D85B7 /* FirebaseFirestore */,
-				E23E2C502BE139DD004D85B7 /* FirebaseStorage */,
-				E2B5F96B2BFDE65900D7740B /* RealmSwift */,
+				E28FEB322C103A2100AFD587 /* RealmSwift */,
+				E28FEB362C103FA100AFD587 /* FirebaseAuth */,
+				E28FEB382C103FC400AFD587 /* IQKeyboardManagerSwift */,
+				E28FEB3A2C103FD400AFD587 /* FirebaseFirestore */,
 			);
 			productName = DotCall;
 			productReference = E22B6BF92BD6261700D9E9CE /* DotCall.app */;
@@ -688,9 +683,9 @@
 			);
 			mainGroup = E22B6BF02BD6261600D9E9CE;
 			packageReferences = (
-				E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				E2B5F96A2BFDE65900D7740B /* XCRemoteSwiftPackageReference "realm-swift" */,
+				E28FEB2F2C103A2100AFD587 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				E28FEB342C103E5400AFD587 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				E28FEB352C103E7600AFD587 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = E22B6BFA2BD6261700D9E9CE /* Products */;
 			projectDirPath = "";
@@ -815,6 +810,7 @@
 				E24CA49A2BF9106100D31185 /* SummarybyContactViewController.swift in Sources */,
 				E26B308F2BEA3C7A00138A8A /* TranscriptionCell.swift in Sources */,
 				E26B309D2BEC8FC700138A8A /* SettingsSection.swift in Sources */,
+				E28FEB2E2C1038AC00AFD587 /* SummaryUser.swift in Sources */,
 				E2E140422BDEA32D00F3A48C /* CountrySelector.swift in Sources */,
 				E23E2C682BE35956004D85B7 /* SummaryViewController.swift in Sources */,
 				E23E2C6A2BE35964004D85B7 /* SettingsViewController.swift in Sources */,
@@ -830,7 +826,6 @@
 				E2444C502C0C6ED00058A656 /* AddFriendTableViewController.swift in Sources */,
 				E26B30B62BEFBF2700138A8A /* EditProfileViewController.swift in Sources */,
 				E26B30962BEC513800138A8A /* ContactProfileViewController.swift in Sources */,
-				E2B5F9612BFD23F300D7740B /* SummaryUser.swift in Sources */,
 				E22B6C012BD6261700D9E9CE /* ViewController.swift in Sources */,
 				E26B308B2BEA1C6000138A8A /* DetailSummaryViewController.swift in Sources */,
 				E26C0D322BF050E80035A081 /* NameViewCell.swift in Sources */,
@@ -842,6 +837,7 @@
 				E2444C5A2C0C82410058A656 /* CenteredTextTableViewCell.swift in Sources */,
 				E26C0D372BF07D650035A081 /* ProfileImageViewCell.swift in Sources */,
 				E26B30B42BEFA3DA00138A8A /* GeneralSettingsViewCell.swift in Sources */,
+				E28FEB3D2C10434D00AFD587 /* Friend.swift in Sources */,
 				E2537A722BF4F784002BACFE /* SummarySection.swift in Sources */,
 				E23E2C602BE2167A004D85B7 /* LoadingManager.swift in Sources */,
 				E23C79922BD7CC5B0027ECFC /* SignupInformationController.swift in Sources */,
@@ -849,7 +845,7 @@
 				E22126EE2BD7E5C200AAA7D2 /* SignupConfirmationController.swift in Sources */,
 				E2F7855E2BF5CECE001CFCD8 /* ParticipantViewCell.swift in Sources */,
 				E2446D442BF663DD00FD4214 /* PublicProfileViewCell.swift in Sources */,
-				E2B5F9632BFD240100D7740B /* CallLog.swift in Sources */,
+				E28FEB2C2C10388D00AFD587 /* Summary.swift in Sources */,
 				E22B6BFF2BD6261700D9E9CE /* SceneDelegate.swift in Sources */,
 				E27E2E052BD684C400D89CD8 /* LoginViewController.swift in Sources */,
 				E2B3F7BA2BF4C64200710DC9 /* RecordViewCell.swift in Sources */,
@@ -858,7 +854,7 @@
 				E26B30AE2BECD3E800138A8A /* SettingsViewCell.swift in Sources */,
 				E2446D462BF7DAC200FD4214 /* LogOutViewCell.swift in Sources */,
 				E23FDE392BF129C100B031CC /* OutgoingCallViewController.swift in Sources */,
-				E2B5F95D2BFD23D200D7740B /* Summary.swift in Sources */,
+				E28FEB2A2C10387200AFD587 /* CallLog.swift in Sources */,
 				E27E2E032BD6638400D89CD8 /* Constants.swift in Sources */,
 				E29C88812BE4EC8800B335F7 /* RecentCallCell.swift in Sources */,
 				E2446D422BF6429F00FD4214 /* Theme.swift in Sources */,
@@ -1228,23 +1224,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.24.0;
-			};
-		};
-		E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.2;
-			};
-		};
-		E2B5F96A2BFDE65900D7740B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		E28FEB2F2C103A2100AFD587 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -1252,38 +1232,44 @@
 				kind = branch;
 			};
 		};
+		E28FEB342C103E5400AFD587 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.3;
+			};
+		};
+		E28FEB352C103E7600AFD587 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.27.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E23E2C4A2BE139DD004D85B7 /* FirebaseAuth */ = {
+		E28FEB322C103A2100AFD587 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = E28FEB2F2C103A2100AFD587 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		E28FEB362C103FA100AFD587 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E28FEB352C103E7600AFD587 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		E23E2C4C2BE139DD004D85B7 /* FirebaseAuthCombine-Community */ = {
+		E28FEB382C103FC400AFD587 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseAuthCombine-Community";
-		};
-		E23E2C4E2BE139DD004D85B7 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		E23E2C502BE139DD004D85B7 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E23E2C492BE139DD004D85B7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
-		E2A398282BDFBCE5002239E1 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E2A398272BDFBCE5002239E1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = E28FEB342C103E5400AFD587 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
 		};
-		E2B5F96B2BFDE65900D7740B /* RealmSwift */ = {
+		E28FEB3A2C103FD400AFD587 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E2B5F96A2BFDE65900D7740B /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
+			package = E28FEB352C103E7600AFD587 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
