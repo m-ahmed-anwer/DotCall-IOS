@@ -43,13 +43,8 @@ class EditProfileViewController: UIViewController {
               return
         }
 
-        guard let emailCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? NameViewCell,
-             let email = emailCell.textField.text, !email.isEmpty, isValidEmail(email) else {
-              showAlert(title: "Error", message: "Please enter a valid email address")
-              return
-        }
         
-        updateProfile(userId: UserProfile.shared.generalProfile.id ?? "" ,name: name, email: email)
+        updateProfile(userId: UserProfile.shared.generalProfile.id ?? "" ,name: name)
     }
     
     
@@ -62,7 +57,7 @@ class EditProfileViewController: UIViewController {
 extension EditProfileViewController: UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,33 +67,20 @@ extension EditProfileViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NameViewCell", for: indexPath) as! NameViewCell
         cell.backgroundColor = .iosBoxBG
-        if indexPath.section == 0 {
-            cell.textField.placeholder = "Enter name"
-            cell.textField.text = UserProfile.shared.generalProfile.name
-            cell.textField.autocapitalizationType = .words
-            cell.textField.textContentType = .name
-        } else if indexPath.section == 1 {
-            cell.textField.placeholder = "Enter email"
-            cell.textField.text = UserProfile.shared.generalProfile.email
-            cell.textField.autocapitalizationType = .none
-            cell.textField.textContentType = .emailAddress
-            cell.textField.keyboardType = .emailAddress
-        }
-        
+    
+        cell.textField.placeholder = "Enter name"
+        cell.textField.text = UserProfile.shared.generalProfile.name
+        cell.textField.autocapitalizationType = .words
+        cell.textField.textContentType = .name
         cell.selectionStyle = .none // Disable cell selection
+        
         return cell
     }
 
 
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-               return "Name"
-           } else if section == 1 {
-               return "Email"
-           }
-           
-           return nil
+        return "Name"
     }
     
 }
@@ -107,24 +89,18 @@ extension EditProfileViewController: UITableViewDataSource{
 
 extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == 1 {
-            let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
-            let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.frame.size.width - 30, height: 50))
-            label.text = "Make sure to you use a valid email address."
-            label.textColor = .gray
-            label.textAlignment = .center
-            label.font = UIFont.systemFont(ofSize: 12)
-            footerView.addSubview(label)
-            return footerView
-        }
-        return nil
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
+        let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.frame.size.width - 30, height: 50))
+        label.text = "Your name will be displayed to other users."
+        label.textColor = .gray
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 12)
+        footerView.addSubview(label)
+        return footerView
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 50
-        }
-        return 0
+        return 50
     }
 }
 
@@ -151,7 +127,7 @@ private extension EditProfileViewController{
     }
     
     
-    private func updateProfile(userId: String, name: String, email: String) {
+    private func updateProfile(userId: String, name: String) {
         LoadingManager.shared.showLoadingScreen()
         let urlString = "https://dot-call-a7ff3d8633ee.herokuapp.com/users/editProfile/\(userId)"
         guard let url = URL(string: urlString) else { return }
@@ -164,7 +140,6 @@ private extension EditProfileViewController{
         // Prepare the request body
         let requestBody: [String: Any] = [
             "name": name,
-            "email": email
         ]
         guard let httpBody = try? JSONSerialization.data(withJSONObject: requestBody) else { return }
         request.httpBody = httpBody
@@ -177,13 +152,10 @@ private extension EditProfileViewController{
                 print("Error: \(error)")
                 return
             }
-            print("Profile updated successfully")
-            UserProfile.shared.generalProfile.email = email
             UserProfile.shared.generalProfile.name = name
             
             let defaults = UserDefaults.standard
             defaults.set(name, forKey: "userName")
-            defaults.set(email, forKey: "userEmail")
             defaults.synchronize()
             
             DispatchQueue.main.async {

@@ -633,7 +633,7 @@
                                 <action selector="GroupCallButtonPressed:" destination="vIa-XI-Guu" id="DU1-44-eZn"/>
                             </connections>
                         </barButtonItem>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jOp-3m-yRX">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jOp-3m-yRX">
                             <rect key="frame" x="109" y="5.6666666666666679" width="175" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
@@ -667,7 +667,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="A8L-Xi-8eL"/>
         <segue reference="yAh-kR-gK4"/>
-        <segue reference="6h1-WS-L4y"/>
+        <segue reference="ETg-9O-Otf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Profile" width="240" height="240"/>
