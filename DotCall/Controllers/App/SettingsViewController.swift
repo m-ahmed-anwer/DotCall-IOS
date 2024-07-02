@@ -7,6 +7,8 @@
 
 import FirebaseAuth
 import UIKit
+import RealmSwift
+
 
 // MARK: - EditProfileDelegate
 
@@ -249,14 +251,21 @@ private extension SettingsViewController {
     
     private func signOutUser() {
         do {
+            let realm = try Realm()
+            try realm.write {
+                realm.deleteAll()
+            }
+            
             try Auth.auth().signOut()
             print("Sign out successful")
+
             UserProfile.shared.logOut()
             AuthManager.shared.resetState()
         } catch let error as NSError {
             print("Error signing out: \(error.localizedDescription)")
         }
     }
+    
     private func impactOccur(){
         if UserProfile.shared.settingsProfile.haptic == true {
             let generator = UIImpactFeedbackGenerator(style: .light)

@@ -54,23 +54,31 @@ enum PublicProfileOptions: Int, CaseIterable, PublicSectionType {
 
 // MARK: - Public General Options Enum
 enum PublicGeneralnOptions: Int, CaseIterable, PublicSectionType {
+    case friendrecord
     case record
+    
 
     var containSwitch: Bool {
         switch self {
+        case .friendrecord: return true
         case .record: return true
+        
         }
     }
 
     var description: String {
         switch self {
+        case .friendrecord: return "Friend Acceptance"
         case .record: return "Allow Record"
+        
         }
     }
 
     var imageName: String {
         switch self {
+        case .friendrecord: return "waveform.badge.mic"
         case .record: return "waveform.badge.mic"
+        
         }
     }
 }

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "phone.circle.fill.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

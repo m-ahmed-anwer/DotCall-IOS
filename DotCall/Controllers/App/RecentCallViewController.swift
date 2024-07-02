@@ -106,17 +106,6 @@ extension RecentCallViewController {
 
 }
 
-// MARK: - Table view delegate
-
-extension RecentCallViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        if let callLogCount = callLog?.count, callLogCount > indexPath.row {
-            performSegue(withIdentifier: "voiceCall", sender: nil)
-        }
-    }
-}
-
 
 // MARK: - Private Methods
 

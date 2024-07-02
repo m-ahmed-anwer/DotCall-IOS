@@ -58,6 +58,7 @@ class DetailSummaryViewController: UIViewController {
                 // Set the contact name and image
                 //callViewController.contactPhone = "\(detailedSummary.callReciverPhoneNum)"
                 callViewController.contactName = "\(detailedSummary.callReciverName)"
+                callViewController.contactUsername = "\(detailedSummary.callReciverUsername)"
                 callViewController.hidesBottomBarWhenPushed = true
                 
                 // Push the callViewController

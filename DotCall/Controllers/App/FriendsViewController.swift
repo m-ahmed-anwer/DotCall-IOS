@@ -177,6 +177,7 @@ extension FriendsViewController {
                    let friend = friendsList[indexPath.row]
                    callViewController.contactUsername = friend.username
                    callViewController.contactName = friend.name
+                   callViewController.contactEmail = friend.email
                    
                    // Push the callViewController
                    navigationController!.pushViewController(callViewController, animated: true)
@@ -366,6 +367,7 @@ private extension FriendsViewController{
                 }
             }
         }
+        tableView.reloadData()
     }
     
     private func saveFriend(name: String, username: String, email: String) {
@@ -394,7 +396,6 @@ private extension FriendsViewController{
     private func loadFriends(){
         DispatchQueue.main.async {
             self.friendsList = self.realm.objects(Friend.self)
-            print(self.friendsList)
             self.tableView.reloadData()
         }
     }
