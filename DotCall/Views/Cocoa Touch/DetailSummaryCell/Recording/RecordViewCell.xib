@@ -120,7 +120,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="playPasueIcon" destination="SH6-fJ-lCt" id="bEX-Aa-69Q"/>
+                <outlet property="playPauseIcon" destination="SH6-fJ-lCt" id="GHu-Ya-4xJ"/>
                 <outlet property="playingTime" destination="MVn-tq-Qwm" id="XI7-18-Zbj"/>
                 <outlet property="recordProgress" destination="OGZ-AJ-TdL" id="22y-mh-RLL"/>
                 <outlet property="totalTime" destination="JA0-bS-cNa" id="wlx-ca-1QL"/>

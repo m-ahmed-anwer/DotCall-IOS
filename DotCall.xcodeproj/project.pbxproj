@@ -14,9 +14,6 @@
 		E22B6C042BD6261700D9E9CE /* MainAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E22B6C022BD6261700D9E9CE /* MainAuth.storyboard */; };
 		E22B6C062BD6261800D9E9CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E22B6C052BD6261800D9E9CE /* Assets.xcassets */; };
 		E22B6C092BD6261800D9E9CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E22B6C072BD6261800D9E9CE /* LaunchScreen.storyboard */; };
-		E22B6C142BD6261800D9E9CE /* DotCallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6C132BD6261800D9E9CE /* DotCallTests.swift */; };
-		E22B6C1E2BD6261800D9E9CE /* DotCallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6C1D2BD6261800D9E9CE /* DotCallUITests.swift */; };
-		E22B6C202BD6261800D9E9CE /* DotCallUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6C1F2BD6261800D9E9CE /* DotCallUITestsLaunchTests.swift */; };
 		E23C79902BD7C0760027ECFC /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C798F2BD7C0760027ECFC /* ForgotPasswordController.swift */; };
 		E23C79922BD7CC5B0027ECFC /* SignupInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23C79912BD7CC5B0027ECFC /* SignupInformationController.swift */; };
 		E23E2C482BE13448004D85B7 /* AppStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23E2C472BE13448004D85B7 /* AppStoryboard.storyboard */; };
@@ -82,9 +79,10 @@
 		E29C887D2BE4E8BB00B335F7 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29C887B2BE4E8BB00B335F7 /* FriendCell.xib */; };
 		E29C88812BE4EC8800B335F7 /* RecentCallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C887F2BE4EC8800B335F7 /* RecentCallCell.swift */; };
 		E29C88822BE4EC8800B335F7 /* RecentCallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29C88802BE4EC8800B335F7 /* RecentCallCell.xib */; };
+		E2B014B72C50C2F600BFD2CD /* audioSummarize.wav in Resources */ = {isa = PBXBuildFile; fileRef = E2B014B62C50C2F600BFD2CD /* audioSummarize.wav */; };
+		E2B014BA2C50DEDA00BFD2CD /* SwiftAudioEx in Frameworks */ = {isa = PBXBuildFile; productRef = E2B014B92C50DEDA00BFD2CD /* SwiftAudioEx */; };
 		E2B3F7BA2BF4C64200710DC9 /* RecordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B3F7B82BF4C64200710DC9 /* RecordViewCell.swift */; };
 		E2B3F7BB2BF4C64200710DC9 /* RecordViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B3F7B92BF4C64200710DC9 /* RecordViewCell.xib */; };
-		E2DFD0EB2C342D65004059CF /* AudioControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DFD0EA2C342D65004059CF /* AudioControllerDelegate.swift */; };
 		E2DFD0ED2C342F74004059CF /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DFD0EC2C342F74004059CF /* PushKit.framework */; };
 		E2DFD0F12C343EC6004059CF /* CallClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DFD0F02C343EC6004059CF /* CallClass.swift */; };
 		E2E140422BDEA32D00F3A48C /* CountrySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E140412BDEA32D00F3A48C /* CountrySelector.swift */; };
@@ -94,23 +92,6 @@
 		E2F785632BF5D01C001CFCD8 /* SummaryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2F785612BF5D01C001CFCD8 /* SummaryViewCell.xib */; };
 		E2F785692BF5DF92001CFCD8 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F785682BF5DF92001CFCD8 /* TabViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E22B6C102BD6261800D9E9CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E22B6BF12BD6261600D9E9CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E22B6BF82BD6261700D9E9CE;
-			remoteInfo = DotCall;
-		};
-		E22B6C1A2BD6261800D9E9CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E22B6BF12BD6261600D9E9CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E22B6BF82BD6261700D9E9CE;
-			remoteInfo = DotCall;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		E2B4C1862C00C5E6008050A5 /* Embed Frameworks */ = {
@@ -137,11 +118,6 @@
 		E22B6C052BD6261800D9E9CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E22B6C082BD6261800D9E9CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E22B6C0A2BD6261800D9E9CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E22B6C0F2BD6261800D9E9CE /* DotCallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotCallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E22B6C132BD6261800D9E9CE /* DotCallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotCallTests.swift; sourceTree = "<group>"; };
-		E22B6C192BD6261800D9E9CE /* DotCallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotCallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E22B6C1D2BD6261800D9E9CE /* DotCallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotCallUITests.swift; sourceTree = "<group>"; };
-		E22B6C1F2BD6261800D9E9CE /* DotCallUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotCallUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E23C798F2BD7C0760027ECFC /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		E23C79912BD7CC5B0027ECFC /* SignupInformationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInformationController.swift; sourceTree = "<group>"; };
 		E23E2C472BE13448004D85B7 /* AppStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppStoryboard.storyboard; sourceTree = "<group>"; };
@@ -202,9 +178,9 @@
 		E29C887B2BE4E8BB00B335F7 /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		E29C887F2BE4EC8800B335F7 /* RecentCallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCallCell.swift; sourceTree = "<group>"; };
 		E29C88802BE4EC8800B335F7 /* RecentCallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentCallCell.xib; sourceTree = "<group>"; };
+		E2B014B62C50C2F600BFD2CD /* audioSummarize.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = audioSummarize.wav; path = ../../../../Desktop/audioSummarize.wav; sourceTree = "<group>"; };
 		E2B3F7B82BF4C64200710DC9 /* RecordViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewCell.swift; sourceTree = "<group>"; };
 		E2B3F7B92BF4C64200710DC9 /* RecordViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordViewCell.xib; sourceTree = "<group>"; };
-		E2DFD0EA2C342D65004059CF /* AudioControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioControllerDelegate.swift; sourceTree = "<group>"; };
 		E2DFD0EC2C342F74004059CF /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		E2DFD0F02C343EC6004059CF /* CallClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallClass.swift; sourceTree = "<group>"; };
 		E2E140412BDEA32D00F3A48C /* CountrySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelector.swift; sourceTree = "<group>"; };
@@ -220,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B014BA2C50DEDA00BFD2CD /* SwiftAudioEx in Frameworks */,
 				E2DFD0ED2C342F74004059CF /* PushKit.framework in Frameworks */,
 				E25D9E362C33CEFF0068506A /* FirebaseDatabase in Frameworks */,
 				E25D9E312C33CE030068506A /* RealmSwift in Frameworks */,
@@ -227,20 +204,6 @@
 				E25D9E2E2C33CDF10068506A /* IQKeyboardManagerSwift in Frameworks */,
 				E25D9E342C33CEFF0068506A /* FirebaseAuth in Frameworks */,
 				E25D9E382C33CEFF0068506A /* FirebaseFirestore in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E22B6C0C2BD6261800D9E9CE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E22B6C162BD6261800D9E9CE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,8 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				E22B6BFB2BD6261700D9E9CE /* DotCall */,
-				E22B6C122BD6261800D9E9CE /* DotCallTests */,
-				E22B6C1C2BD6261800D9E9CE /* DotCallUITests */,
 				E22B6BFA2BD6261700D9E9CE /* Products */,
 				8F80E002A94F0ABB0944A493 /* Pods */,
 				A50B2CAC6077A15B4148E63B /* Frameworks */,
@@ -281,8 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				E22B6BF92BD6261700D9E9CE /* DotCall.app */,
-				E22B6C0F2BD6261800D9E9CE /* DotCallTests.xctest */,
-				E22B6C192BD6261800D9E9CE /* DotCallUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -290,6 +249,7 @@
 		E22B6BFB2BD6261700D9E9CE /* DotCall */ = {
 			isa = PBXGroup;
 			children = (
+				E2B014B62C50C2F600BFD2CD /* audioSummarize.wav */,
 				E2DFD0EF2C343EAA004059CF /* Classes */,
 				E23E2C5E2BE21660004D85B7 /* Utilities */,
 				E2E140402BDEA30C00F3A48C /* Constants */,
@@ -299,30 +259,12 @@
 				E27E2DFC2BD64D9E00D89CD8 /* Models */,
 				E22B6BFE2BD6261700D9E9CE /* SceneDelegate.swift */,
 				E2446D3F2BF624F100FD4214 /* AppDelegate.swift */,
-				E2DFD0EA2C342D65004059CF /* AudioControllerDelegate.swift */,
 				E22B6C052BD6261800D9E9CE /* Assets.xcassets */,
 				E22B6C072BD6261800D9E9CE /* LaunchScreen.storyboard */,
 				E23E2C5C2BE20A00004D85B7 /* GoogleService-Info.plist */,
 				E22B6C0A2BD6261800D9E9CE /* Info.plist */,
 			);
 			path = DotCall;
-			sourceTree = "<group>";
-		};
-		E22B6C122BD6261800D9E9CE /* DotCallTests */ = {
-			isa = PBXGroup;
-			children = (
-				E22B6C132BD6261800D9E9CE /* DotCallTests.swift */,
-			);
-			path = DotCallTests;
-			sourceTree = "<group>";
-		};
-		E22B6C1C2BD6261800D9E9CE /* DotCallUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E22B6C1D2BD6261800D9E9CE /* DotCallUITests.swift */,
-				E22B6C1F2BD6261800D9E9CE /* DotCallUITestsLaunchTests.swift */,
-			);
-			path = DotCallUITests;
 			sourceTree = "<group>";
 		};
 		E23E2C5E2BE21660004D85B7 /* Utilities */ = {
@@ -630,46 +572,11 @@
 				E25D9E332C33CEFF0068506A /* FirebaseAuth */,
 				E25D9E352C33CEFF0068506A /* FirebaseDatabase */,
 				E25D9E372C33CEFF0068506A /* FirebaseFirestore */,
+				E2B014B92C50DEDA00BFD2CD /* SwiftAudioEx */,
 			);
 			productName = DotCall;
 			productReference = E22B6BF92BD6261700D9E9CE /* DotCall.app */;
 			productType = "com.apple.product-type.application";
-		};
-		E22B6C0E2BD6261800D9E9CE /* DotCallTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E22B6C262BD6261800D9E9CE /* Build configuration list for PBXNativeTarget "DotCallTests" */;
-			buildPhases = (
-				E22B6C0B2BD6261800D9E9CE /* Sources */,
-				E22B6C0C2BD6261800D9E9CE /* Frameworks */,
-				E22B6C0D2BD6261800D9E9CE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E22B6C112BD6261800D9E9CE /* PBXTargetDependency */,
-			);
-			name = DotCallTests;
-			productName = DotCallTests;
-			productReference = E22B6C0F2BD6261800D9E9CE /* DotCallTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		E22B6C182BD6261800D9E9CE /* DotCallUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E22B6C292BD6261800D9E9CE /* Build configuration list for PBXNativeTarget "DotCallUITests" */;
-			buildPhases = (
-				E22B6C152BD6261800D9E9CE /* Sources */,
-				E22B6C162BD6261800D9E9CE /* Frameworks */,
-				E22B6C172BD6261800D9E9CE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E22B6C1B2BD6261800D9E9CE /* PBXTargetDependency */,
-			);
-			name = DotCallUITests;
-			productName = DotCallUITests;
-			productReference = E22B6C192BD6261800D9E9CE /* DotCallUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -683,14 +590,6 @@
 				TargetAttributes = {
 					E22B6BF82BD6261700D9E9CE = {
 						CreatedOnToolsVersion = 15.2;
-					};
-					E22B6C0E2BD6261800D9E9CE = {
-						CreatedOnToolsVersion = 15.2;
-						TestTargetID = E22B6BF82BD6261700D9E9CE;
-					};
-					E22B6C182BD6261800D9E9CE = {
-						CreatedOnToolsVersion = 15.2;
-						TestTargetID = E22B6BF82BD6261700D9E9CE;
 					};
 				};
 			};
@@ -707,14 +606,13 @@
 				E25D9E2C2C33CDF10068506A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				E25D9E2F2C33CE030068506A /* XCRemoteSwiftPackageReference "realm-swift" */,
 				E25D9E322C33CEFF0068506A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E2B014B82C50DEDA00BFD2CD /* XCRemoteSwiftPackageReference "SwiftAudioEx" */,
 			);
 			productRefGroup = E22B6BFA2BD6261700D9E9CE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E22B6BF82BD6261700D9E9CE /* DotCall */,
-				E22B6C0E2BD6261800D9E9CE /* DotCallTests */,
-				E22B6C182BD6261800D9E9CE /* DotCallUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -737,26 +635,13 @@
 				E22B6C062BD6261800D9E9CE /* Assets.xcassets in Resources */,
 				E2F7855F2BF5CECE001CFCD8 /* ParticipantViewCell.xib in Resources */,
 				E22B6C042BD6261700D9E9CE /* MainAuth.storyboard in Resources */,
+				E2B014B72C50C2F600BFD2CD /* audioSummarize.wav in Resources */,
 				E29C88822BE4EC8800B335F7 /* RecentCallCell.xib in Resources */,
 				E23E2C5D2BE20A00004D85B7 /* GoogleService-Info.plist in Resources */,
 				E26B30902BEA3C7A00138A8A /* TranscriptionCell.xib in Resources */,
 				E2B3F7BB2BF4C64200710DC9 /* RecordViewCell.xib in Resources */,
 				E2F785632BF5D01C001CFCD8 /* SummaryViewCell.xib in Resources */,
 				E27A00C82BE3A14F002A598B /* SummarizeCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E22B6C0D2BD6261800D9E9CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E22B6C172BD6261800D9E9CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,7 +737,6 @@
 				E26B308B2BEA1C6000138A8A /* DetailSummaryViewController.swift in Sources */,
 				E26C0D322BF050E80035A081 /* NameViewCell.swift in Sources */,
 				E24CA49D2BF919F000D31185 /* SummaryByContactViewCell.swift in Sources */,
-				E2DFD0EB2C342D65004059CF /* AudioControllerDelegate.swift in Sources */,
 				E23FDE352BF1190800B031CC /* CallManager.swift in Sources */,
 				E2446D402BF624F100FD4214 /* AppDelegate.swift in Sources */,
 				E27A00C72BE3A14F002A598B /* SummarizeCell.swift in Sources */,
@@ -886,37 +770,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E22B6C0B2BD6261800D9E9CE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E22B6C142BD6261800D9E9CE /* DotCallTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E22B6C152BD6261800D9E9CE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E22B6C202BD6261800D9E9CE /* DotCallUITestsLaunchTests.swift in Sources */,
-				E22B6C1E2BD6261800D9E9CE /* DotCallUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E22B6C112BD6261800D9E9CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E22B6BF82BD6261700D9E9CE /* DotCall */;
-			targetProxy = E22B6C102BD6261800D9E9CE /* PBXContainerItemProxy */;
-		};
-		E22B6C1B2BD6261800D9E9CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E22B6BF82BD6261700D9E9CE /* DotCall */;
-			targetProxy = E22B6C1A2BD6261800D9E9CE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E22B6C022BD6261700D9E9CE /* MainAuth.storyboard */ = {
@@ -1129,82 +983,6 @@
 			};
 			name = Release;
 		};
-		E22B6C272BD6261800D9E9CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9RUVU3VWHV;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SWS.DotCallTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DotCall.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DotCall";
-			};
-			name = Debug;
-		};
-		E22B6C282BD6261800D9E9CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9RUVU3VWHV;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SWS.DotCallTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DotCall.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DotCall";
-			};
-			name = Release;
-		};
-		E22B6C2A2BD6261800D9E9CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9RUVU3VWHV;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SWS.DotCallUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DotCall;
-			};
-			name = Debug;
-		};
-		E22B6C2B2BD6261800D9E9CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9RUVU3VWHV;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SWS.DotCallUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DotCall;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1222,24 +1000,6 @@
 			buildConfigurations = (
 				E22B6C242BD6261800D9E9CE /* Debug */,
 				E22B6C252BD6261800D9E9CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E22B6C262BD6261800D9E9CE /* Build configuration list for PBXNativeTarget "DotCallTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E22B6C272BD6261800D9E9CE /* Debug */,
-				E22B6C282BD6261800D9E9CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E22B6C292BD6261800D9E9CE /* Build configuration list for PBXNativeTarget "DotCallUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E22B6C2A2BD6261800D9E9CE /* Debug */,
-				E22B6C2B2BD6261800D9E9CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1271,6 +1031,14 @@
 				minimumVersion = 10.28.1;
 			};
 		};
+		E2B014B82C50DEDA00BFD2CD /* XCRemoteSwiftPackageReference "SwiftAudioEx" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/doublesymmetry/SwiftAudioEx";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1298,6 +1066,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E25D9E322C33CEFF0068506A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		E2B014B92C50DEDA00BFD2CD /* SwiftAudioEx */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2B014B82C50DEDA00BFD2CD /* XCRemoteSwiftPackageReference "SwiftAudioEx" */;
+			productName = SwiftAudioEx;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

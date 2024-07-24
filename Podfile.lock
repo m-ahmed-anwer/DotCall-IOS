@@ -1,20 +1,16 @@
 PODS:
   - AEOTPTextField (1.2.6)
-  - SinchRTC (5.9.11)
 
 DEPENDENCIES:
   - AEOTPTextField
-  - SinchRTC (~> 5.9.11)
 
 SPEC REPOS:
   trunk:
     - AEOTPTextField
-    - SinchRTC
 
 SPEC CHECKSUMS:
   AEOTPTextField: a275823fde05601c5da7f8fb66aaecb41289b370
-  SinchRTC: 0a4a8f95b09e8b992a8e07e55c355180bfa2072c
 
-PODFILE CHECKSUM: bc88a0c519e62bc71348dc8514fe20db5e98c1b3
+PODFILE CHECKSUM: 2366400a559dd8e8aa8afc2941ded5d017ddae07
 
 COCOAPODS: 1.15.2

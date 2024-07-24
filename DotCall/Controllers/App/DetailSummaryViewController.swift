@@ -85,7 +85,7 @@ extension DetailSummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedOutlet.selectedSegmentIndex {
         case 0: return 1
-        case 1: return 5
+        case 1: return 1
         case 2: return 1
         case 3: return 2
         default: return 0
@@ -97,12 +97,12 @@ extension DetailSummaryViewController: UITableViewDataSource {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecordtoCheck", for: indexPath) as! RecordViewCell
                 
+                
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TranscriptionCell", for: indexPath) as! TranscriptionCell
-                 cell.time?.text  = "00.00.12"
-                 cell.speakerName?.text  = "Ahmed Anwer"
-                cell.transcriptionText?.text  = "Content for segment 0"
+                 cell.time?.text  = "00.00.14"
+                cell.transcriptionText?.text  = "\(detailedSummary?.transcription ?? "null")"
                 return cell
                 
             case 2:

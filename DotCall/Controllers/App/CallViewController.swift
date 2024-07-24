@@ -18,13 +18,9 @@ class CallViewController: UIViewController {
     
     private let realm = try! Realm()
 
-    internal var selectedSummary: SummaryUser? {
-        didSet {
-            saveSummaryToRealm(selectedSummary!)
-        }
-    }
+    internal var selectedSummary: SummaryUser?
     
-    private func saveSummaryToRealm(_ summaryUser: SummaryUser) {
+    private func saveSummaryToRealm(summary:String,topic:String,trasncription:String) {
         let date = Date()
         
         do {
@@ -33,60 +29,31 @@ class CallViewController: UIViewController {
                 newSummary.callMakerName = UserProfile.shared.generalProfile.name ?? "Ahmed"
                 newSummary.callMakerUsername = UserProfile.shared.generalProfile.username ?? "123"
                 newSummary.callMakerEmail = UserProfile.shared.generalProfile.email ?? "ahmed@gmail.com"
-                newSummary.callReciverName = summaryUser.callReciverName
+                newSummary.callReciverName = selectedSummary!.callReciverName
                 newSummary.callReciverEmail = "ahmedanwer0094@gmail.com"
-                newSummary.callReciverUsername = summaryUser.callReciverUsername
-                newSummary.summaryDetail = "The detail of summary is not a big detail, it's kind of ok or not a problem so far"
-                newSummary.summaryTopic = "The topic is this, nothing more or less than good or bad"
+                newSummary.callReciverUsername = selectedSummary!.callReciverUsername
+                newSummary.summaryDetail = summary
+                newSummary.summaryTopic = topic
                 newSummary.time = date
-                newSummary.transcription = "This is the transcription, it's not more like nothing brother"
-                summaryUser.summary.append(newSummary)
-                summaryUser.recentTime = date
+                newSummary.transcription = trasncription
+                selectedSummary!.summary.append(newSummary)
+                selectedSummary!.recentTime = date
+                
             }
-            print("Savedddd summary")
+            print("Summary Saved")
         } catch {
             print("Error saving summary: \(error.localizedDescription)")
         }
     }
     
     @IBOutlet weak var profileImageView: UIImageView!
-//          {
-//    didSet {
-//            let profileURL = self.call.remoteUser?.profileURL
-//            self.profileImageView = UIImageView(image: .prof)
-//        }
-//    }
-    
     @IBOutlet weak var nameLabel: UILabel!
-//    {
-//        didSet {
-//            //let nickname = self.call.remoteUser?.nickname
-//            self.nameLabel.text =  "Ahmed Anwer" //nickname?.isEmptyOrWhitespace == true ? self.call.remoteUser?.userId : nickname
-//        }
-//    }
-
     @IBOutlet weak var speakerButton: UIButton!
-    
-    @IBOutlet weak var muteAudioButton: UIButton! {
-        didSet {
-            //self.muteAudioButton.isSelected = !self.call.isLocalAudioEnabled
-        }
-    }
+    @IBOutlet weak var muteAudioButton: UIButton!
     @IBOutlet weak var endButton: UIButton!
     @IBOutlet weak var callTimerLabel: UILabel!
-    
-    // Notify muted state
     @IBOutlet weak var mutedStateImageView: UIImageView!
-    
     @IBOutlet weak var mutedStateLabel: UILabel!
-//    {
-//        didSet {
-//            guard let remoteUser = self.call.remoteUser else { return }
-//            let name = remoteUser.nickname?.isEmptyOrWhitespace == true ? remoteUser.userId : remoteUser.nickname!
-//            
-//            self.mutedStateLabel.text = CallStatus.muted(user: name).message
-//        }
-//    }
     
     
     //var call: DirectCall!
@@ -98,28 +65,22 @@ class CallViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        saveCallLog()
+        
+        
+        uploadAudio()
+        
         if #available(iOS 13.0, *) {
             self.isModalInPresentation = true
         }
         
        
-
-        //self.call.delegate = self
-        
-//        self.setupAudioOutputButton()
-//        self.updateRemoteAudio(isEnabled: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        guard self.isDialing == true else { return }
-//        CXCallManager.shared.startCXCall(self.call) { [weak self] isSucceed in
-//            guard let self = self else { return }
-//            if !isSucceed {
-//                self.navigationController?.popViewController(animated: true)
-//            }
-//        }
+
         
     }
     
@@ -134,9 +95,7 @@ class CallViewController: UIViewController {
     @IBAction func didTapEnd() {
         self.endButton.isEnabled = false
         
-        if let selectedSummary = selectedSummary{
-            saveCallLog()
-        }
+        
         
         
         dismiss(animated: true, completion: nil)
@@ -154,12 +113,12 @@ class CallViewController: UIViewController {
         let date = Date()
     
         let newCall = CallLog()
-        newCall.callDuration = "00.10"
+        newCall.callDuration = "10.10"
         newCall.callName = "\(selectedSummary!.callReciverName)"
         newCall.callUsername = "\(selectedSummary!.callReciverUsername)"
         newCall.callStatus = "Answered"
         newCall.callTime = date
-        newCall.callType = "Incoming"
+        newCall.callType = "Outgoing"
     
         do {
             try realm.write {
@@ -183,122 +142,108 @@ class CallViewController: UIViewController {
         self.mutedStateImageView.isHidden = true
         self.mutedStateLabel.isHidden = true
     }
+    
+    
+    
+    private func uploadAudio() {
+        if let soundPath = Bundle.main.url(forResource: "audioSummarize", withExtension: "wav") {
+            uploadAudioFile(url: soundPath) { result in
+                switch result {
+                case .success(let response):
+                    // Handle the JSON response here without printing it to the console
+                    if let transcription = response["transcription"] as? String,
+                       let summary = response["summary"] as? String,
+                       let topics = response["topics"] as? [String] {
+                        
+                        let topicsString = topics.joined(separator: ", ")
+                        
+                        DispatchQueue.main.async {
+                            self.saveSummaryToRealm(summary: summary, topic: topicsString, trasncription: transcription)
+                        }
+                    }
+
+                case .failure(let error):
+                    // Handle the error without printing it to the console
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        } else {
+            print("Sound file not found.")
+        }
+    }
+
+
+        
+
+
+
+    private func uploadAudioFile(url: URL, completion: @escaping (Result<[String: Any], Error>) -> Void) {
+        // Define the API endpoint
+        let apiUrl = URL(string: "http://127.0.0.1:9000/api/summarize/audio")!
+        
+        // Create a URL request
+        var request = URLRequest(url: apiUrl)
+        request.httpMethod = "POST"
+        
+        let boundary = UUID().uuidString
+        let boundaryPrefix = "--\(boundary)\r\n"
+        let boundarySuffix = "--\(boundary)--\r\n"
+        
+        var body = Data()
+        body.appendString(boundaryPrefix)
+        body.appendString("Content-Disposition: form-data; name=\"file\"; filename=\"\(url.lastPathComponent)\"\r\n")
+        body.appendString("Content-Type: audio/wav\r\n\r\n")
+        
+        if let fileData = try? Data(contentsOf: url) {
+            body.append(fileData)
+        } else {
+            print("Error: Unable to read file data.")
+            return
+        }
+        
+        body.appendString("\r\n")
+        body.appendString(boundarySuffix)
+        
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpBody = body
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 120.0
+        configuration.timeoutIntervalForResource = 300.0
+        
+        let session = URLSession(configuration: configuration)
+        
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No data received", code: -1, userInfo: nil)))
+                return
+            }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    completion(.success(json))
+                } else {
+                    completion(.failure(NSError(domain: "Invalid JSON", code: -1, userInfo: nil)))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        
+        task.resume()
+    }
+    
 }
 
-    
-
-//// MARK: - SendBirdCall: Audio Features
-//extension CallViewController {
-//    func updateLocalAudio(isEnabled: Bool) {
-//        self.muteAudioButton.setBackgroundImage(.audio(isOn: isEnabled), for: .normal)
-//        if isEnabled {
-//            call?.muteMicrophone()
-//        } else {
-//            call?.unmuteMicrophone()
-//        }
-//    }
-//    
-//    func updateRemoteAudio(isEnabled: Bool) {
-//        self.mutedStateImageView.isHidden = isEnabled
-//        self.mutedStateLabel.isHidden = isEnabled
-//    }
-//}
-//
-//// MARK: - SendBirdCall: Audio Output
-//extension CallViewController {
-//    func setupAudioOutputButton() {
-//        let width = self.speakerButton.frame.width
-//        let height = self.speakerButton.frame.height
-//        let frame = CGRect(x: 0, y: 0, width: width, height: height)
-//    
-//        let routePickerView = SendBirdCall.routePickerView(frame: frame)
-//        self.customize(routePickerView)
-//        self.speakerButton.addSubview(routePickerView)
-//    }
-//    
-//    func customize(_ routePickerView: UIView) {
-//        if #available(iOS 11.0, *) {
-//            guard let routePickerView = routePickerView as? AVRoutePickerView else { return }
-//            routePickerView.activeTintColor = .clear
-//            routePickerView.tintColor = .clear
-//        } else {
-//            guard let volumeView = routePickerView as? MPVolumeView else { return }
-//            
-//            volumeView.showsVolumeSlider = false
-//            volumeView.setRouteButtonImage(nil, for: .normal)
-//            volumeView.routeButtonRect(forBounds: volumeView.frame)
-//        }
-//    }
-//}
-//
-//// MARK: - SendBirdCall: DirectCall duration
-//extension CallViewController {
-//    func activeTimer() {
-//        self.callTimerLabel.text = "00:00"
-//        
-//        // Main thread
-//        self.callTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
-//            guard let self = self else { return }
-//
-//            // update UI
-//            self.callTimerLabel.text = self.call.duration.durationText()
-//
-//            // Timer Invalidate
-//            if self.call.endedAt != 0, timer.isValid {
-//                timer.invalidate()
-//                self.callTimer = nil
-//            }
-//        }
-//    }
-//}
-//
-//// MARK: - SendBirdCall: DirectCallDelegate
-//// Delegate methods are executed on Main thread
-//
-//extension CallViewController: DirectCallDelegate {
-//    // MARK: Required Methods
-//    func didConnect(_ call: DirectCall) {
-//        self.activeTimer()      // call.duration
-//        self.updateRemoteAudio(isEnabled: call.isRemoteAudioEnabled)
-//      
-//        CXCallManager.shared.connectedCall(call)
-//    }
-//    
-//    func didEnd(_ call: DirectCall) {
-//        self.setupEndedCallUI()
-//        
-//        DispatchQueue.main.async {
-//            guard let callLog = call.callLog else { return }
-//            UserDefaults.standard.callHistories.insert(CallHistory(callLog: callLog), at: 0)
-//            
-//            CallHistoryViewController.main?.updateCallHistories()
-//        }
-//        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-//            guard let self = self else { return }
-//            self.dismiss(animated: true, completion: nil)
-//        }
-//        
-//        guard let enderId = call.endedBy?.userId, let myId = SendBirdCall.currentUser?.userId, enderId != myId else { return }
-//        guard let call = SendBirdCall.getCall(forCallId: self.call.callId) else { return }
-//        CXCallManager.shared.endCXCall(call)
-//    }
-//    
-//    // MARK: Optional Methods
-//    func didEstablish(_ call: DirectCall) {
-//        self.callTimerLabel.text = CallStatus.connecting.message
-//    }
-//    
-//    func didRemoteAudioSettingsChange(_ call: DirectCall) {
-//        self.updateRemoteAudio(isEnabled: call.isRemoteAudioEnabled)
-//    }
-//    
-//    func didAudioDeviceChange(_ call: DirectCall, session: AVAudioSession, previousRoute: AVAudioSessionRouteDescription, reason: AVAudioSession.RouteChangeReason) {
-//        guard !call.isEnded else { return }
-//        guard let output = session.currentRoute.outputs.first else { return }
-//        
-//        self.speakerButton.setBackgroundImage(.audio(output: output.portType),
-//                                                 for: .normal)
-//        print("[QuickStart] Audio Route has been changed to \(output.portName)")
-//    }
-//}
+extension Data {
+    mutating func appendString(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
+    }
+}
