@@ -107,8 +107,9 @@ extension DetailSummaryViewController: UITableViewDataSource {
                 
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryCheck", for: indexPath) as! SummaryViewCell
-            cell.summaryTitle?.text  = "\(detailedSummary?.summaryTopic ?? "null")"
+            cell.summaryTitle?.text  = "\(detailedSummary?.summaryTitle ?? "null")"
             cell.summaryText?.text  = "\(detailedSummary?.summaryDetail ?? "null")"
+           cell.summaryTopic?.text  = "The key topics in the conversation were: \(detailedSummary?.summaryTopic ?? "null")"
                  return cell
                 
             case 3:
@@ -179,7 +180,7 @@ private extension DetailSummaryViewController{
 
     private func updateUI() {
         if let detailedSummary = detailedSummary {
-            titleLabel.text = detailedSummary.summaryTopic
+            titleLabel.text = detailedSummary.summaryTitle
 
             if let time = detailedSummary.time {
                 // Format time based on different scenarios

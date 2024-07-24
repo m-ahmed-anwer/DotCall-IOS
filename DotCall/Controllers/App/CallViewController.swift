@@ -20,7 +20,7 @@ class CallViewController: UIViewController {
 
     internal var selectedSummary: SummaryUser?
     
-    private func saveSummaryToRealm(summary:String,topic:String,trasncription:String) {
+    private func saveSummaryToRealm(summary:String,topic:String,trasncription:String,title:String) {
         let date = Date()
         
         do {
@@ -34,10 +34,12 @@ class CallViewController: UIViewController {
                 newSummary.callReciverUsername = selectedSummary!.callReciverUsername
                 newSummary.summaryDetail = summary
                 newSummary.summaryTopic = topic
+                newSummary.summaryTitle = title
                 newSummary.time = date
                 newSummary.transcription = trasncription
                 selectedSummary!.summary.append(newSummary)
                 selectedSummary!.recentTime = date
+                selectedSummary!.recentSummary = title
                 
             }
             print("Summary Saved")
@@ -69,7 +71,9 @@ class CallViewController: UIViewController {
         saveCallLog()
         
         
-        uploadAudio()
+        saveSummaryToRealm(summary: "summary", topic: "topic", trasncription: "transcription",title: "title")
+        
+        //uploadAudio()
         
         if #available(iOS 13.0, *) {
             self.isModalInPresentation = true
@@ -153,12 +157,13 @@ class CallViewController: UIViewController {
                     // Handle the JSON response here without printing it to the console
                     if let transcription = response["transcription"] as? String,
                        let summary = response["summary"] as? String,
+                       let title = response["title"] as? String,
                        let topics = response["topics"] as? [String] {
                         
                         let topicsString = topics.joined(separator: ", ")
                         
                         DispatchQueue.main.async {
-                            self.saveSummaryToRealm(summary: summary, topic: topicsString, trasncription: transcription)
+                            self.saveSummaryToRealm(summary: summary, topic: title, trasncription: transcription,title: title)
                         }
                     }
 

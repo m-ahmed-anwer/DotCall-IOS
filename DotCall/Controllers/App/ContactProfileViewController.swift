@@ -25,7 +25,7 @@ class ContactProfileViewController: UIViewController {
     internal var record: Bool = false
     internal var friendrecord: Bool = false
     internal var contactUsername: String = ""
-    internal var summaryRecent: String = "Loading Summary.."
+    internal var summaryRecent: String = "Summary Loading.."
     
     @IBOutlet weak var tableView: UITableView!
     

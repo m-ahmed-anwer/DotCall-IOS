@@ -62,7 +62,7 @@ extension SummarybyContactViewController {
             let summary = summaries?[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryByContact", for: indexPath) as! SummaryByContactViewCell
             cell.time = summary!.time
-            cell.titleText.text = summary?.summaryTopic
+            cell.titleText.text = summary?.summaryTitle
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NoSummariesCell", for: indexPath)
@@ -133,7 +133,12 @@ extension SummarybyContactViewController: UISearchResultsUpdating {
                 loadSummary(username: selectedSummary.callReciverUsername)
             }
         } else {
-            summaries = realm.objects(Summary.self).filter("callReciverUsername == %@ AND summaryTopic CONTAINS[cd] %@", selectedSumary!.callReciverUsername, searchText).sorted(byKeyPath: "time", ascending: false)
+            if let selectedSummary = selectedSumary {
+                summaries = realm.objects(Summary.self)
+                    .filter("callReciverUsername == %@ AND (summaryTopic CONTAINS[cd] %@ OR summaryTitle CONTAINS[cd] %@)",
+                            selectedSummary.callReciverUsername, searchText, searchText)
+                    .sorted(byKeyPath: "time", ascending: false)
+            }
         }
         tableView.reloadData()
     }

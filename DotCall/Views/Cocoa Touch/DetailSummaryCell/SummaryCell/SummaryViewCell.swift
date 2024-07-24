@@ -11,7 +11,8 @@ class SummaryViewCell: UITableViewCell {
 
     @IBOutlet weak var summaryTitle: UILabel!
     @IBOutlet weak var summaryText: UILabel!
-  
+    @IBOutlet weak var summaryTopic: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -79,8 +79,10 @@
 		E29C887D2BE4E8BB00B335F7 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29C887B2BE4E8BB00B335F7 /* FriendCell.xib */; };
 		E29C88812BE4EC8800B335F7 /* RecentCallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C887F2BE4EC8800B335F7 /* RecentCallCell.swift */; };
 		E29C88822BE4EC8800B335F7 /* RecentCallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29C88802BE4EC8800B335F7 /* RecentCallCell.xib */; };
-		E2B014B72C50C2F600BFD2CD /* audioSummarize.wav in Resources */ = {isa = PBXBuildFile; fileRef = E2B014B62C50C2F600BFD2CD /* audioSummarize.wav */; };
 		E2B014BA2C50DEDA00BFD2CD /* SwiftAudioEx in Frameworks */ = {isa = PBXBuildFile; productRef = E2B014B92C50DEDA00BFD2CD /* SwiftAudioEx */; };
+		E2B014C22C514DCF00BFD2CD /* Conversation2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E2B014BF2C514DCF00BFD2CD /* Conversation2.wav */; };
+		E2B014C32C514DCF00BFD2CD /* audioSummarize.wav in Resources */ = {isa = PBXBuildFile; fileRef = E2B014C02C514DCF00BFD2CD /* audioSummarize.wav */; };
+		E2B014C42C514DCF00BFD2CD /* Conversation1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E2B014C12C514DCF00BFD2CD /* Conversation1.wav */; };
 		E2B3F7BA2BF4C64200710DC9 /* RecordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B3F7B82BF4C64200710DC9 /* RecordViewCell.swift */; };
 		E2B3F7BB2BF4C64200710DC9 /* RecordViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B3F7B92BF4C64200710DC9 /* RecordViewCell.xib */; };
 		E2DFD0ED2C342F74004059CF /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DFD0EC2C342F74004059CF /* PushKit.framework */; };
@@ -178,7 +180,9 @@
 		E29C887B2BE4E8BB00B335F7 /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		E29C887F2BE4EC8800B335F7 /* RecentCallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCallCell.swift; sourceTree = "<group>"; };
 		E29C88802BE4EC8800B335F7 /* RecentCallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentCallCell.xib; sourceTree = "<group>"; };
-		E2B014B62C50C2F600BFD2CD /* audioSummarize.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = audioSummarize.wav; path = ../../../../Desktop/audioSummarize.wav; sourceTree = "<group>"; };
+		E2B014BF2C514DCF00BFD2CD /* Conversation2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Conversation2.wav; path = "../../../../Desktop/Call-Audios/Conversation2.wav"; sourceTree = "<group>"; };
+		E2B014C02C514DCF00BFD2CD /* audioSummarize.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = audioSummarize.wav; path = "../../../../Desktop/Call-Audios/audioSummarize.wav"; sourceTree = "<group>"; };
+		E2B014C12C514DCF00BFD2CD /* Conversation1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Conversation1.wav; path = "../../../../Desktop/Call-Audios/Conversation1.wav"; sourceTree = "<group>"; };
 		E2B3F7B82BF4C64200710DC9 /* RecordViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewCell.swift; sourceTree = "<group>"; };
 		E2B3F7B92BF4C64200710DC9 /* RecordViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordViewCell.xib; sourceTree = "<group>"; };
 		E2DFD0EC2C342F74004059CF /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
@@ -249,7 +253,9 @@
 		E22B6BFB2BD6261700D9E9CE /* DotCall */ = {
 			isa = PBXGroup;
 			children = (
-				E2B014B62C50C2F600BFD2CD /* audioSummarize.wav */,
+				E2B014C02C514DCF00BFD2CD /* audioSummarize.wav */,
+				E2B014C12C514DCF00BFD2CD /* Conversation1.wav */,
+				E2B014BF2C514DCF00BFD2CD /* Conversation2.wav */,
 				E2DFD0EF2C343EAA004059CF /* Classes */,
 				E23E2C5E2BE21660004D85B7 /* Utilities */,
 				E2E140402BDEA30C00F3A48C /* Constants */,
@@ -625,18 +631,20 @@
 				E26C0D382BF07D650035A081 /* ProfileImageViewCell.xib in Resources */,
 				E2446D542BF8D45B00FD4214 /* ContactProfileViewCell.xib in Resources */,
 				E23E2C482BE13448004D85B7 /* AppStoryboard.storyboard in Resources */,
+				E2B014C42C514DCF00BFD2CD /* Conversation1.wav in Resources */,
 				E2444C572C0C76270058A656 /* AddFriendCell.xib in Resources */,
 				E27E2E012BD64F0600D89CD8 /* Inter.ttf in Resources */,
 				E2444C5E2C0E0FBE0058A656 /* AcceptFriendsTableViewCell.xib in Resources */,
 				E24CA4982BF8F02800D31185 /* ChatCallViewCell.xib in Resources */,
+				E2B014C32C514DCF00BFD2CD /* audioSummarize.wav in Resources */,
 				E24CA49E2BF919F000D31185 /* SummaryByContactViewCell.xib in Resources */,
 				E22B6C092BD6261800D9E9CE /* LaunchScreen.storyboard in Resources */,
 				E29C887D2BE4E8BB00B335F7 /* FriendCell.xib in Resources */,
 				E22B6C062BD6261800D9E9CE /* Assets.xcassets in Resources */,
 				E2F7855F2BF5CECE001CFCD8 /* ParticipantViewCell.xib in Resources */,
 				E22B6C042BD6261700D9E9CE /* MainAuth.storyboard in Resources */,
-				E2B014B72C50C2F600BFD2CD /* audioSummarize.wav in Resources */,
 				E29C88822BE4EC8800B335F7 /* RecentCallCell.xib in Resources */,
+				E2B014C22C514DCF00BFD2CD /* Conversation2.wav in Resources */,
 				E23E2C5D2BE20A00004D85B7 /* GoogleService-Info.plist in Resources */,
 				E26B30902BEA3C7A00138A8A /* TranscriptionCell.xib in Resources */,
 				E2B3F7BB2BF4C64200710DC9 /* RecordViewCell.xib in Resources */,
