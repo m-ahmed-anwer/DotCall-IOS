@@ -43,9 +43,15 @@ class SummarybyContactViewController: UITableViewController {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        tabBarController?.tabBar.isHidden = true
+        self.hidesBottomBarWhenPushed = true
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false
+        self.hidesBottomBarWhenPushed = false
     }
 }
 

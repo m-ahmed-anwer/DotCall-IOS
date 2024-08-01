@@ -20,5 +20,6 @@ class Summary: Object {
     @objc dynamic var summaryTitle: String = ""
     @objc dynamic var time: Date?
     @objc dynamic var transcription: String = ""
+    @objc dynamic var audioPath: String = ""
     var parentSummary = LinkingObjects(fromType: SummaryUser.self, property: "summary")
 }

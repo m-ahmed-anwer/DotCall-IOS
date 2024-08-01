@@ -20,7 +20,7 @@ class CallViewController: UIViewController {
 
     internal var selectedSummary: SummaryUser?
     
-    private func saveSummaryToRealm(summary:String,topic:String,trasncription:String,title:String) {
+    private func saveSummaryToRealm(summary:String,topic:String,trasncription:String,title:String,audioPath:String) {
         let date = Date()
         
         do {
@@ -37,6 +37,7 @@ class CallViewController: UIViewController {
                 newSummary.summaryTitle = title
                 newSummary.time = date
                 newSummary.transcription = trasncription
+                newSummary.audioPath = audioPath
                 selectedSummary!.summary.append(newSummary)
                 selectedSummary!.recentTime = date
                 selectedSummary!.recentSummary = title
@@ -71,9 +72,12 @@ class CallViewController: UIViewController {
         saveCallLog()
         
         
-        saveSummaryToRealm(summary: "summary", topic: "topic", trasncription: "transcription",title: "title")
+        if Bundle.main.url(forResource: "Conversation2", withExtension: "wav") != nil {
+            saveSummaryToRealm(summary: "summary will be in here", topic: "topic is this so", trasncription: "transcription of the conversation eve if its soo long it will be heerer",title: "titleeeeeeee",audioPath:"audioSummarize")
+        }
         
-        //uploadAudio()
+        
+        //uploadAudio(audioName: "audioSummarize")
         
         if #available(iOS 13.0, *) {
             self.isModalInPresentation = true
@@ -149,8 +153,8 @@ class CallViewController: UIViewController {
     
     
     
-    private func uploadAudio() {
-        if let soundPath = Bundle.main.url(forResource: "audioSummarize", withExtension: "wav") {
+    private func uploadAudio(audioName:String) {
+        if let soundPath = Bundle.main.url(forResource: audioName, withExtension: "wav") {
             uploadAudioFile(url: soundPath) { result in
                 switch result {
                 case .success(let response):
@@ -161,9 +165,10 @@ class CallViewController: UIViewController {
                        let topics = response["topics"] as? [String] {
                         
                         let topicsString = topics.joined(separator: ", ")
+
                         
                         DispatchQueue.main.async {
-                            self.saveSummaryToRealm(summary: summary, topic: title, trasncription: transcription,title: title)
+                            self.saveSummaryToRealm(summary: summary, topic: topicsString, trasncription: transcription,title: title,audioPath: audioName)
                         }
                     }
 

@@ -31,6 +31,17 @@ class DetailSummaryViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.backButton]
         navigationController?.navigationBar.tintColor = UIColor.backButton
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+        self.hidesBottomBarWhenPushed = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+       super.viewWillDisappear(animated)
+       self.hidesBottomBarWhenPushed = false
+    }
+
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -81,62 +92,74 @@ class DetailSummaryViewController: UIViewController {
 // MARK: - Table View Data Source
 
 extension DetailSummaryViewController: UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedOutlet.selectedSegmentIndex {
         case 0: return 1
         case 1: return 1
-        case 2: return 1
+        case 2: return 3
         case 3: return 2
         default: return 0
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       switch segmentedOutlet.selectedSegmentIndex {
+        switch segmentedOutlet.selectedSegmentIndex {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecordtoCheck", for: indexPath) as! RecordViewCell
+            
+            cell.audioPath = "\(detailedSummary?.audioPath ?? "")"
+            
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TranscriptionCell", for: indexPath) as! TranscriptionCell
+            cell.time?.text  = "00.00.14"
+            cell.transcriptionText?.text  = "\(detailedSummary?.transcription ?? "null")"
+            return cell
+            
+        case 2:
+            switch indexPath.row {
             case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RecordtoCheck", for: indexPath) as! RecordViewCell
-                
-                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryCheck", for: indexPath) as! SummaryViewCell
+                cell.detailedSummary = detailedSummary
                 return cell
             case 1:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "TranscriptionCell", for: indexPath) as! TranscriptionCell
-                 cell.time?.text  = "00.00.14"
-                cell.transcriptionText?.text  = "\(detailedSummary?.transcription ?? "null")"
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryDetailCheck", for: indexPath) as! SummaryDetailViewCell
+                cell.detailedSummary = detailedSummary
                 return cell
-                
             case 2:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryCheck", for: indexPath) as! SummaryViewCell
-            cell.summaryTitle?.text  = "\(detailedSummary?.summaryTitle ?? "null")"
-            cell.summaryText?.text  = "\(detailedSummary?.summaryDetail ?? "null")"
-           cell.summaryTopic?.text  = "The key topics in the conversation were: \(detailedSummary?.summaryTopic ?? "null")"
-                 return cell
-                
-            case 3:
-                if indexPath.row == 0{
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "ParticpantsCheck", for: indexPath) as! ParticipantViewCell
-                    cell.profileButton.addTarget(self, action: #selector(currentUserProfileButtonPressed(_:)), for: .touchUpInside)
-                    cell.contactName?.text  = "\(UserProfile.shared.generalProfile.name ?? "") (You)"
-                    return cell
-                } else{
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "ParticpantsCheck", for: indexPath) as! ParticipantViewCell
-                    cell.contactName?.text  = "\(detailedSummary?.callReciverName ?? "Nill")"
-                    cell.profileButton.addTarget(self, action: #selector(profileButtonPressed(_:)), for: .touchUpInside)
-                    return cell
-                }
+                let cell = tableView.dequeueReusableCell(withIdentifier: "TopicCheck", for: indexPath) as! TopicViewCell
+                cell.summaryTopic.text = "The key topics in the conversation are:\n\(detailedSummary?.summaryTopic ?? "null")"
+                return cell
+            default:
+                return UITableViewCell()
+            }
+            
+        case 3:
+            if indexPath.row == 0{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ParticpantsCheck", for: indexPath) as! ParticipantViewCell
+                cell.profileButton.addTarget(self, action: #selector(currentUserProfileButtonPressed(_:)), for: .touchUpInside)
+                cell.contactName?.text  = "\(UserProfile.shared.generalProfile.name ?? "") (You)"
+                return cell
+            } else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ParticpantsCheck", for: indexPath) as! ParticipantViewCell
+                cell.contactName?.text  = "\(detailedSummary?.callReciverName ?? "Nill")"
+                cell.profileButton.addTarget(self, action: #selector(profileButtonPressed(_:)), for: .touchUpInside)
+                return cell
+            }
         default:
             return UITableViewCell()
         }
     }
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .background
-
+        
         let title = UILabel()
         title.font = UIFont.boldSystemFont(ofSize: 17)
         title.textColor = .themeText
-
+        
         switch currentSegmentIndex {
         case 0: title.text = "Recording"
         case 1: title.text = "Transcription"
@@ -144,18 +167,19 @@ extension DetailSummaryViewController: UITableViewDataSource {
         case 3: title.text = "Participants"
         default: title.text = ""
         }
-
+        
         view.addSubview(title)
         title.translatesAutoresizingMaskIntoConstraints = false
         title.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         title.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-
+        
         return view
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
+    
 }
 
 // MARK: - Table View Delegate
@@ -176,6 +200,9 @@ private extension DetailSummaryViewController{
         tableView.register(UINib(nibName: "SummaryViewCell", bundle: nil), forCellReuseIdentifier: "SummaryCheck")
         tableView.register(UINib(nibName: "ParticipantViewCell", bundle: nil), forCellReuseIdentifier: "ParticpantsCheck")
         tableView.register(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ReuseContact")
+        tableView.register(UINib(nibName: "SummaryDetailViewCell", bundle: nil), forCellReuseIdentifier: "SummaryDetailCheck")
+        tableView.register(UINib(nibName: "TopicViewCell", bundle: nil), forCellReuseIdentifier: "TopicCheck")
+     
     }
 
     private func updateUI() {

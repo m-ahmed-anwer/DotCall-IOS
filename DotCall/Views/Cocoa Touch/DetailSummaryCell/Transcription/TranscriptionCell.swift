@@ -14,6 +14,7 @@ class TranscriptionCell: UITableViewCell {
         // Initialization code
     }
 
+    
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var transcriptionText: UILabel!
     
@@ -21,6 +22,23 @@ class TranscriptionCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func share(_ sender: UIButton) {
+        let formattedText = "\(transcriptionText.text ?? "Try DotCall Application for Summarized Transcription of Voice Calls")"
+        
+        let activityViewController = UIActivityViewController(activityItems: [formattedText], applicationActivities: nil)
+        if UserProfile.shared.settingsProfile.haptic == true {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let window = windowScene.windows.first {
+                window.rootViewController?.present(activityViewController, animated: true, completion: nil)
+            }
+        }
     }
     
 }

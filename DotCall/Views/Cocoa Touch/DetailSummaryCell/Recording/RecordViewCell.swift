@@ -17,6 +17,8 @@ class RecordViewCell: UITableViewCell, AVAudioPlayerDelegate {
     @IBOutlet weak var playPauseIcon: UIButton!
     @IBOutlet weak var recordProgress: UIProgressView!
     
+    internal var audioPath:String = ""
+    
     var isPlaying: Bool = false {
         didSet {
             let imageName = isPlaying ? "pauseButton" : "playButton"
@@ -29,7 +31,7 @@ class RecordViewCell: UITableViewCell, AVAudioPlayerDelegate {
         super.awakeFromNib()
         
         isPlaying = false
-        if let url = Bundle.main.url(forResource: "audioSummarize", withExtension: "wav") {
+        if let url = Bundle.main.url(forResource: audioPath, withExtension: "wav") {
             player = try? AVAudioPlayer(contentsOf: url)
             player.delegate = self
             totalTime.text = formatTime(player.duration)

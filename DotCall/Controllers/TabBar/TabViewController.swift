@@ -20,6 +20,10 @@ class TabViewController: UITabBarController {
     func navigateToSettings() {
             self.selectedIndex = 3
     }
+    
+    func navigateToHome() {
+            self.selectedIndex = 0
+    }
 
     /*
     // MARK: - Navigation

@@ -48,10 +48,6 @@ class SummaryByContactViewCell: UITableViewCell {
             } else if calendar.isDateInYesterday(convertedDate) {
                 dateFormatter.dateFormat = "HH:mm"
                 timeText.text = "Yesterday \(dateFormatter.string(from: convertedDate))"
-            } else if now.timeIntervalSince(convertedDate) < TimeInterval(7 * 24 * 3600) {
-                let timeString = formatter.string(from: convertedDate, to: now)!
-                dateFormatter.dateFormat = "HH:mm"
-                timeText.text = "\(timeString)"
             } else {
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
                 timeText.text = dateFormatter.string(from: convertedDate)

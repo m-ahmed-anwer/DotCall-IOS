@@ -100,6 +100,15 @@
       }
     },
     {
+      "identity" : "multilinetextfield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rlaguilar/MultilineTextField.git",
+      "state" : {
+        "revision" : "9656eb1aaf13ec355f0d2b7fe3d2b5ffe2c2b318",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "nanopb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/nanopb.git",
