@@ -39,7 +39,7 @@ class SummaryViewCell: UITableViewCell {
     }
     
     @IBAction func ShareButtonPressed(_ sender: UIButton) {
-        let formattedText = "\(detailedSummary?.summaryTitle ?? "Try DotCall Application for Summarized Transcription of Voice Calls")\n\(detailedSummary?.summaryDetail ?? "")"
+        let formattedText = "Title: \(detailedSummary?.summaryTitle ?? "Try DotCall Application for Summarized Transcription of Voice Calls")\n Summary: \(detailedSummary?.summaryDetail ?? "")"
         
         let activityViewController = UIActivityViewController(activityItems: [formattedText], applicationActivities: nil)
         if UserProfile.shared.settingsProfile.haptic == true {

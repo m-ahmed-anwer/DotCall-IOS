@@ -26,16 +26,21 @@
                                 <rect key="frame" x="20" y="5" width="509" height="248"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="do7-C8-Fgq">
-                                        <rect key="frame" x="0.0" y="94.333333333333329" width="509" height="59.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="95.333333333333329" width="509" height="57.333333333333329"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OXF-QK-RTA">
-                                                <rect key="frame" x="0.0" y="0.0" width="509" height="59.333333333333336"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OXF-QK-RTA">
+                                                <rect key="frame" x="0.0" y="0.0" width="509" height="57.333333333333336"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTU-4f-9nl">
                                                         <rect key="frame" x="0.0" y="0.0" width="509" height="30"/>
                                                         <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary : " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amx-VH-O9t">
+                                                                <rect key="frame" x="0.0" y="0.0" width="99.666666666666671" height="30"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="7SD-C4-DHF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="411" height="30"/>
+                                                                <rect key="frame" x="99.666666666666657" y="0.0" width="311.33333333333337" height="30"/>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D5-dr-azo">
                                                                 <rect key="frame" x="411" y="0.0" width="98" height="30"/>
@@ -45,14 +50,14 @@
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title=" Edit Summary">
                                                                     <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="small"/>
-                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="8"/>
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="7"/>
                                                                     <color key="baseForegroundColor" name="171717"/>
                                                                 </buttonConfiguration>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summarized Text of the Conversation" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPG-1N-2zg">
-                                                        <rect key="frame" x="0.0" y="40.000000000000014" width="509" height="19.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="38.000000000000014" width="509" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                         <color key="textColor" name="535353"/>
                                                         <nil key="highlightedColor"/>

@@ -129,7 +129,7 @@ extension DetailSummaryViewController: UITableViewDataSource {
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TopicCheck", for: indexPath) as! TopicViewCell
-                cell.summaryTopic.text = "The key topics in the conversation are:\n\(detailedSummary?.summaryTopic ?? "null")"
+                cell.summaryTopic.text = "Topics :\n\(detailedSummary?.summaryTopic ?? "null")"
                 return cell
             default:
                 return UITableViewCell()
@@ -152,34 +152,34 @@ extension DetailSummaryViewController: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = .background
-        
-        let title = UILabel()
-        title.font = UIFont.boldSystemFont(ofSize: 17)
-        title.textColor = .themeText
-        
-        switch currentSegmentIndex {
-        case 0: title.text = "Recording"
-        case 1: title.text = "Transcription"
-        case 2: title.text = "Summary"
-        case 3: title.text = "Participants"
-        default: title.text = ""
-        }
-        
-        view.addSubview(title)
-        title.translatesAutoresizingMaskIntoConstraints = false
-        title.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        title.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let view = UIView()
+//        view.backgroundColor = .background
+//        
+//        let title = UILabel()
+//        title.font = UIFont.boldSystemFont(ofSize: 17)
+//        title.textColor = .themeText
+//        
+//        switch currentSegmentIndex {
+//        case 0: title.text = "Recording"
+//        case 1: title.text = "Transcription"
+//        case 2: title.text = ""
+//        case 3: title.text = "Participants"
+//        default: title.text = ""
+//        }
+//        
+//        view.addSubview(title)
+//        title.translatesAutoresizingMaskIntoConstraints = false
+//        title.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//        title.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+//        
+//        return view
+//    }
+//    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 40
+//    }
+//    
 }
 
 // MARK: - Table View Delegate
