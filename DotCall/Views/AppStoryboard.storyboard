@@ -417,7 +417,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmed Anwer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nR5-FP-0zD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afra Anwer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nR5-FP-0zD">
                                 <rect key="frame" x="24" y="224" width="345" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -588,7 +588,7 @@
         <!--Summaryby Contact View Controller-->
         <scene sceneID="yBs-s2-ib2">
             <objects>
-                <tableViewController wantsFullScreenLayout="YES" hidesBottomBarWhenPushed="YES" clearsSelectionOnViewWillAppear="NO" id="sn5-XQ-3Ac" customClass="SummarybyContactViewController" customModule="DotCall" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" clearsSelectionOnViewWillAppear="NO" id="sn5-XQ-3Ac" customClass="SummarybyContactViewController" customModule="DotCall" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="9A4-u1-sg3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -662,8 +662,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="fjB-Wy-7ev"/>
-        <segue reference="tgg-eR-Eky"/>
-        <segue reference="ETg-9O-Otf"/>
+        <segue reference="yAh-kR-gK4"/>
+        <segue reference="tO5-yU-NNd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Profile" width="240" height="240"/>
@@ -704,7 +704,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

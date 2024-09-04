@@ -73,7 +73,7 @@ class CallViewController: UIViewController {
         
         
         if Bundle.main.url(forResource: "Conversation2", withExtension: "wav") != nil {
-            saveSummaryToRealm(summary: "summary will be in here", topic: "topic is this so", trasncription: "transcription of the conversation eve if its soo long it will be heerer",title: "titleeeeeeee",audioPath:"audioSummarize")
+            saveSummaryToRealm(summary: "Jordan attended an Ehta lecture on AI advancements and their application in various industries. Key points included the integration of AI in healthcare, diagnostics, and personalized treatment plans. Ethical concerns were discussed, including data privacy and bias. Notable guest speakers included Dr. Patel, who discussed AI in education. The lecture was recorded and available on the university's website.", topic: "Education, AI, Healthcare", trasncription: "Hey, Jordan! How's it going? Hey, Alex! I'm good, thanks. How about you? I'm doing well. Did you attend the Ehta lecture yesterday? Yeah, I did. It was pretty interesting. Did you make it? Unfortunately, no. I had a prior commitment. What did I miss? Well, Ehta talked about the latest advancements in AI and how it's being applied in different industries. It was fascinating. That sounds awesome! Can you give me some highlights? Sure! One of the key points was about the integration of AI in healthcare, particularly in diagnostics and personalized treatment plans. Ehta showed some case studies where AI significantly improved patient outcomes. Wow, that’s impressive. Did they discuss any ethical concerns? Yes, Ehta emphasized the importance of addressing ethical issues, especially regarding data privacy and the potential for bias in AI systems. They also talked about the need for transparent and explainable AI. That's crucial. Were there any notable guest speakers? Yes, there were a couple of industry experts who shared their experiences and insights. One of them was Dr. Patel, who spoke about AI in education and how it's transforming the learning process. Nice! Did they mention any resources or papers we can check out? Definitely. They provided a list of recommended readings and some online courses to deepen our understanding of AI applications. I took some notes and can share them with you. That would be great, thanks! Do you know if the lecture was recorded? Yes, it was. They said the recording would be available on the university's website by the end of the week. Perfect, I’ll make sure to watch it. Thanks for filling me in, Jordan! No problem, Alex. Happy to help! Let’s catch up more about it once you’ve seen the lecture. Sounds like a plan. Talk to you later! Bye!",title: "Analysis: What's next for AI? Here's how it's being applied in different industries",audioPath:"audioSummarize")
         }
         
         
@@ -102,18 +102,9 @@ class CallViewController: UIViewController {
     
     @IBAction func didTapEnd() {
         self.endButton.isEnabled = false
-        
-        
-        
-        
+    
         dismiss(animated: true, completion: nil)
-        
-       
-        
-        
-        //guard let call = SendBirdCall.getCall(forCallId: self.call.callId) else { return }
-        //call.end()
-        //CXCallManager.shared.endCXCall(call)
+    
     }
     
     private func saveCallLog() {
@@ -141,7 +132,7 @@ class CallViewController: UIViewController {
     private func setupEndedCallUI() {
         self.callTimer?.invalidate()    // Main thread
         self.callTimer = nil
-        //self.callTimerLabel.text = CallStatus.ended(result: call.endResult.rawValue).message
+   
         
         self.endButton.isHidden = true
         self.speakerButton.isHidden = true
