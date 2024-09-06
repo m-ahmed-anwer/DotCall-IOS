@@ -26,11 +26,11 @@ class CallViewController: UIViewController {
         do {
             try realm.write {
                 let newSummary = Summary()
-                newSummary.callMakerName = UserProfile.shared.generalProfile.name ?? "Ahmed"
-                newSummary.callMakerUsername = UserProfile.shared.generalProfile.username ?? "123"
-                newSummary.callMakerEmail = UserProfile.shared.generalProfile.email ?? "ahmed@gmail.com"
+                newSummary.callMakerName = UserProfile.shared.generalProfile.name!
+                newSummary.callMakerUsername = UserProfile.shared.generalProfile.username!
+                newSummary.callMakerEmail = UserProfile.shared.generalProfile.email!
                 newSummary.callReciverName = selectedSummary!.callReciverName
-                newSummary.callReciverEmail = "ahmedanwer0094@gmail.com"
+                newSummary.callReciverEmail = selectedSummary!.callReciverEmail
                 newSummary.callReciverUsername = selectedSummary!.callReciverUsername
                 newSummary.summaryDetail = summary
                 newSummary.summaryTopic = topic
@@ -39,7 +39,6 @@ class CallViewController: UIViewController {
                 newSummary.transcription = trasncription
                 newSummary.audioPath = audioPath
                 selectedSummary!.summary.append(newSummary)
-                selectedSummary!.recentTime = date
                 selectedSummary!.recentSummary = title
                 
             }
@@ -71,13 +70,8 @@ class CallViewController: UIViewController {
         
         saveCallLog()
         
-        
-        if Bundle.main.url(forResource: "Conversation2", withExtension: "wav") != nil {
-            saveSummaryToRealm(summary: "Jordan attended an Ehta lecture on AI advancements and their application in various industries. Key points included the integration of AI in healthcare, diagnostics, and personalized treatment plans. Ethical concerns were discussed, including data privacy and bias. Notable guest speakers included Dr. Patel, who discussed AI in education. The lecture was recorded and available on the university's website.", topic: "Education, AI, Healthcare", trasncription: "Hey, Jordan! How's it going? Hey, Alex! I'm good, thanks. How about you? I'm doing well. Did you attend the Ehta lecture yesterday? Yeah, I did. It was pretty interesting. Did you make it? Unfortunately, no. I had a prior commitment. What did I miss? Well, Ehta talked about the latest advancements in AI and how it's being applied in different industries. It was fascinating. That sounds awesome! Can you give me some highlights? Sure! One of the key points was about the integration of AI in healthcare, particularly in diagnostics and personalized treatment plans. Ehta showed some case studies where AI significantly improved patient outcomes. Wow, that’s impressive. Did they discuss any ethical concerns? Yes, Ehta emphasized the importance of addressing ethical issues, especially regarding data privacy and the potential for bias in AI systems. They also talked about the need for transparent and explainable AI. That's crucial. Were there any notable guest speakers? Yes, there were a couple of industry experts who shared their experiences and insights. One of them was Dr. Patel, who spoke about AI in education and how it's transforming the learning process. Nice! Did they mention any resources or papers we can check out? Definitely. They provided a list of recommended readings and some online courses to deepen our understanding of AI applications. I took some notes and can share them with you. That would be great, thanks! Do you know if the lecture was recorded? Yes, it was. They said the recording would be available on the university's website by the end of the week. Perfect, I’ll make sure to watch it. Thanks for filling me in, Jordan! No problem, Alex. Happy to help! Let’s catch up more about it once you’ve seen the lecture. Sounds like a plan. Talk to you later! Bye!",title: "Analysis: What's next for AI? Here's how it's being applied in different industries",audioPath:"audioSummarize")
-        }
-        
-        
         //uploadAudio(audioName: "audioSummarize")
+        processTranscription(transcription: "Hey, Jordan! How's it going? Hey, Alex! I'm good, thanks. How about you? I'm doing well. Did you attend the Ehta lecture yesterday? Yeah, I did. It was pretty interesting. Did you make it? Unfortunately, no. I had a prior commitment. What did I miss? Well, Ehta talked about the latest advancements in AI and how it's being applied in different industries. It was fascinating. That sounds awesome! Can you give me some highlights? Sure! One of the key points was about the integration of AI in healthcare, particularly in diagnostics and personalized treatment plans. Ehta showed some case studies where AI significantly improved patient outcomes. Wow, that’s impressive. Did they discuss any ethical concerns? Yes, Ehta emphasized the importance of addressing ethical issues, especially regarding data privacy and the potential for bias in AI systems. They also talked about the need for transparent and explainable AI. That's crucial. Were there any notable guest speakers? Yes, there were a couple of industry experts who shared their experiences and insights. One of them was Dr. Patel, who spoke about AI in education and how it's transforming the learning process. Nice! Did they mention any resources or papers we can check out? Definitely. They provided a list of recommended readings and some online courses to deepen our understanding of AI applications. I took some notes and can share them with you. That would be great, thanks! Do you know if the lecture was recorded? Yes, it was. They said the recording would be available on the university's website by the end of the week. Perfect, I’ll make sure to watch it. Thanks for filling me in, Jordan! No problem, Alex. Happy to help! Let’s catch up more about it once you’ve seen the lecture. Sounds like a plan. Talk to you later! Bye!")
         
         if #available(iOS 13.0, *) {
             self.isModalInPresentation = true
@@ -174,17 +168,56 @@ class CallViewController: UIViewController {
     }
 
 
-        
+    private func processTranscription(transcription: String) {
+        uploadTranscription(transcription: transcription) { result in
+            switch result {
+            case .success(let response):
+                // Handle the JSON response here without printing it to the console
+                if let transcription = response["transcription"] as? String,
+                   let summary = response["summary"] as? String,
+                   let title = response["title"] as? String,
+                   let topics = response["topics"] as? [String] {
+                    
+                    let topicsString = topics.joined(separator: ", ")
 
+                    
+                    DispatchQueue.main.async {
+                        self.saveSummaryToRealm(summary: summary, topic: topicsString, trasncription: transcription,title: title,audioPath: "audioSummarize")
+                    }
+                }
+
+            case .failure(let error):
+                print("Failed to upload transcription. Error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.showAlert(message: error.localizedDescription)
+                }
+            }
+        }
+    }
+
+    
+    private func showAlert(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        // Present the alert from the topmost view controller
+        if let topController = UIApplication.shared.windows.first?.rootViewController {
+            topController.present(alertController, animated: true, completion: nil)
+        }
+    }
+
+        
 
 
     private func uploadAudioFile(url: URL, completion: @escaping (Result<[String: Any], Error>) -> Void) {
         // Define the API endpoint
-        let apiUrl = URL(string: "http://127.0.0.1:9000/api/summarize/audio")!
+        let apiUrl = URL(string: "http://127.0.0.1:5000/api/summarize/audio")!
         
         // Create a URL request
         var request = URLRequest(url: apiUrl)
         request.httpMethod = "POST"
+        
+        
         
         let boundary = UUID().uuidString
         let boundaryPrefix = "--\(boundary)\r\n"
@@ -238,6 +271,70 @@ class CallViewController: UIViewController {
         
         task.resume()
     }
+    
+
+
+    private func uploadTranscription(transcription: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
+        // Define the API endpoint
+        let apiUrl = URL(string: "http://127.0.0.1:5000/api/summarize/text")!
+        
+        // Create a URLRequest object
+        var request = URLRequest(url: apiUrl)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Set up session configuration with custom timeouts
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 400.0
+        configuration.timeoutIntervalForResource = 400.0
+        let session = URLSession(configuration: configuration)
+        
+        // Create request body with the transcription
+        let requestBody: [String: Any] = ["transcription": transcription]
+        
+        do {
+            // Convert the request body to JSON data
+            request.httpBody = try JSONSerialization.data(withJSONObject: requestBody, options: [])
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        // Create the data task
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No data received", code: -1, userInfo: nil)))
+                return
+            }
+            
+            // Print the raw response data as a string for debugging
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Raw response data: \(responseString)")
+            } else {
+                print("Unable to convert response data to string.")
+            }
+            
+            // Try to parse the JSON response
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    completion(.success(json))
+                } else {
+                    completion(.failure(NSError(domain: "Invalid JSON", code: -1, userInfo: nil)))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+        
+        task.resume()
+    }
+
+
     
 }
 
