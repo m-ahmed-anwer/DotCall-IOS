@@ -245,6 +245,7 @@ extension ContactProfileViewController: UITableViewDataSource, UITableViewDelega
         if segue.identifier == "voiceCall" {
             let destinationVC = segue.destination as? CallViewController
             destinationVC!.selectedSummary = newSummaryUser
+            destinationVC!.nameLabel.text =  contactName
         }
         
         if segue.identifier == "SummariesCheck" {
